@@ -1,0 +1,3888 @@
+BD00-BDFFは新規-----------------------------
+                      RMBD00:			VRAM-ON/CHR-ON
+BD00: F5                    PUSH    AF
+BD01: DB E8                 !IN      A,(E8h)
+BD03: CB FF                 SET     7,A
+BD05: CB F7                 SET     6,A
+BD07: D3 E8                 !OUT     (E8h),A
+BD09: F1                    POP     AF
+BD0A: C9                    RET
+BD0B: NOP
+BD0C: NOP
+BD0D: NOP
+BD0E: NOP
+BD0F: NOP
+                      RMBD10:			初期画面処理
+BD10: CD EE 0C		    CALL    0CEEh	CHR40モードへ
+BD13: CD 00 BD              CALL    RMBD00	一番最初にVRAM-ON/CHR-ON
+BD16: C9                    RET
+BD17-BD1F: 全てNOP
+                      RMBD20:キーイン_SUB
+BD20: DB E8                 !IN      A,(E8h)
+BD22: E6 F0                 AND     F0h
+BD24: B1                    OR      C
+BD25: D3 E8                 !OUT     (E8h),A
+BD27: DB EA                 !IN      A,(EAh)
+BD29: C9                    RET
+BD2A: NOP
+BD2B: NOP
+BD2C: NOP
+BD2D: NOP
+BD2E: NOP
+BD2F: NOP
+                      RMBD30_KCHKG:
+BD30: 0E 14                 LD      C,14h		キーストローブ4SET
+BD32: CD 20 BD              CALL    RMBD20		キーイン_SUB
+BD35: CB 7F                 BIT     7,A			Bit7の補数をZフラグにSET(G?)
+BD37: 20 03                 JR      NZ,RMBD3D_KCHKJ
+BD39: 3E 47                 LD      A,47h    		A=47h(G)
+BD3B: C9                    RET
+                      RMBD3C_KCHKJ:
+BD3C: 0E 15                 LD      C,15h		キーストローブ5SET
+BD3E: CD 20 BD              CALL    RMBD20		キーイン_SUB
+BD41: CB 57                 BIT     2,A			Bit2の補数をZフラグにSET(J?)
+BD43: 20 02                 JR      NZ,RMBD46_KCHKEND
+BD45: 3E 4A                 LD      A,4Ah    		A=4Ah(J)
+                      RMBD46_KCHKEND:
+BD47: C9                    RET
+
+--------------------------------------------
+BE00: 3E 16                 LD      A,16h	ASCII:クリア16→06　→BD10以降CHR40で代用
+BE02: CD 12 00              CALL    RM0012	1文字PRINT→08C6　　↑同様
+BE05: CD 7C C2              CALL    RMC27C	画面半分ずつのスクロール
+BE08: CD F0 C3              CALL    RMC3F0　　　タイトル音楽
+BE0B: C3 D2 C0              JP      RMC0D2　　　PUSH [S] KEY &キースキャン
+                      RMBE0E:		初期設定１
+BE0E: 31 F0 10              LD      SP,10F0h	10F0hはスタックエリアで問題なさそう
+BE11: CD 5F C3              CALL    RMC35F	電卓画面内のスクロールクリア
+                      RMBE14:			ハイスコア用ワークのクリア
+BE14: E5                    PUSH    HL
+BE15: 21 07 CF              LD      HL,CF07h
+BE18: 36 00                 LD      (HL),00h
+BE1A: E1                    POP     HL
+BE1B: E5                    PUSH    HL
+BE1C: 21 08 CF              LD      HL,CF08h
+BE1F: 36 00                 LD      (HL),00h
+BE21: E1                    POP     HL
+                      RMBE22:
+BE22: E5                    PUSH    HL
+BE23: 21 FF CE              LD      HL,CEFFh		AIMの種類ワークのクリア
+BE26: 36 00                 LD      (HL),00h
+BE28: E1                    POP     HL
+BE29: E5                    PUSH    HL
+BE2A: 21 02 CF              LD      HL,CF02h		機数ワークのセット
+BE2D: 36 0C                 LD      (HL),0Ch
+BE2F: E1                    POP     HL
+BE30: E5                    PUSH    HL
+BE31: 21 05 CF              LD      HL,CF05h		スコア用ワークのクリア
+BE34: 36 00                 LD      (HL),00h
+BE36: E1                    POP     HL
+BE37: E5                    PUSH    HL
+BE38: 21 06 CF              LD      HL,CF06h
+BE3B: 36 00                 LD      (HL),00h
+BE3D: E1                    POP     HL
+BE3E: E5                    PUSH    HL
+BE3F: 21 0F CF              LD      HL,CF0Fh		面数を1にセット
+BE42: 36 01                 LD      (HL),01h
+BE44: E1                    POP     HL
+BE45: E5                    PUSH    HL
+BE46: 21 0E CF              LD      HL,CF0Eh		インベーダのカウンタ
+BE49: 36 01                 LD      (HL),01h
+BE4B: E1                    POP     HL
+BE4C: E5                    PUSH    HL
+BE4D: 21 10 CF              LD      HL,CF10h		現在の面スピード
+BE50: 36 1E                 LD      (HL),1Eh
+BE52: E1                    POP     HL
+                      RMBE53:
+BE53: CD 24 C1              CALL    RMC124
+BE56: E5                    PUSH    HL
+BE57: 21 FF CE              LD      HL,CEFFh
+BE5A: 36 00                 LD      (HL),00h
+BE5C: E1                    POP     HL
+                      RMBE5D:
+BE5D: CD A3 C1              CALL    RMC1A3
+BE60: 3A 0D CF              LD      A,(RMCF0D)
+BE63: 32 FC CE              LD      (RMCEFC),A
+BE66: 21 38 D1              LD      HL,D138h
+BE69: CD E2 C1              CALL    RMC1E2
+BE6C: CD C1 C1              CALL    RMC1C1
+BE6F: 3A 02 CF              LD      A,(RMCF02)
+BE72: 21 20 D1              LD      HL,D120h
+BE75: CD E2 C1              CALL    RMC1E2
+BE78: CD C1 C1              CALL    RMC1C1
+BE7B: 3A FF CE              LD      A,(RMCEFF)
+BE7E: 21 1C D1              LD      HL,D11Ch
+BE81: CD E2 C1              CALL    RMC1E2
+BE84: CD C1 C1              CALL    RMC1C1
+BE87: CD 44 C1              CALL    RMC144
+                      RMBE8A:
+BE8A: CD A6 0D              CALL    RM0DA6	VBLANK待ち（CRTの垂直ブランキングが０になったらRET）
+BE8D: CD FF C1              CALL    RMC1FF      キースキャン→BD30に移動
+BE90: FE 64                 CP      64h		未使用(BREAK処理？)
+BE92: 20 03                 JR      NZ,RMBE97
+BE94: C3 00 00              JP      RM0000	モニタリセットベクタ($004Aに飛ばす)
+                      RMBE97:
+BE97: FE 47                 CP      47h         G(AIM)入力確認
+BE99: 20 02                 JR      NZ,RMBE9D	Gを押していない場合
+BE9B: 18 09                 JR      RMBEA6	Gを押している場合
+                      RMBE9D:
+BE9D: E5                    PUSH    HL
+BE9E: 21 09 CF              LD      HL,CF09h	G(AIM)を押し続けているか？CLR
+BEA1: 36 00                 LD      (HL),00h
+BEA3: E1                    POP     HL
+BEA4: 18 2C                 JR      RMBED2
+                      RMBEA6:
+BEA6: 3A 09 CF              LD      A,(RMCF09)	G(AIM)を押し続けているか？READ
+BEA9: FE 01                 CP      01h
+BEAB: 20 02                 JR      NZ,RMBEAF	押し続けていない場合
+BEAD: 18 23                 JR      RMBED2	押し続けている場合
+                      RMBEAF:
+BEAF: 3A FF CE              LD      A,(RMCEFF)	AIMの値
+BEB2: 3C                    INC     A		1増やす
+BEB3: FE 0B                 CP      0Bh		11になったか？
+BEB5: 20 02                 JR      NZ,RMBEB9	
+BEB7: 3E 00                 LD      A,00h	A=11→0に
+                      RMBEB9:
+BEB9: 32 FF CE              LD      (RMCEFF),A	AIMの値格納
+BEBC: 21 1C D1              LD      HL,D11Ch	自機の座標
+BEBF: CD E2 C1              CALL    RMC1E2	
+BEC2: CD C1 C1              CALL    RMC1C1	数字orUFO表示
+BEC5: E5                    PUSH    HL
+BEC6: 21 09 CF              LD      HL,CF09h	G(AIM)を押し続けているか？SET
+BEC9: 36 01                 LD      (HL),01h
+BECB: E1                    POP     HL
+BECC: CD 25 C2              CALL    RMC225	スコア、ハイスコアプリント
+BECF: C3 98 BF              JP      RMBF98
+                      RMBED2:
+BED2: FE 4A                 CP      4Ah		J(FIRE)入力確認
+BED4: 20 02                 JR      NZ,RMBED8
+BED6: 18 0D                 JR      RMBEE5
+                      RMBED8:
+BED8: E5                    PUSH    HL
+BED9: 21 0A CF              LD      HL,CF0Ah
+BEDC: 36 00                 LD      (HL),00h
+BEDE: E1                    POP     HL
+BEDF: CD 25 C2              CALL    RMC225
+BEE2: C3 98 BF              JP      RMBF98
+                      RMBEE5:
+BEE5: 3A 0A CF              LD      A,(RMCF0A)
+BEE8: FE 00                 CP      00h
+BEEA: 20 02                 JR      NZ,RMBEEE
+BEEC: 18 06                 JR      RMBEF4
+                      RMBEEE:
+BEEE: CD 25 C2              CALL    RMC225
+BEF1: C3 98 BF              JP      RMBF98
+                      RMBEF4:
+BEF4: FD 21 ED CE           LD      IY,CEEDh
+BEF8: 3A FF CE              LD      A,(RMCEFF)
+BEFB: 06 00                 LD      B,00h
+BEFD: 16 06                 LD      D,06h
+                      RMBEFF:
+BEFF: FD 4E 00              LD      C,(IY+00h)
+BF02: B9                    CP      C
+BF03: 20 02                 JR      NZ,RMBF07
+BF05: 18 18                 JR      RMBF1F
+                      RMBF07:
+BF07: FD 23                 INC     IY
+BF09: FD 23                 INC     IY
+BF0B: FD 23                 INC     IY
+BF0D: 04                    INC     B
+BF0E: 15                    DEC     D
+BF0F: C2 FF BE              JP      NZ,RMBEFF
+BF12: E5                    PUSH    HL
+BF13: 21 0A CF              LD      HL,CF0Ah
+BF16: 36 01                 LD      (HL),01h
+BF18: E1                    POP     HL
+BF19: CD 25 C2              CALL    RMC225
+BF1C: C3 98 BF              JP      RMBF98
+                      RMBF1F:
+BF1F: FE 0A                 CP      0Ah
+BF21: 20 02                 JR      NZ,RMBF25
+BF23: 18 13                 JR      RMBF38
+                      RMBF25:
+BF25: DD 2A 05 CF           LD      IX,(RMCF05)
+                      RMBF29:
+BF29: DD 23                 INC     IX
+BF2B: 15                    DEC     D
+BF2C: C2 29 BF              JP      NZ,RMBF29
+BF2F: DD 22 05 CF           LD      (RMCF05),IX
+BF33: CD 5B C2              CALL    RMC25B
+BF36: 18 19                 JR      RMBF51
+                      RMBF38:
+BF38: DD 2A 05 CF           LD      IX,(RMCF05)
+BF3C: 1E 03                 LD      E,03h
+                      RMBF3E:
+BF3E: D5                    PUSH    DE
+                      RMBF3F:
+BF3F: DD 23                 INC     IX
+BF41: 15                    DEC     D
+BF42: C2 3F BF              JP      NZ,RMBF3F
+BF45: D1                    POP     DE
+BF46: 1D                    DEC     E
+BF47: C2 3E BF              JP      NZ,RMBF3E
+BF4A: DD 22 05 CF           LD      (RMCF05),IX
+BF4E: CD 39 C2              CALL    RMC239
+                      RMBF51:
+BF51: 78                    LD      A,B
+BF52: B7                    OR      A
+BF53: 20 02                 JR      NZ,RMBF57
+BF55: 18 1A                 JR      RMBF71
+                      RMBF57:
+BF57: FD 2B                 DEC     IY
+BF59: FD 2B                 DEC     IY
+BF5B: FD 2B                 DEC     IY
+BF5D: FD 7E 00              LD      A,(IY+00h)
+BF60: FD 77 03              LD      (IY+03h),A
+BF63: FD 66 04              LD      H,(IY+04h)
+BF66: FD 6E 05              LD      L,(IY+05h)
+BF69: CD E2 C1              CALL    RMC1E2
+BF6C: CD C1 C1              CALL    RMC1C1
+BF6F: 10 E6                 DJNZ    RMBF57
+                      RMBF71:
+BF71: 3E 0B                 LD      A,0Bh
+BF73: 32 ED CE              LD      (RMCEED),A
+BF76: 21 24 D1              LD      HL,D124h
+BF79: CD E2 C1              CALL    RMC1E2
+BF7C: CD C1 C1              CALL    RMC1C1
+BF7F: 3A 0E CF              LD      A,(RMCF0E)
+BF82: FE 1D                 CP      1Dh
+BF84: 20 02                 JR      NZ,RMBF88
+BF86: 18 4A                 JR      RMBFD2
+                      RMBF88:
+BF88: 3C                    INC     A
+BF89: 32 0E CF              LD      (RMCF0E),A
+BF8C: E5                    PUSH    HL
+BF8D: 21 0A CF              LD      HL,CF0Ah
+BF90: 36 01                 LD      (HL),01h
+BF92: E1                    POP     HL
+BF93: CD 25 C2              CALL    RMC225
+BF96: 18 00                 JR      RMBF98
+                      RMBF98:
+BF98: CD 3B 00              CALL    RM003B	TIMEリード→0EA9
+BF9B: 3A 10 CF              LD      A,(RMCF10)
+BF9E: BB                    CP      E		★コンペアだと通り過ぎることあり
+BF9F: 20 02                 JR      NZ,RMBFA3
+BFA1: 18 03                 JR      RMBFA6
+                      RMBFA3:
+BFA3: C3 8A BE              JP      RMBE8A
+                      RMBFA6:
+BFA6: 3A ED CE              LD      A,(RMCEED)
+BFA9: FD 21 ED CE           LD      IY,CEEDh
+BFAD: FE 0B                 CP      0Bh
+BFAF: 28 02                 JR      Z,RMBFB3
+BFB1: 18 7A                 JR      RMC02D
+                      RMBFB3:
+BFB3: 06 05                 LD      B,05h
+                      RMBFB5:
+BFB5: FD 7E 03              LD      A,(IY+03h)
+BFB8: FD 77 00              LD      (IY+00h),A
+BFBB: FD 66 01              LD      H,(IY+01h)
+BFBE: FD 6E 02              LD      L,(IY+02h)
+BFC1: CD E2 C1              CALL    RMC1E2
+BFC4: CD C1 C1              CALL    RMC1C1
+BFC7: FD 23                 INC     IY
+BFC9: FD 23                 INC     IY
+BFCB: FD 23                 INC     IY
+BFCD: 10 E6                 DJNZ    RMBFB5
+BFCF: C3 5D BE              JP      RMBE5D
+                      RMBFD2:
+BFD2: E5                    PUSH    HL
+BFD3: 21 0E CF              LD      HL,CF0Eh
+BFD6: 36 00                 LD      (HL),00h
+BFD8: E1                    POP     HL
+BFD9: 3A 0F CF              LD      A,(RMCF0F)
+BFDC: F5                    PUSH    AF
+BFDD: 47                    LD      B,A
+BFDE: FD 21 11 CF           LD      IY,CF11h
+                      RMBFE2:
+BFE2: FD 23                 INC     IY
+BFE4: 10 FC                 DJNZ    RMBFE2
+BFE6: FD 7E 00              LD      A,(IY+00h)
+BFE9: 32 10 CF              LD      (RMCF10),A
+BFEC: F1                    POP     AF
+BFED: FE 09                 CP      09h
+BFEF: 20 02                 JR      NZ,RMBFF3
+BFF1: 18 0C                 JR      RMBFFF
+                      RMBFF3:
+BFF3: F5                    PUSH    AF
+BFF4: CD 7F C3              CALL    RMC37F
+BFF7: F1                    POP     AF
+BFF8: 3C                    INC     A
+BFF9: 32 0F CF              LD      (RMCF0F),A
+BFFC: C3 53 BE              JP      RMBE53
+                      RMBFFF:
+BFFF: FD 21 11 CF           LD      IY,CF11h
+C003: FD 7E 00              LD      A,(IY+00h)
+C006: 32 10 CF              LD      (RMCF10),A
+C009: CD 7F C3              CALL    RMC37F
+C00C: CD 5F C3              CALL    RMC35F	電卓画面内のスクロールクリア
+C00F: DD 21 70 CA           LD      IX,CA70h
+C013: DD 22 1E CF           LD      (RMCF1E),IX
+C017: CD 29 C3              CALL    RMC329		電卓画面内のスクロール
+C01A: CD FD C3              CALL    RMC3FD
+C01D: E5                    PUSH    HL
+C01E: 21 0F CF              LD      HL,CF0Fh
+C021: 36 01                 LD      (HL),01h
+C023: E1                    POP     HL
+C024: CD 7C C2              CALL    RMC27C
+C027: CD 2F C2              CALL    RMC22F
+C02A: C3 53 BE              JP      RMBE53
+                      RMC02D:
+C02D: CD BC C3              CALL    RMC3BC
+C030: 3A 02 CF              LD      A,(RMCF02)
+C033: 3C                    INC     A
+C034: FE 0F                 CP      0Fh
+C036: 20 02                 JR      NZ,RMC03A
+C038: 18 12                 JR      RMC04C
+                      RMC03A:
+C03A: 32 02 CF              LD      (RMCF02),A
+C03D: 21 20 D1              LD      HL,D120h
+C040: CD E2 C1              CALL    RMC1E2
+C043: CD C1 C1              CALL    RMC1C1
+C046: CD 7F C3              CALL    RMC37F
+C049: C3 53 BE              JP      RMBE53
+                      RMC04C:
+C04C: 3E 0B                 LD      A,0Bh
+C04E: 32 02 CF              LD      (RMCF02),A
+C051: 21 20 D1              LD      HL,D120h
+C054: CD E2 C1              CALL    RMC1E2
+C057: CD C1 C1              CALL    RMC1C1
+C05A: CD 5F C3              CALL    RMC35F	電卓画面内のスクロールクリア
+C05D: DD 21 15 CB           LD      IX,CB15h
+C061: DD 22 1E CF           LD      (RMCF1E),IX
+C065: CD 29 C3              CALL    RMC329		電卓画面内のスクロール
+C068: CD 0A C4              CALL    RMC40A
+C06B: 2A 07 CF              LD      HL,(RMCF07)
+C06E: ED 5B 05 CF           LD      DE,(RMCF05)
+C072: B7                    OR      A
+C073: ED 52                 SBC     HL,DE
+C075: 38 02                 JR      C,RMC079
+C077: 18 1A                 JR      RMC093
+                      RMC079:
+C079: ED 53 07 CF           LD      (RMCF07),DE
+C07D: CD 5F C3              CALL    RMC35F	電卓画面内のスクロールクリア
+C080: DD 21 BA CB           LD      IX,CBBAh
+C084: DD 22 1E CF           LD      (RMCF1E),IX
+C088: CD 29 C3              CALL    RMC329		電卓画面内のスクロール
+C08B: CD D6 C3              CALL    RMC3D6
+C08E: CD 2F C2              CALL    RMC22F
+C091: 18 00                 JR      RMC093
+                      RMC093:
+C093: CD 5F C3              CALL    RMC35F	電卓画面内のスクロールクリア
+C096: DD 21 04 CD           LD      IX,CD04h
+C09A: DD 22 1E CF           LD      (RMCF1E),IX
+C09E: CD 29 C3              CALL    RMC329		電卓画面内のスクロール
+                      RMC0A1:		再ゲーム確認
+C0A1: CD 1B 00              CALL    RM001B	GETキー→0832
+C0A4: FE 59                 CP      59h         Y入力確認
+C0A6: 20 02                 JR      NZ,RMC0AA
+C0A8: 18 08                 JR      RMC0B2
+                      RMC0AA:
+C0AA: FE 4E                 CP      4Eh　　　　 N入力確認
+C0AC: 20 02                 JR      NZ,RMC0B0
+C0AE: 18 0B                 JR      RMC0BB	Nが押されたら終了処理
+                      RMC0B0:
+C0B0: 18 EF                 JR      RMC0A1	再ゲーム確認ループ
+                      RMC0B2:
+C0B2: CD 7C C2              CALL    RMC27C
+C0B5: CD 2F C2              CALL    RMC22F
+C0B8: C3 22 BE              JP      RMBE22
+                      RMC0BB:		終了処理
+C0BB: CD 5F C3              CALL    RMC35F	電卓画面内のスクロールクリア
+C0BE: CD E3 C3              CALL    RMC3E3	蛍の光演奏
+C0C1: DD 21 5F CC           LD      IX,CC5Fh
+C0C5: DD 22 1E CF           LD      (RMCF1E),IX
+C0C9: CD 29 C3              CALL    RMC329		電卓画面内のスクロール
+C0CC: CD 21 C3              CALL    RMC321	VBLANK待ちSUB2(無くても良さそう)
+C0CF: C3 00 00              JP      RM0000	終了
+                      RMC0D2:
+C0D2: DD 21 E0 C8           LD      IX,C8E0h
+C0D6: DD 22 1E CF           LD      (RMCF1E),IX
+C0DA: 06 50                 LD      B,50h
+                      RMC0DC:
+C0DC: C5                    PUSH    BC
+C0DD: 21 1C D1              LD      HL,D11Ch
+C0E0: 11 1B D1              LD      DE,D11Bh
+C0E3: DD 21 20 00           LD      IX,0020h
+C0E7: FD 21 08 00           LD      IY,0008h
+C0EB: 06 07                 LD      B,07h
+C0ED: CD EE C2              CALL    RMC2EE
+C0F0: 21 63 D1              LD      HL,D163h
+C0F3: 11 28 00              LD      DE,0028h
+C0F6: 06 05                 LD      B,05h
+                      RMC0F8:
+C0F8: C5                    PUSH    BC
+C0F9: DD 2A 1E CF           LD      IX,(RMCF1E)
+C0FD: DD 7E 00              LD      A,(IX+00h)
+C100: 77                    LD      (HL),A
+C101: DD 23                 INC     IX
+C103: DD 22 1E CF           LD      (RMCF1E),IX
+C107: 19                    ADD     HL,DE
+C108: CD 1B 00              CALL    RM001B	GETキー→0832
+C10B: FE 53                 CP      53h　　　　Sが押されているか？
+C10D: 20 03                 JR      NZ,RMC112　
+C10F: C3 0E BE              JP      RMBE0E     押されていたらループを抜けBE0Eへ
+                      RMC112:
+C112: E5                    PUSH    HL
+C113: D5                    PUSH    DE
+C114: CD A3 C1              CALL    RMC1A3　　　乱数発生
+C117: D1                    POP     DE
+C118: E1                    POP     HL
+C119: C1                    POP     BC
+C11A: CD A6 0D              CALL    RM0DA6	BRINK/VBLANK待ち→BELLでwaitうるさいので休符に変更しよう
+C11D: 10 D9                 DJNZ    RMC0F8
+C11F: C1                    POP     BC
+C120: 10 BA                 DJNZ    RMC0DC　　　
+C122: 18 AE                 JR      RMC0D2　　　ループ
+                      RMC124:			INVADERエリアのクリア
+C124: FD 21 ED CE           LD      IY,CEEDh
+C128: 06 06                 LD      B,06h
+                      RMC12A:
+C12A: 3E 0B                 LD      A,0Bh
+C12C: FD 77 00              LD      (IY+00h),A
+C12F: FD 66 01              LD      H,(IY+01h)
+C132: FD 6E 02              LD      L,(IY+02h)
+C135: CD E2 C1              CALL    RMC1E2
+C138: CD C1 C1              CALL    RMC1C1	数字、UFOを画面に描く
+C13B: FD 23                 INC     IY
+C13D: FD 23                 INC     IY
+C13F: FD 23                 INC     IY
+C141: 10 E7                 DJNZ    RMC12A
+C143: C9                    RET
+                      RMC144:タイマーを1秒→0.1秒に変更
+				;
+				;FROM C0=7A12H=3.125KHZ
+				;TO   C0=07A1H=3.125KHZ
+				;
+C144: AF                    XOR     A
+C145: 11 00 00              LD      DE,0000h
+C148: CD 33 00              CALL    RM0033	タイマセット→0E5E
+							;A,A1H;C0=07A1 SE
+C14B: E5                    PUSH    HL		3EA1	LD	A,A1H
+C14C: 21 07 E0              LD      HL,E007h	D3E4	OUT	(E4H),A
+C14F: 36 74                 LD      (HL),74h	3E07	LD	A,07H
+C151: E1                    POP     HL		D3E4	OUT	(E4H),A
+C152: E5                    PUSH    HL		C15FまでNOP
+C153: 21 05 E0              LD      HL,E005h	C15FまでNOP
+C156: 36 35                 LD      (HL),35h	C15FまでNOP
+C158: E1                    POP     HL		C15FまでNOP
+C159: E5                    PUSH    HL		C15FまでNOP
+C15A: 21 05 E0              LD      HL,E005h	C15FまでNOP
+C15D: 36 0C                 LD      (HL),0Ch	C15FまでNOP
+C15F: E1                    POP     HL		C15FまでNOP
+C160: C9                    RET
+                      RMC161:
+C161: D5                    PUSH    DE
+C162: 01 10 27              LD      BC,2710h
+C165: CD 91 C1              CALL    RMC191
+C168: 01 E8 03              LD      BC,03E8h
+C16B: CD 91 C1              CALL    RMC191
+C16E: 01 64 00              LD      BC,0064h
+C171: CD 91 C1              CALL    RMC191
+C174: 01 0A 00              LD      BC,000Ah
+C177: CD 91 C1              CALL    RMC191
+C17A: 7D                    LD      A,L
+C17B: C6 20                 ADD     20h		→30h(キャラコード変換)十の位
+C17D: 12                    LD      (DE),A
+C17E: 13                    INC     DE
+C17F: 3E 20                 LD      A,20h	→30h(キャラコード変換)一の位
+C181: 12                    LD      (DE),A
+C182: E1                    POP     HL
+C183: 06 05                 LD      B,05h
+                      RMC185:
+C185: 7E                    LD      A,(HL)
+C186: FE 20                 CP      20h		→変更なし(ゼロサプレス)
+C188: 28 01                 JR      Z,RMC18B
+C18A: C9                    RET
+                      RMC18B:
+C18B: 36 00                 LD      (HL),00h
+C18D: 23                    INC     HL
+C18E: 10 F5                 DJNZ    RMC185
+C190: C9                    RET
+                      RMC191:
+C191: C5                    PUSH    BC
+C192: B7                    OR      A
+C193: 3E 20                 LD      A,20h	→30h(キャラコード変換)百以上の位
+                      RMC195:
+C195: ED 42                 SBC     HL,BC
+C197: 30 02                 JR      NC,RMC19B
+C199: 18 03                 JR      RMC19E
+                      RMC19B:
+C19B: 3C                    INC     A
+C19C: 18 F7                 JR      RMC195
+                      RMC19E:
+C19E: C1                    POP     BC
+C19F: 09                    ADD     HL,BC
+C1A0: 12                    LD      (DE),A
+C1A1: 13                    INC     DE
+C1A2: C9                    RET
+                      RMC1A3:
+C1A3: 2A 0B CF              LD      HL,(RMCF0B)
+C1A6: 54                    LD      D,H
+C1A7: 5D                    LD      E,L
+C1A8: 29                    ADD     HL,HL
+C1A9: 19                    ADD     HL,DE
+C1AA: 7B                    LD      A,E
+C1AB: 84                    ADD     H
+C1AC: 67                    LD      H,A
+C1AD: 22 0B CF              LD      (RMCF0B),HL
+C1B0: E6 1F                 AND     1Fh
+C1B2: FE 0B                 CP      0Bh
+C1B4: 38 02                 JR      C,RMC1B8
+C1B6: 18 EB                 JR      RMC1A3
+                      RMC1B8:
+C1B8: 3A 0C CF              LD      A,(RMCF0C)
+C1BB: E6 0F                 AND     0Fh
+C1BD: 32 0D CF              LD      (RMCF0D),A
+C1C0: C9                    RET
+                      RMC1C1:
+C1C1: 16 05                 LD      D,05h
+                      RMC1C3:
+C1C3: D5                    PUSH    DE
+C1C4: 16 03                 LD      D,03h
+C1C6: D5                    PUSH    DE
+C1C7: 11 28 00              LD      DE,0028h
+C1CA: 19                    ADD     HL,DE
+C1CB: D1                    POP     DE
+                      RMC1CC:
+C1CC: DD 7E 00              LD      A,(IX+00h)
+C1CF: 77                    LD      (HL),A
+C1D0: DD 23                 INC     IX
+C1D2: 23                    INC     HL
+C1D3: 15                    DEC     D
+C1D4: 28 02                 JR      Z,RMC1D8
+C1D6: 18 F4                 JR      RMC1CC
+                      RMC1D8:
+C1D8: 2B                    DEC     HL
+C1D9: 2B                    DEC     HL
+C1DA: 2B                    DEC     HL
+C1DB: D1                    POP     DE
+C1DC: 15                    DEC     D
+C1DD: 28 02                 JR      Z,RMC1E1
+C1DF: 18 E2                 JR      RMC1C3
+                      RMC1E1:
+C1E1: C9                    RET
+                      RMC1E2:
+C1E2: C5                    PUSH    BC
+C1E3: E5                    PUSH    HL
+C1E4: 3C                    INC     A
+C1E5: 47                    LD      B,A
+C1E6: 21 17 C4              LD      HL,C417h
+C1E9: B7                    OR      A
+C1EA: D5                    PUSH    DE
+C1EB: 11 0F 00              LD      DE,000Fh
+C1EE: ED 52                 SBC     HL,DE
+C1F0: D1                    POP     DE
+                      RMC1F1:
+C1F1: D5                    PUSH    DE
+C1F2: 11 0F 00              LD      DE,000Fh
+C1F5: 19                    ADD     HL,DE
+C1F6: D1                    POP     DE
+C1F7: 10 F8                 DJNZ    RMC1F1
+C1F9: E5                    PUSH    HL
+C1FA: DD E1                 POP     IX
+C1FC: E1                    POP     HL
+C1FD: C1                    POP     BC
+C1FE: C9                    RET
+                      RMC1FF:
+C1FF: 21 00 E0              LD      HL,E000h
+C202: 36 F9                 LD      (HL),F9h
+C204: 23                    INC     HL
+C205: 7E                    LD      A,(HL)
+C206: 2F                    CPL
+C207: FE 08                 CP      08h
+C209: 20 03                 JR      NZ,RMC20E
+C20B: 3E 64                 LD      A,64h
+C20D: C9                    RET
+                      RMC20E:
+C20E: 21 00 E0              LD      HL,E000h
+C211: 36 F4                 LD      (HL),F4h
+C213: 23                    INC     HL
+C214: 7E                    LD      A,(HL)
+C215: 2F                    CPL
+C216: FE 08                 CP      08h
+C218: 20 03                 JR      NZ,RMC21D
+C21A: 3E 4A                 LD      A,4Ah
+C21C: C9                    RET
+                      RMC21D:
+C21D: FE 04                 CP      04h
+C21F: 20 03                 JR      NZ,RMC224
+C221: 3E 47                 LD      A,47h
+C223: C9                    RET
+                      RMC224:
+C224: C9                    RET
+                      RMC225:
+C225: 2A 05 CF              LD      HL,(RMCF05)	スコア
+C228: 11 95 D0              LD      DE,D095h
+C22B: CD 61 C1              CALL    RMC161	ゼロサプレス付10進出力
+C22E: C9                    RET
+                      RMC22F:
+C22F: 2A 07 CF              LD      HL,(RMCF07)ハイスコア
+C232: 11 85 D0              LD      DE,D085h
+C235: CD 61 C1              CALL    RMC161	ゼロサプレス付10進出力
+C238: C9                    RET
+                      RMC239:UFO効果音
+; 80K/C			80B/2000
+; MUSIC START($0044)	SOUND OUT($0F22)
+; $11A1にnn'(2MHz/nn')	BC=ONCHOO
+; 			HL=ONTEI
+C239: F5                    PUSH    AF
+C23A: FD E5                 PUSH    IY			D500	;PUSH DE,NOP
+C23C: C5                    PUSH    BC
+C23D: FD 21 00 01           LD      IY,0100h;2MHZ/256=7812HZ TO 
+							00110001;NOP,LD DE,0100h
+C241: 01 00 02              LD      BC,0200h;2MHZ/768=2604HZ
+                      RMC244:
+C244: FD 22 A1 11           LD      (RM11A1),IY		00000000;NOP
+C248: CD 44 00              CALL    RM0044	MSTA	CD220F ;SOUTで代用
+C24B: FD 23                 INC     IY			1300	INC DE,NOP
+C24D: 0B                    DEC     BC
+C24E: 78                    LD      A,B
+C24F: B1                    OR      C
+C250: C2 44 C2              JP      NZ,RMC244
+C253: CD 47 00              CALL    RM0047	MSTP	000000	;NOP
+C256: C1                    POP     BC
+C257: FD E1                 POP     IY			D100	;POP DE,NOP
+C259: F1                    POP     AF
+C25A: C9                    RET
+                      RMC25B:
+C25B: F5                    PUSH    AF
+C25C: FD E5                 PUSH    IY
+C25E: C5                    PUSH    BC
+C25F: FD 21 FF 02           LD      IY,02FFh
+C263: FD 22 A1 11           LD      (RM11A1),IY
+C267: CD 44 00              CALL    RM0044	MUSICスタート
+C26A: 01 00 03              LD      BC,0300h
+                      RMC26D:
+C26D: 00                    NOP
+C26E: 0B                    DEC     BC
+C26F: 78                    LD      A,B
+C270: B1                    OR      C
+C271: C2 6D C2              JP      NZ,RMC26D
+C274: CD 47 00              CALL    RM0047	MUSICストップ
+C277: C1                    POP     BC
+C278: FD E1                 POP     IY
+C27A: F1                    POP     AF
+C27B: C9                    RET
+                      RMC27C:
+C27C: 21 0B C5              LD      HL,C50Bh
+C27F: 22 1A CF              LD      (RMCF1A),HL
+C282: 21 0C C5              LD      HL,C50Ch
+C285: 22 1C CF              LD      (RMCF1C),HL
+C288: 06 14                 LD      B,14h
+                      RMC28A:
+C28A: C5                    PUSH    BC
+C28B: 21 D2 D3              LD      HL,D3D2h
+C28E: 11 D3 D3              LD      DE,D3D3h
+C291: DD 21 13 00           LD      IX,0013h
+C295: FD 21 15 00           LD      IY,0015h
+C299: 06 19                 LD      B,19h
+C29B: CD D8 C2              CALL    RMC2D8
+C29E: DD 21 00 D0           LD      IX,D000h
+C2A2: 2A 1A CF              LD      HL,(RMCF1A)
+C2A5: E5                    PUSH    HL
+C2A6: CD 01 C3              CALL    RMC301
+C2A9: E1                    POP     HL
+C2AA: 2B                    DEC     HL
+C2AB: 22 1A CF              LD      (RMCF1A),HL
+C2AE: 21 15 D0              LD      HL,D015h
+C2B1: 11 14 D0              LD      DE,D014h
+C2B4: DD 21 13 00           LD      IX,0013h
+C2B8: FD 21 15 00           LD      IY,0015h
+C2BC: 06 19                 LD      B,19h
+C2BE: CD EE C2              CALL    RMC2EE
+C2C1: DD 21 27 D0           LD      IX,D027h
+C2C5: 2A 1C CF              LD      HL,(RMCF1C)
+C2C8: E5                    PUSH    HL
+C2C9: CD 01 C3              CALL    RMC301
+C2CC: E1                    POP     HL
+C2CD: 23                    INC     HL
+C2CE: 22 1C CF              LD      (RMCF1C),HL
+C2D1: C1                    POP     BC
+C2D2: CD 17 C3              CALL    RMC317
+C2D5: 10 B3                 DJNZ    RMC28A
+C2D7: C9                    RET
+                      RMC2D8:
+C2D8: AF                    XOR     A	A=0クリア
+C2D9: B7                    OR      A	Zフラグが立つだけ？？
+                      RMC2DA:
+C2DA: C5                    PUSH    BC		BC退避
+C2DB: DD E5                 PUSH    IX		IX→BC
+C2DD: C1                    POP     BC
+C2DE: ED B8                 LDDR		DE←HL（右スクロール）
+C2E0: 12                    LD      (DE),A
+C2E1: FD E5                 PUSH    IY
+C2E3: C1                    POP     BC
+C2E4: ED 42                 SBC     HL,BC
+C2E6: EB                    EX      DE,HL
+C2E7: ED 42                 SBC     HL,BC
+C2E9: EB                    EX      DE,HL
+C2EA: C1                    POP     BC
+C2EB: 10 ED                 DJNZ    RMC2DA
+C2ED: C9                    RET
+;B	
+;HL	転送元
+;DE	転送先
+;IX	転送する列数
+;IY	
+                      RMC2EE:			スクロールしながらクリア
+C2EE: AF                    XOR     A		A=0クリア
+                      RMC2EF:
+C2EF: C5                    PUSH    BC		BCを退避
+C2F0: DD E5                 PUSH    IX		IX→BC
+C2F2: C1                    POP     BC		
+C2F3: ED B0                 LDIR		HLの値をDEにBC(IX)回分転送する
+C2F5: 12                    LD      (DE),A	(DE)=0 アドレスDEの表示を消す
+C2F6: FD E5                 PUSH    IY
+C2F8: C1                    POP     BC		IY→BC
+C2F9: 09                    ADD     HL,BC	HL=HL+BC(IY)、DE=DE+BC(IY)
+C2FA: EB                    EX      DE,HL	
+C2FB: 09                    ADD     HL,BC	
+C2FC: EB                    EX      DE,HL	
+C2FD: C1                    POP     BC
+C2FE: 10 EF                 DJNZ    RMC2EF	B回数分繰り返し
+C300: C9                    RET
+                      RMC301:
+C301: 11 28 00              LD      DE,0028h
+C304: 06 19                 LD      B,19h
+                      RMC306:
+C306: 7E                    LD      A,(HL)
+C307: DD 77 00              LD      (IX+00h),A
+C30A: 19                    ADD     HL,DE
+C30B: E5                    PUSH    HL
+C30C: DD E5                 PUSH    IX
+C30E: E1                    POP     HL
+C30F: 19                    ADD     HL,DE
+C310: E5                    PUSH    HL
+C311: DD E1                 POP     IX
+C313: E1                    POP     HL
+C314: 10 F0                 DJNZ    RMC306
+C316: C9                    RET
+                      RMC317:		VBLANK待ちSUB(無くても良さそう)
+C317: C5                    PUSH    BC
+C318: 06 16                 LD      B,16h
+                      RMC31A:
+C31A: CD A6 0D              CALL    RM0DA6　VBLANK待ち→とりあえずNOP
+C31D: 10 FB                 DJNZ    RMC31A
+C31F: C1                    POP     BC
+C320: C9                    RET
+                      RMC321:		VBLANK待ちSUB2(無くても良さそう)
+C321: 06 0A                 LD      B,0Ah
+                      RMC323:
+C323: CD 17 C3              CALL    RMC317
+C326: 10 FB                 DJNZ    RMC323
+C328: C9                    RET
+                      RMC329:		電卓画面内のスクロール
+C329: 06 21                 LD      B,21h
+                      RMC32B:
+C32B: C5                    PUSH    BC
+C32C: 21 1C D1              LD      HL,D11Ch
+C32F: 11 1B D1              LD      DE,D11Bh
+C332: DD 21 20 00           LD      IX,0020h
+C336: FD 21 08 00           LD      IY,0008h
+C33A: 06 07                 LD      B,07h
+C33C: CD EE C2              CALL    RMC2EE
+C33F: 21 63 D1              LD      HL,D163h
+C342: 11 28 00              LD      DE,0028h
+C345: 06 05                 LD      B,05h
+                      RMC347:
+C347: DD 2A 1E CF           LD      IX,(RMCF1E)
+C34B: DD 7E 00              LD      A,(IX+00h)
+C34E: 77                    LD      (HL),A
+C34F: DD 23                 INC     IX
+C351: DD 22 1E CF           LD      (RMCF1E),IX
+C355: 19                    ADD     HL,DE
+C356: CD A6 0D              CALL    RM0DA6　VBLANK待ち→とりあえずNOP
+C359: 10 EC                 DJNZ    RMC347
+C35B: C1                    POP     BC
+C35C: 10 CD                 DJNZ    RMC32B
+C35E: C9                    RET
+                      RMC35F:	電卓画面内のスクロールクリア
+C35F: 06 21                 LD      B,21h
+                      RMC361:
+C361: C5                    PUSH    BC
+C362: 21 1C D1              LD      HL,D11Ch
+C365: 11 1B D1              LD      DE,D11Bh
+C368: DD 21 20 00           LD      IX,0020h
+C36C: FD 21 08 00           LD      IY,0008h
+C370: 06 07                 LD      B,07h
+C372: CD EE C2              CALL    RMC2EE	スクロールしながらクリア
+C375: C1                    POP     BC
+C376: CD A6 0D              CALL    RM0DA6　VBLANK待ち→とりあえずNOP
+C379: CD A6 0D              CALL    RM0DA6　VBLANK待ち→とりあえずNOP
+C37C: 10 E3                 DJNZ    RMC361
+C37E: C9                    RET
+                      RMC37F:　;面クリア
+C37F: 3A 0F CF              LD      A,(RMCF0F)
+C382: 21 1C D1              LD      HL,D11Ch
+C385: CD E2 C1              CALL    RMC1E2
+C388: CD C1 C1              CALL    RMC1C1
+C38B: 21 24 D1              LD      HL,D124h
+C38E: FD 21 95 D0           LD      IY,D095h
+C392: 06 06                 LD      B,06h
+                      RMC394:
+C394: C5                    PUSH    BC
+C395: E5                    PUSH    HL
+C396: FD 7E 00              LD      A,(IY+00h)
+C399: D6 20                 SUB     20h		→30(charaコード変更)
+C39B: 30 02                 JR      NC,RMC39F
+C39D: 3E 0B                 LD      A,0Bh
+                      RMC39F:
+C39F: CD E2 C1              CALL    RMC1E2
+C3A2: CD C1 C1              CALL    RMC1C1
+C3A5: FD 23                 INC     IY
+C3A7: E1                    POP     HL
+C3A8: D5                    PUSH    DE
+C3A9: 11 04 00              LD      DE,0004h
+C3AC: 19                    ADD     HL,DE
+C3AD: D1                    POP     DE
+C3AE: C1                    POP     BC
+C3AF: 10 E3                 DJNZ    RMC394
+C3B1: 06 0A                 LD      B,0Ah
+                      RMC3B3:
+C3B3: CD 17 C3              CALL    RMC317
+C3B6: CD 3E 00              CALL    RM003E	BELL→0F14
+C3B9: 10 F8                 DJNZ    RMC3B3
+C3BB: C9                    RET
+                      RMC3BC:
+C3BC: 21 00 02              LD      HL,0200h
+C3BF: 01 00 40              LD      BC,4000h
+                      RMC3C2:
+C3C2: 22 A1 11              LD      (RM11A1),HL
+C3C5: E5                    PUSH    HL
+C3C6: CD 44 00              CALL    RM0044　ミュージックスタート
+C3C9: E1                    POP     HL
+C3CA: 23                    INC     HL
+C3CB: 23                    INC     HL
+C3CC: 0B                    DEC     BC
+C3CD: 78                    LD      A,B
+C3CE: B1                    OR      C
+C3CF: C2 C2 C3              JP      NZ,RMC3C2
+C3D2: CD 47 00              CALL    RM0047
+C3D5: C9                    RET
+                      RMC3D6:
+C3D6: 3A A9 CD              LD      A,(RMCDA9)
+C3D9: CD 41 00              CALL    RM0041	テンポ設定→0E50
+C3DC: 11 AA CD              LD      DE,CDAAh
+C3DF: CD 30 00              CALL    RM0030	メロディー→0F3F
+C3E2: C9                    RET
+                      RMC3E3:
+C3E3: 3A E9 CD              LD      A,(RMCDE9)
+C3E6: CD 41 00              CALL    RM0041	テンポ設定→0E50
+C3E9: 11 EA CD              LD      DE,CDEAh
+C3EC: CD 30 00              CALL    RM0030	メロディー→0F3F
+C3EF: C9                    RET
+                      RMC3F0:
+C3F0: 3A 31 CE              LD      A,(RMCE31)	
+C3F3: CD 41 00              CALL    RM0041	テンポ設定→0E50
+C3F6: 11 32 CE              LD      DE,CE32h
+C3F9: CD 30 00              CALL    RM0030	メロディー→0F3F
+C3FC: C9                    RET
+                      RMC3FD:
+C3FD: 3A 74 CE              LD      A,(RMCE74)
+C400: CD 41 00              CALL    RM0041	テンポ設定→0E50
+C403: 11 75 CE              LD      DE,CE75h
+C406: CD 30 00              CALL    RM0030	メロディー→0F3F
+C409: C9                    RET
+                      RMC40A:
+C40A: 3A BF CE              LD      A,(RMCEBF)
+C40D: CD 41 00              CALL    RM0041	テンポ設定→0E50
+C410: 11 C0 CE              LD      DE,CEC0h
+C413: CD 30 00              CALL    RM0030	メロディー→0F3F
+C416: C9                    RET
+C417: 43                    LD      B,E
+C418: 43                    LD      B,E
+C419: 43                    LD      B,E
+C41A: 43                    LD      B,E
+C41B: 00                    NOP
+C41C: 43                    LD      B,E
+C41D: 43                    LD      B,E
+C41E: 00                    NOP
+C41F: 43                    LD      B,E
+C420: 43                    LD      B,E
+C421: 00                    NOP
+C422: 43                    LD      B,E
+C423: 43                    LD      B,E
+C424: 43                    LD      B,E
+C425: 43                    LD      B,E
+C426: 00                    NOP
+C427: 00                    NOP
+C428: 43                    LD      B,E
+C429: 00                    NOP
+C42A: 00                    NOP
+C42B: 43                    LD      B,E
+C42C: 00                    NOP
+C42D: 00                    NOP
+C42E: 43                    LD      B,E
+C42F: 00                    NOP
+C430: 00                    NOP
+C431: 43                    LD      B,E
+C432: 00                    NOP
+C433: 00                    NOP
+C434: 43                    LD      B,E
+C435: 43                    LD      B,E
+C436: 43                    LD      B,E
+C437: 43                    LD      B,E
+C438: 00                    NOP
+C439: 00                    NOP
+C43A: 43                    LD      B,E
+C43B: 43                    LD      B,E
+C43C: 43                    LD      B,E
+C43D: 43                    LD      B,E
+C43E: 43                    LD      B,E
+C43F: 00                    NOP
+C440: 00                    NOP
+C441: 43                    LD      B,E
+C442: 43                    LD      B,E
+C443: 43                    LD      B,E
+C444: 43                    LD      B,E
+C445: 43                    LD      B,E
+C446: 43                    LD      B,E
+C447: 00                    NOP
+C448: 00                    NOP
+C449: 43                    LD      B,E
+C44A: 43                    LD      B,E
+C44B: 43                    LD      B,E
+C44C: 43                    LD      B,E
+C44D: 00                    NOP
+C44E: 00                    NOP
+C44F: 43                    LD      B,E
+C450: 43                    LD      B,E
+C451: 43                    LD      B,E
+C452: 43                    LD      B,E
+C453: 43                    LD      B,E
+C454: 00                    NOP
+C455: 43                    LD      B,E
+C456: 43                    LD      B,E
+C457: 00                    NOP
+C458: 43                    LD      B,E
+C459: 43                    LD      B,E
+C45A: 00                    NOP
+C45B: 43                    LD      B,E
+C45C: 43                    LD      B,E
+C45D: 43                    LD      B,E
+C45E: 43                    LD      B,E
+C45F: 00                    NOP
+C460: 00                    NOP
+C461: 43                    LD      B,E
+C462: 43                    LD      B,E
+C463: 43                    LD      B,E
+C464: 43                    LD      B,E
+C465: 43                    LD      B,E
+C466: 00                    NOP
+C467: 00                    NOP
+C468: 43                    LD      B,E
+C469: 43                    LD      B,E
+C46A: 43                    LD      B,E
+C46B: 00                    NOP
+C46C: 00                    NOP
+C46D: 43                    LD      B,E
+C46E: 43                    LD      B,E
+C46F: 43                    LD      B,E
+C470: 43                    LD      B,E
+C471: 43                    LD      B,E
+C472: 43                    LD      B,E
+C473: 43                    LD      B,E
+C474: 43                    LD      B,E
+C475: 00                    NOP
+C476: 00                    NOP
+C477: 43                    LD      B,E
+C478: 43                    LD      B,E
+C479: 43                    LD      B,E
+C47A: 43                    LD      B,E
+C47B: 00                    NOP
+C47C: 43                    LD      B,E
+C47D: 43                    LD      B,E
+C47E: 43                    LD      B,E
+C47F: 43                    LD      B,E
+C480: 43                    LD      B,E
+C481: 43                    LD      B,E
+C482: 43                    LD      B,E
+C483: 00                    NOP
+C484: 00                    NOP
+C485: 43                    LD      B,E
+C486: 00                    NOP
+C487: 00                    NOP
+C488: 43                    LD      B,E
+C489: 00                    NOP
+C48A: 00                    NOP
+C48B: 43                    LD      B,E
+C48C: 00                    NOP
+C48D: 00                    NOP
+C48E: 43                    LD      B,E
+C48F: 43                    LD      B,E
+C490: 43                    LD      B,E
+C491: 43                    LD      B,E
+C492: 43                    LD      B,E
+C493: 00                    NOP
+C494: 43                    LD      B,E
+C495: 43                    LD      B,E
+C496: 43                    LD      B,E
+C497: 43                    LD      B,E
+C498: 43                    LD      B,E
+C499: 00                    NOP
+C49A: 43                    LD      B,E
+C49B: 43                    LD      B,E
+C49C: 43                    LD      B,E
+C49D: 43                    LD      B,E
+C49E: 43                    LD      B,E
+C49F: 43                    LD      B,E
+C4A0: 43                    LD      B,E
+C4A1: 43                    LD      B,E
+C4A2: 00                    NOP
+C4A3: 43                    LD      B,E
+C4A4: 43                    LD      B,E
+C4A5: 43                    LD      B,E
+C4A6: 43                    LD      B,E
+C4A7: 00                    NOP
+C4A8: 00                    NOP
+C4A9: 43                    LD      B,E
+C4AA: 00                    NOP
+C4AB: 00                    NOP
+C4AC: 43                    LD      B,E
+C4AD: 00                    NOP
+C4AE: 00                    NOP
+C4AF: 00                    NOP
+C4B0: 00                    NOP
+C4B1: 00                    NOP
+C4B2: 00                    NOP
+C4B3: 43                    LD      B,E
+C4B4: 43                    LD      B,E
+C4B5: 43                    LD      B,E
+C4B6: 43                    LD      B,E
+C4B7: 00                    NOP
+C4B8: 43                    LD      B,E
+C4B9: 43                    LD      B,E
+C4BA: 00                    NOP
+C4BB: 43                    LD      B,E
+C4BC: 00                    NOP
+C4BD: 00                    NOP
+C4BE: 00                    NOP
+C4BF: 00                    NOP
+C4C0: 00                    NOP
+C4C1: 00                    NOP
+C4C2: 00                    NOP
+C4C3: 00                    NOP
+C4C4: 00                    NOP
+C4C5: 00                    NOP
+C4C6: 00                    NOP
+C4C7: 00                    NOP
+C4C8: 00                    NOP
+C4C9: 00                    NOP
+C4CA: 00                    NOP
+C4CB: 5A                    LD      E,D
+C4CC: 5A                    LD      E,D
+C4CD: 5A                    LD      E,D
+C4CE: 00                    NOP
+C4CF: 00                    NOP
+C4D0: 00                    NOP
+C4D1: 5A                    LD      E,D
+C4D2: 5A                    LD      E,D
+C4D3: 5A                    LD      E,D
+C4D4: 00                    NOP
+C4D5: 00                    NOP
+C4D6: 00                    NOP
+C4D7: 5A                    LD      E,D
+C4D8: 5A                    LD      E,D
+C4D9: 5A                    LD      E,D
+C4DA: 00                    NOP
+C4DB: 00                    NOP
+C4DC: 00                    NOP
+C4DD: 00                    NOP
+C4DE: 00                    NOP
+C4DF: 00                    NOP
+C4E0: 5A                    LD      E,D
+C4E1: 5A                    LD      E,D
+C4E2: 5A                    LD      E,D
+C4E3: 00                    NOP
+C4E4: 00                    NOP
+C4E5: 00                    NOP
+C4E6: 5A                    LD      E,D
+C4E7: 5A                    LD      E,D
+C4E8: 5A                    LD      E,D
+C4E9: 00                    NOP
+C4EA: 00                    NOP
+C4EB: 00                    NOP
+C4EC: 00                    NOP
+C4ED: 00                    NOP
+C4EE: 00                    NOP
+C4EF: 5A                    LD      E,D
+C4F0: 5A                    LD      E,D
+C4F1: 5A                    LD      E,D
+C4F2: 00                    NOP
+C4F3: 00                    NOP
+C4F4: 00                    NOP
+C4F5: 00                    NOP
+C4F6: 00                    NOP
+C4F7: 00                    NOP
+C4F8: 00                    NOP
+C4F9: 00                    NOP
+C4FA: 00                    NOP
+C4FB: 00                    NOP
+C4FC: 00                    NOP
+C4FD: 00                    NOP
+C4FE: 00                    NOP
+C4FF: 00                    NOP
+C500: 00                    NOP
+C501: 00                    NOP
+C502: 00                    NOP
+C503: 00                    NOP
+C504: 00                    NOP
+C505: 00                    NOP
+C506: 00                    NOP
+C507: 00                    NOP
+C508: 00                    NOP
+C509: 00                    NOP
+C50A: 00                    NOP
+C50B: 00                    NOP
+C50C: 00                    NOP
+C50D: 00                    NOP
+C50E: 00                    NOP
+C50F: 00                    NOP
+C510: 00                    NOP
+C511: 00                    NOP
+C512: 00                    NOP
+C513: 00                    NOP
+C514: 00                    NOP
+C515: 00                    NOP
+C516: 00                    NOP
+C517: 00                    NOP
+C518: 00                    NOP
+C519: 00                    NOP
+C51A: 00                    NOP
+C51B: 00                    NOP
+C51C: 00                    NOP
+C51D: 00                    NOP
+C51E: 00                    NOP
+C51F: 00                    NOP
+C520: 00                    NOP
+C521: 00                    NOP
+C522: 00                    NOP
+C523: 00                    NOP
+C524: 00                    NOP
+C525: 00                    NOP
+C526: 00                    NOP
+C527: 00                    NOP
+C528: 00                    NOP
+C529: 00                    NOP
+C52A: 00                    NOP
+C52B: 00                    NOP
+C52C: 00                    NOP
+C52D: 00                    NOP
+C52E: 00                    NOP
+C52F: 00                    NOP
+C530: 00                    NOP
+C531: 00                    NOP
+C532: 00                    NOP
+C533: 00                    NOP
+C534: 00                    NOP
+C535: 00                    NOP
+C536: 00                    NOP
+C537: 00                    NOP
+C538: 00                    NOP
+C539: 00                    NOP
+C53A: 00                    NOP
+C53B: 00                    NOP
+C53C: 00                    NOP
+C53D: 00                    NOP
+C53E: 00                    NOP
+C53F: 00                    NOP
+C540: 00                    NOP
+C541: 00                    NOP
+C542: 00                    NOP
+C543: 00                    NOP
+C544: 00                    NOP
+C545: 00                    NOP
+C546: 00                    NOP
+C547: 00                    NOP
+C548: 00                    NOP
+C549: 00                    NOP
+C54A: 3B                    DEC     SP
+C54B: 7A                    LD      A,D
+C54C: 7A                    LD      A,D
+C54D: 7A                    LD      A,D
+C54E: 7A                    LD      A,D
+C54F: 7A                    LD      A,D
+C550: 7A                    LD      A,D
+C551: 7A                    LD      A,D
+C552: 7A                    LD      A,D
+C553: 7A                    LD      A,D
+C554: 7A                    LD      A,D
+C555: 7A                    LD      A,D
+C556: 7A                    LD      A,D
+C557: 7A                    LD      A,D
+C558: 7A                    LD      A,D
+C559: 7A                    LD      A,D
+C55A: 7A                    LD      A,D
+C55B: 7A                    LD      A,D
+C55C: 7B                    LD      A,E
+C55D: 3D                    DEC     A
+C55E: 70                    LD      (HL),B
+C55F: 70                    LD      (HL),B
+C560: 70                    LD      (HL),B
+C561: 70                    LD      (HL),B
+C562: 70                    LD      (HL),B
+C563: 70                    LD      (HL),B
+C564: 70                    LD      (HL),B
+C565: 70                    LD      (HL),B
+C566: 70                    LD      (HL),B
+C567: 70                    LD      (HL),B
+C568: 70                    LD      (HL),B
+C569: 70                    LD      (HL),B
+C56A: 70                    LD      (HL),B
+C56B: 70                    LD      (HL),B
+C56C: 71                    LD      (HL),C
+C56D: 00                    NOP
+C56E: 00                    NOP
+C56F: 00                    NOP
+C570: 00                    NOP
+C571: 00                    NOP
+C572: 3B                    DEC     SP
+C573: 00                    NOP
+C574: 08                    EX      AF,AF'
+C575: 09                    ADD     HL,BC
+C576: 2A 13 03              LD      HL,(RM0313)
+C579: 0F                    RRCA
+C57A: 12                    LD      (DE),A
+C57B: 05                    DEC     B
+C57C: 4F                    LD      C,A
+C57D: 00                    NOP
+C57E: 00                    NOP
+C57F: 00                    NOP
+C580: 00                    NOP
+C581: 00                    NOP
+C582: 20 00                 JR      NZ,RMC584
+                      RMC584:
+C584: 7B                    LD      A,E
+C585: 3D                    DEC     A
+C586: 00                    NOP
+C587: 13                    INC     DE
+C588: 03                    INC     BC
+C589: 0F                    RRCA
+C58A: 12                    LD      (DE),A
+C58B: 05                    DEC     B
+C58C: 4F                    LD      C,A
+C58D: 00                    NOP
+C58E: 00                    NOP
+C58F: 00                    NOP
+C590: 00                    NOP
+C591: 00                    NOP
+C592: 20 00                 JR      NZ,RMC594
+                      RMC594:
+C594: 71                    LD      (HL),C
+C595: 00                    NOP
+C596: 00                    NOP
+C597: 00                    NOP
+C598: 00                    NOP
+C599: 00                    NOP
+C59A: 3B                    DEC     SP
+C59B: 3A 3A 3A              LD      A,(RM3A3A)
+C59E: 3A 3A 3A              LD      A,(RM3A3A)
+C5A1: 3A 3A 3A              LD      A,(RM3A3A)
+C5A4: 3A 3A 3A              LD      A,(RM3A3A)
+C5A7: 3A 3A 3A              LD      A,(RM3A3A)
+C5AA: 3A 3A 7B              LD      A,(RM7B3A)
+C5AD: 3D                    DEC     A
+C5AE: 3C                    INC     A
+C5AF: 3C                    INC     A
+C5B0: 3C                    INC     A
+C5B1: 3C                    INC     A
+C5B2: 3C                    INC     A
+C5B3: 3C                    INC     A
+C5B4: 3C                    INC     A
+C5B5: 3C                    INC     A
+                      RMC5B6:
+C5B6: 3C                    INC     A
+C5B7: 3C                    INC     A
+C5B8: 3C                    INC     A
+C5B9: 3C                    INC     A
+C5BA: 3C                    INC     A
+C5BB: 3C                    INC     A
+C5BC: 71                    LD      (HL),C
+C5BD: 00                    NOP
+C5BE: 00                    NOP
+C5BF: 00                    NOP
+C5C0: 00                    NOP
+C5C1: 00                    NOP
+C5C2: 00                    NOP
+C5C3: 00                    NOP
+C5C4: 00                    NOP
+C5C5: 00                    NOP
+C5C6: 00                    NOP
+C5C7: 00                    NOP
+C5C8: 00                    NOP
+C5C9: 00                    NOP
+C5CA: 00                    NOP
+C5CB: 00                    NOP
+C5CC: 00                    NOP
+C5CD: 00                    NOP
+C5CE: 00                    NOP
+C5CF: 00                    NOP
+C5D0: 00                    NOP
+C5D1: 00                    NOP
+C5D2: 00                    NOP
+C5D3: 00                    NOP
+C5D4: 00                    NOP
+C5D5: 00                    NOP
+C5D6: 00                    NOP
+C5D7: 00                    NOP
+C5D8: 00                    NOP
+C5D9: 00                    NOP
+C5DA: 00                    NOP
+C5DB: 00                    NOP
+C5DC: 00                    NOP
+C5DD: 00                    NOP
+C5DE: 00                    NOP
+C5DF: 00                    NOP
+C5E0: 00                    NOP
+C5E1: 00                    NOP
+C5E2: 00                    NOP
+C5E3: 00                    NOP
+C5E4: 00                    NOP
+C5E5: 00                    NOP
+C5E6: 00                    NOP
+C5E7: 00                    NOP
+C5E8: 00                    NOP
+C5E9: 00                    NOP
+C5EA: 00                    NOP
+C5EB: 3C                    INC     A
+C5EC: 3C                    INC     A
+C5ED: 3C                    INC     A
+C5EE: 3C                    INC     A
+C5EF: 3C                    INC     A
+C5F0: 3C                    INC     A
+C5F1: 3C                    INC     A
+C5F2: 3C                    INC     A
+C5F3: 3C                    INC     A
+C5F4: 3C                    INC     A
+C5F5: 3C                    INC     A
+C5F6: 3C                    INC     A
+C5F7: 3C                    INC     A
+C5F8: 3C                    INC     A
+C5F9: 3C                    INC     A
+C5FA: 3C                    INC     A
+C5FB: 3C                    INC     A
+C5FC: 3C                    INC     A
+C5FD: 3C                    INC     A
+C5FE: 3C                    INC     A
+C5FF: 3C                    INC     A
+C600: 3C                    INC     A
+C601: 3C                    INC     A
+C602: 3C                    INC     A
+C603: 3C                    INC     A
+C604: 3C                    INC     A
+C605: 3C                    INC     A
+C606: 3C                    INC     A
+C607: 3C                    INC     A
+C608: 3C                    INC     A
+C609: 3C                    INC     A
+C60A: 3C                    INC     A
+C60B: 3C                    INC     A
+C60C: 00                    NOP
+C60D: 00                    NOP
+C60E: 00                    NOP
+C60F: 00                    NOP
+C610: 00                    NOP
+C611: 00                    NOP
+C612: 3D                    DEC     A
+C613: 00                    NOP
+C614: 00                    NOP
+C615: 00                    NOP
+C616: 00                    NOP
+C617: 00                    NOP
+C618: 00                    NOP
+C619: 00                    NOP
+C61A: 00                    NOP
+C61B: 00                    NOP
+C61C: 00                    NOP
+C61D: 00                    NOP
+C61E: 00                    NOP
+C61F: 00                    NOP
+C620: 00                    NOP
+C621: 00                    NOP
+C622: 00                    NOP
+C623: 00                    NOP
+C624: 00                    NOP
+C625: 00                    NOP
+C626: 00                    NOP
+C627: 00                    NOP
+C628: 00                    NOP
+C629: 00                    NOP
+C62A: 00                    NOP
+C62B: 00                    NOP
+C62C: 00                    NOP
+C62D: 00                    NOP
+C62E: 00                    NOP
+C62F: 00                    NOP
+C630: 00                    NOP
+C631: 00                    NOP
+C632: 00                    NOP
+C633: 00                    NOP
+C634: 71                    LD      (HL),C
+C635: 00                    NOP
+C636: 00                    NOP
+C637: 00                    NOP
+C638: 00                    NOP
+C639: 00                    NOP
+C63A: 3D                    DEC     A
+C63B: 00                    NOP
+C63C: 00                    NOP
+C63D: 00                    NOP
+C63E: 00                    NOP
+C63F: 00                    NOP
+C640: 00                    NOP
+C641: 00                    NOP
+C642: 00                    NOP
+C643: 00                    NOP
+C644: 00                    NOP
+C645: 00                    NOP
+C646: 00                    NOP
+C647: 00                    NOP
+C648: 00                    NOP
+                      RMC649:
+C649: 00                    NOP
+C64A: 00                    NOP
+C64B: 00                    NOP
+C64C: 00                    NOP
+C64D: 00                    NOP
+C64E: 00                    NOP
+C64F: 00                    NOP
+C650: 00                    NOP
+C651: 00                    NOP
+C652: 00                    NOP
+C653: 00                    NOP
+C654: 00                    NOP
+C655: 00                    NOP
+C656: 00                    NOP
+C657: 00                    NOP
+C658: 00                    NOP
+C659: 00                    NOP
+C65A: 00                    NOP
+C65B: 00                    NOP
+C65C: 71                    LD      (HL),C
+C65D: 00                    NOP
+C65E: 00                    NOP
+C65F: 00                    NOP
+C660: 00                    NOP
+C661: 00                    NOP
+C662: 3D                    DEC     A
+C663: 00                    NOP
+C664: 00                    NOP
+C665: 00                    NOP
+C666: 00                    NOP
+C667: 00                    NOP
+C668: 00                    NOP
+C669: 00                    NOP
+C66A: 00                    NOP
+C66B: 00                    NOP
+C66C: 00                    NOP
+C66D: 00                    NOP
+C66E: 00                    NOP
+C66F: 00                    NOP
+C670: 00                    NOP
+C671: 00                    NOP
+C672: 00                    NOP
+C673: 00                    NOP
+C674: 00                    NOP
+C675: 00                    NOP
+C676: 00                    NOP
+C677: 00                    NOP
+C678: 00                    NOP
+C679: 00                    NOP
+C67A: 00                    NOP
+C67B: 00                    NOP
+C67C: 00                    NOP
+C67D: 00                    NOP
+C67E: 00                    NOP
+C67F: 00                    NOP
+C680: 00                    NOP
+C681: 00                    NOP
+C682: 00                    NOP
+C683: 00                    NOP
+C684: 71                    LD      (HL),C
+C685: 00                    NOP
+C686: 00                    NOP
+C687: 00                    NOP
+C688: 00                    NOP
+C689: 00                    NOP
+C68A: 3D                    DEC     A
+C68B: 00                    NOP
+C68C: 00                    NOP
+C68D: 00                    NOP
+C68E: 00                    NOP
+C68F: 00                    NOP
+C690: 00                    NOP
+C691: 00                    NOP
+C692: 00                    NOP
+C693: 00                    NOP
+C694: 00                    NOP
+C695: 00                    NOP
+C696: 00                    NOP
+C697: 00                    NOP
+C698: 00                    NOP
+C699: 00                    NOP
+C69A: 00                    NOP
+C69B: 00                    NOP
+C69C: 00                    NOP
+C69D: 00                    NOP
+C69E: 00                    NOP
+C69F: 00                    NOP
+C6A0: 00                    NOP
+C6A1: 00                    NOP
+C6A2: 00                    NOP
+C6A3: 00                    NOP
+C6A4: 00                    NOP
+C6A5: 00                    NOP
+C6A6: 00                    NOP
+C6A7: 00                    NOP
+C6A8: 00                    NOP
+C6A9: 00                    NOP
+C6AA: 00                    NOP
+C6AB: 00                    NOP
+C6AC: 71                    LD      (HL),C
+C6AD: 00                    NOP
+C6AE: 00                    NOP
+C6AF: 00                    NOP
+C6B0: 00                    NOP
+C6B1: 00                    NOP
+C6B2: 3D                    DEC     A
+C6B3: 00                    NOP
+C6B4: 00                    NOP
+C6B5: 00                    NOP
+C6B6: 00                    NOP
+C6B7: 00                    NOP
+C6B8: 00                    NOP
+C6B9: 00                    NOP
+C6BA: 00                    NOP
+C6BB: 00                    NOP
+C6BC: 00                    NOP
+C6BD: 00                    NOP
+C6BE: 00                    NOP
+C6BF: 00                    NOP
+C6C0: 00                    NOP
+C6C1: 00                    NOP
+C6C2: 00                    NOP
+C6C3: 00                    NOP
+C6C4: 00                    NOP
+C6C5: 00                    NOP
+C6C6: 00                    NOP
+C6C7: 00                    NOP
+C6C8: 00                    NOP
+C6C9: 00                    NOP
+C6CA: 00                    NOP
+C6CB: 00                    NOP
+C6CC: 00                    NOP
+C6CD: 00                    NOP
+C6CE: 00                    NOP
+C6CF: 00                    NOP
+C6D0: 00                    NOP
+C6D1: 00                    NOP
+C6D2: 00                    NOP
+C6D3: 00                    NOP
+C6D4: 71                    LD      (HL),C
+C6D5: 00                    NOP
+C6D6: 00                    NOP
+C6D7: 00                    NOP
+C6D8: 00                    NOP
+C6D9: 00                    NOP
+C6DA: 3D                    DEC     A
+C6DB: 00                    NOP
+C6DC: 00                    NOP
+C6DD: 00                    NOP
+C6DE: 00                    NOP
+C6DF: 00                    NOP
+C6E0: 00                    NOP
+C6E1: 00                    NOP
+C6E2: 00                    NOP
+C6E3: 00                    NOP
+C6E4: 00                    NOP
+C6E5: 00                    NOP
+C6E6: 00                    NOP
+C6E7: 00                    NOP
+C6E8: 00                    NOP
+C6E9: 00                    NOP
+C6EA: 00                    NOP
+C6EB: 00                    NOP
+C6EC: 00                    NOP
+C6ED: 00                    NOP
+C6EE: 00                    NOP
+C6EF: 00                    NOP
+C6F0: 00                    NOP
+C6F1: 00                    NOP
+C6F2: 00                    NOP
+C6F3: 00                    NOP
+C6F4: 00                    NOP
+C6F5: 00                    NOP
+C6F6: 00                    NOP
+C6F7: 00                    NOP
+C6F8: 00                    NOP
+C6F9: 00                    NOP
+C6FA: 00                    NOP
+C6FB: 00                    NOP
+C6FC: 71                    LD      (HL),C
+C6FD: 00                    NOP
+C6FE: 00                    NOP
+C6FF: 00                    NOP
+C700: 00                    NOP
+C701: 00                    NOP
+C702: 3D                    DEC     A
+C703: 00                    NOP
+C704: 00                    NOP
+C705: 00                    NOP
+C706: 00                    NOP
+C707: 00                    NOP
+C708: 00                    NOP
+C709: 00                    NOP
+C70A: 00                    NOP
+C70B: 00                    NOP
+C70C: 00                    NOP
+C70D: 00                    NOP
+C70E: 00                    NOP
+C70F: 00                    NOP
+C710: 00                    NOP
+C711: 00                    NOP
+C712: 00                    NOP
+C713: 00                    NOP
+C714: 00                    NOP
+C715: 00                    NOP
+C716: 00                    NOP
+C717: 00                    NOP
+C718: 00                    NOP
+C719: 00                    NOP
+C71A: 00                    NOP
+C71B: 00                    NOP
+C71C: 00                    NOP
+C71D: 00                    NOP
+C71E: 00                    NOP
+C71F: 00                    NOP
+C720: 00                    NOP
+C721: 00                    NOP
+C722: 00                    NOP
+C723: 00                    NOP
+C724: 71                    LD      (HL),C
+C725: 00                    NOP
+C726: 00                    NOP
+C727: 00                    NOP
+C728: 00                    NOP
+C729: 00                    NOP
+C72A: 00                    NOP
+C72B: 70                    LD      (HL),B
+C72C: 70                    LD      (HL),B
+C72D: 70                    LD      (HL),B
+C72E: 70                    LD      (HL),B
+C72F: 70                    LD      (HL),B
+C730: 70                    LD      (HL),B
+C731: 70                    LD      (HL),B
+C732: 70                    LD      (HL),B
+C733: 70                    LD      (HL),B
+C734: 70                    LD      (HL),B
+C735: 70                    LD      (HL),B
+C736: 70                    LD      (HL),B
+C737: 70                    LD      (HL),B
+C738: 70                    LD      (HL),B
+C739: 70                    LD      (HL),B
+C73A: 70                    LD      (HL),B
+C73B: 70                    LD      (HL),B
+C73C: 70                    LD      (HL),B
+C73D: 70                    LD      (HL),B
+C73E: 70                    LD      (HL),B
+C73F: 70                    LD      (HL),B
+C740: 70                    LD      (HL),B
+C741: 70                    LD      (HL),B
+C742: 70                    LD      (HL),B
+C743: 70                    LD      (HL),B
+C744: 70                    LD      (HL),B
+C745: 70                    LD      (HL),B
+C746: 70                    LD      (HL),B
+C747: 70                    LD      (HL),B
+C748: 70                    LD      (HL),B
+C749: 70                    LD      (HL),B
+C74A: 70                    LD      (HL),B
+C74B: 70                    LD      (HL),B
+C74C: 00                    NOP
+C74D: 00                    NOP
+C74E: 00                    NOP
+C74F: 00                    NOP
+C750: 00                    NOP
+C751: 00                    NOP
+C752: 00                    NOP
+C753: 00                    NOP
+C754: 43                    LD      B,E
+C755: 43                    LD      B,E
+C756: 43                    LD      B,E
+C757: 43                    LD      B,E
+C758: 43                    LD      B,E
+C759: 4D                    LD      C,L
+C75A: 00                    NOP
+C75B: 13                    INC     DE
+C75C: 03                    INC     BC
+C75D: 0F                    RRCA
+C75E: 12                    LD      (DE),A
+C75F: 05                    DEC     B
+C760: 00                    NOP
+C761: 4E                    LD      C,(HL)
+C762: 43                    LD      B,E
+C763: 43                    LD      B,E
+C764: 43                    LD      B,E
+C765: 43                    LD      B,E
+C766: 43                    LD      B,E
+C767: 00                    NOP
+C768: 43                    LD      B,E
+C769: 43                    LD      B,E
+C76A: 4D                    LD      C,L
+C76B: 00                    NOP
+C76C: 0B                    DEC     BC
+C76D: 05                    DEC     B
+C76E: 19                    ADD     HL,DE
+C76F: 00                    NOP
+C770: 4E                    LD      C,(HL)
+C771: 43                    LD      B,E
+C772: 43                    LD      B,E
+C773: 00                    NOP
+C774: 00                    NOP
+C775: 00                    NOP
+C776: 00                    NOP
+C777: 00                    NOP
+C778: 00                    NOP
+C779: 00                    NOP
+C77A: 00                    NOP
+                      RMC77B:
+C77B: 00                    NOP
+C77C: 7B                    LD      A,E
+C77D: 00                    NOP
+C77E: 00                    NOP
+C77F: 00                    NOP
+C780: 00                    NOP
+C781: 00                    NOP
+C782: 00                    NOP
+C783: 00                    NOP
+C784: 00                    NOP
+C785: 00                    NOP
+C786: 00                    NOP
+C787: 00                    NOP
+C788: 00                    NOP
+C789: 00                    NOP
+C78A: 00                    NOP
+C78B: 00                    NOP
+C78C: 00                    NOP
+C78D: 00                    NOP
+C78E: 3B                    DEC     SP
+C78F: 00                    NOP
+C790: 7B                    LD      A,E
+C791: 00                    NOP
+C792: 00                    NOP
+C793: 00                    NOP
+C794: 00                    NOP
+C795: 00                    NOP
+C796: 00                    NOP
+C797: 00                    NOP
+C798: 00                    NOP
+C799: 00                    NOP
+C79A: 3B                    DEC     SP
+C79B: 00                    NOP
+C79C: 00                    NOP
+C79D: 00                    NOP
+C79E: 00                    NOP
+C79F: 00                    NOP
+C7A0: 00                    NOP
+C7A1: 00                    NOP
+C7A2: 00                    NOP
+C7A3: 00                    NOP
+C7A4: 7B                    LD      A,E
+C7A5: 00                    NOP
+C7A6: 20 2A                 JR      NZ,RMC7D2
+C7A8: 29                    ADD     HL,HL
+C7A9: 00                    NOP
+C7AA: 4F                    LD      C,A
+C7AB: 00                    NOP
+C7AC: 21 20 6B              LD      HL,6B20h
+C7AF: 49                    LD      C,C
+C7B0: 49                    LD      C,C
+C7B1: 00                    NOP
+C7B2: 10 14                 DJNZ    RMC7C8
+C7B4: 13                    INC     DE
+C7B5: 00                    NOP
+C7B6: 3B                    DEC     SP
+C7B7: 00                    NOP
+C7B8: 7B                    LD      A,E
+C7B9: 52                    LD      D,D
+C7BA: 07                    RLCA
+C7BB: 54                    LD      D,H
+C7BC: 4F                    LD      C,A
+C7BD: 00                    NOP
+C7BE: 01 09 0D              LD      BC,0D09h
+C7C1: 00                    NOP
+C7C2: 3B                    DEC     SP
+C7C3: 00                    NOP
+C7C4: 00                    NOP
+C7C5: 00                    NOP
+C7C6: 00                    NOP
+C7C7: 00                    NOP
+                      RMC7C8:
+C7C8: 00                    NOP
+C7C9: 00                    NOP
+C7CA: 00                    NOP
+C7CB: 00                    NOP
+C7CC: 7B                    LD      A,E
+C7CD: 00                    NOP
+C7CE: 5C                    LD      E,H
+C7CF: 5D                    LD      E,L
+C7D0: 00                    NOP
+C7D1: 00                    NOP
+                      RMC7D2:
+C7D2: 4F                    LD      C,A
+C7D3: 00                    NOP
+C7D4: 25                    DEC     H
+C7D5: 20 6B                 JR      NZ,RMC842
+C7D7: 49                    LD      C,C
+C7D8: 49                    LD      C,C
+C7D9: 00                    NOP
+C7DA: 10 14                 DJNZ    RMC7F0
+C7DC: 13                    INC     DE
+C7DD: 00                    NOP
+C7DE: 3B                    DEC     SP
+C7DF: 00                    NOP
+C7E0: 7B                    LD      A,E
+C7E1: 52                    LD      D,D
+C7E2: 0A                    LD      A,(BC)
+C7E3: 54                    LD      D,H
+C7E4: 4F                    LD      C,A
+C7E5: 00                    NOP
+C7E6: 06 09                 LD      B,09h
+C7E8: 12                    LD      (DE),A
+C7E9: 05                    DEC     B
+C7EA: 3B                    DEC     SP
+C7EB: 00                    NOP
+C7EC: 00                    NOP
+C7ED: 00                    NOP
+C7EE: 00                    NOP
+C7EF: 00                    NOP
+                      RMC7F0:
+C7F0: 00                    NOP
+C7F1: 00                    NOP
+C7F2: 00                    NOP
+C7F3: 00                    NOP
+C7F4: 7B                    LD      A,E
+C7F5: 00                    NOP
+C7F6: 00                    NOP
+C7F7: 00                    NOP
+C7F8: 00                    NOP
+C7F9: 00                    NOP
+C7FA: 00                    NOP
+C7FB: 00                    NOP
+C7FC: 00                    NOP
+C7FD: 00                    NOP
+C7FE: 00                    NOP
+C7FF: 00                    NOP
+C800: 00                    NOP
+C801: 00                    NOP
+C802: 00                    NOP
+C803: 00                    NOP
+C804: 00                    NOP
+C805: 00                    NOP
+C806: 3B                    DEC     SP
+C807: 00                    NOP
+C808: 7B                    LD      A,E
+C809: 00                    NOP
+C80A: 00                    NOP
+C80B: 00                    NOP
+C80C: 00                    NOP
+C80D: 00                    NOP
+C80E: 00                    NOP
+C80F: 00                    NOP
+C810: 00                    NOP
+C811: 00                    NOP
+C812: 3B                    DEC     SP
+C813: 00                    NOP
+C814: 00                    NOP
+C815: 00                    NOP
+C816: 00                    NOP
+C817: 00                    NOP
+C818: 00                    NOP
+C819: 00                    NOP
+C81A: 00                    NOP
+C81B: 00                    NOP
+C81C: 7A                    LD      A,D
+C81D: 7A                    LD      A,D
+C81E: 7A                    LD      A,D
+C81F: 7A                    LD      A,D
+C820: 7A                    LD      A,D
+C821: 7A                    LD      A,D
+C822: 7A                    LD      A,D
+C823: 7A                    LD      A,D
+C824: 7A                    LD      A,D
+C825: 7A                    LD      A,D
+C826: 7A                    LD      A,D
+C827: 7A                    LD      A,D
+C828: 7A                    LD      A,D
+C829: 7A                    LD      A,D
+C82A: 7A                    LD      A,D
+C82B: 7A                    LD      A,D
+C82C: 7A                    LD      A,D
+C82D: 7A                    LD      A,D
+C82E: 7A                    LD      A,D
+C82F: 00                    NOP
+C830: 7A                    LD      A,D
+C831: 7A                    LD      A,D
+C832: 7A                    LD      A,D
+C833: 7A                    LD      A,D
+C834: 7A                    LD      A,D
+C835: 7A                    LD      A,D
+C836: 7A                    LD      A,D
+C837: 7A                    LD      A,D
+C838: 7A                    LD      A,D
+C839: 7A                    LD      A,D
+C83A: 7A                    LD      A,D
+C83B: 00                    NOP
+C83C: 00                    NOP
+C83D: 00                    NOP
+C83E: 00                    NOP
+C83F: 00                    NOP
+C840: 00                    NOP
+C841: 00                    NOP
+                      RMC842:
+C842: 00                    NOP
+C843: 00                    NOP
+C844: 00                    NOP
+C845: 00                    NOP
+C846: 00                    NOP
+C847: 00                    NOP
+C848: 00                    NOP
+C849: 00                    NOP
+C84A: 00                    NOP
+C84B: 00                    NOP
+C84C: 00                    NOP
+C84D: 00                    NOP
+C84E: 00                    NOP
+C84F: 00                    NOP
+C850: 00                    NOP
+C851: 00                    NOP
+C852: 00                    NOP
+C853: 00                    NOP
+C854: 00                    NOP
+C855: 00                    NOP
+C856: 00                    NOP
+C857: 00                    NOP
+C858: 00                    NOP
+C859: 00                    NOP
+C85A: 00                    NOP
+C85B: 00                    NOP
+C85C: 00                    NOP
+C85D: 00                    NOP
+C85E: 00                    NOP
+C85F: 00                    NOP
+C860: 00                    NOP
+C861: 00                    NOP
+C862: 00                    NOP
+C863: 00                    NOP
+C864: 00                    NOP
+C865: 00                    NOP
+C866: 00                    NOP
+C867: 00                    NOP
+C868: 00                    NOP
+C869: 00                    NOP
+C86A: 00                    NOP
+C86B: 00                    NOP
+C86C: 00                    NOP
+C86D: 00                    NOP
+C86E: 00                    NOP
+C86F: 00                    NOP
+C870: C7                    RST     00h
+C871: C7                    RST     00h
+C872: 00                    NOP
+C873: 00                    NOP
+C874: 04                    INC     B
+C875: 09                    ADD     HL,BC
+C876: 07                    RLCA
+C877: 09                    ADD     HL,BC
+C878: 14                    INC     D
+C879: 01 0C 00              LD      BC,000Ch
+C87C: 09                    ADD     HL,BC
+C87D: 0E 16                 LD      C,16h
+C87F: 01 04 05              LD      BC,0504h
+C882: 12                    LD      (DE),A
+C883: 00                    NOP
+C884: 00                    NOP
+C885: C7                    RST     00h
+C886: C7                    RST     00h
+C887: 00                    NOP
+C888: 00                    NOP
+C889: 00                    NOP
+C88A: 00                    NOP
+C88B: 00                    NOP
+C88C: 00                    NOP
+C88D: 00                    NOP
+C88E: 00                    NOP
+C88F: 00                    NOP
+C890: 00                    NOP
+C891: 00                    NOP
+C892: 00                    NOP
+C893: 00                    NOP
+C894: 00                    NOP
+C895: 00                    NOP
+C896: 00                    NOP
+C897: 00                    NOP
+C898: 00                    NOP
+C899: 00                    NOP
+C89A: 00                    NOP
+C89B: 00                    NOP
+C89C: 00                    NOP
+C89D: 00                    NOP
+C89E: 00                    NOP
+C89F: 00                    NOP
+C8A0: 00                    NOP
+C8A1: 00                    NOP
+C8A2: 00                    NOP
+C8A3: 00                    NOP
+C8A4: 00                    NOP
+C8A5: 00                    NOP
+C8A6: 00                    NOP
+C8A7: 00                    NOP
+C8A8: 00                    NOP
+C8A9: 00                    NOP
+C8AA: 00                    NOP
+C8AB: 00                    NOP
+C8AC: 00                    NOP
+C8AD: 00                    NOP
+C8AE: 00                    NOP
+C8AF: 00                    NOP
+C8B0: 00                    NOP
+C8B1: 00                    NOP
+C8B2: 00                    NOP
+C8B3: 00                    NOP
+C8B4: 00                    NOP
+C8B5: 00                    NOP
+C8B6: 00                    NOP
+C8B7: 00                    NOP
+C8B8: 00                    NOP
+C8B9: 00                    NOP
+C8BA: 00                    NOP
+C8BB: 00                    NOP
+C8BC: 00                    NOP
+C8BD: 00                    NOP
+C8BE: 00                    NOP
+C8BF: 00                    NOP
+C8C0: 00                    NOP
+C8C1: 00                    NOP
+C8C2: 00                    NOP
+C8C3: 00                    NOP
+C8C4: 00                    NOP
+C8C5: 00                    NOP
+C8C6: 00                    NOP
+C8C7: 00                    NOP
+C8C8: 00                    NOP
+C8C9: 02                    LD      (BC),A
+C8CA: 19                    ADD     HL,DE
+C8CB: 00                    NOP
+C8CC: 09                    ADD     HL,BC
+C8CD: 2E 0B                 LD      L,0Bh
+C8CF: 15                    DEC     D
+C8D0: 04                    INC     B
+C8D1: 0F                    RRCA
+C8D2: 00                    NOP
+C8D3: 00                    NOP
+C8D4: 00                    NOP
+C8D5: 00                    NOP
+C8D6: 00                    NOP
+C8D7: 00                    NOP
+C8D8: 00                    NOP
+C8D9: 00                    NOP
+C8DA: 00                    NOP
+C8DB: 00                    NOP
+C8DC: 00                    NOP
+C8DD: 00                    NOP
+C8DE: 00                    NOP
+C8DF: 00                    NOP
+C8E0: 00                    NOP
+C8E1: 00                    NOP
+C8E2: 00                    NOP
+C8E3: 00                    NOP
+C8E4: 00                    NOP
+C8E5: 43                    LD      B,E
+C8E6: 43                    LD      B,E
+C8E7: 43                    LD      B,E
+C8E8: 43                    LD      B,E
+C8E9: 43                    LD      B,E
+C8EA: 43                    LD      B,E
+C8EB: 00                    NOP
+C8EC: 43                    LD      B,E
+C8ED: 00                    NOP
+C8EE: 00                    NOP
+C8EF: 4D                    LD      C,L
+C8F0: 43                    LD      B,E
+C8F1: 43                    LD      B,E
+C8F2: 00                    NOP
+C8F3: 00                    NOP
+C8F4: 00                    NOP
+C8F5: 00                    NOP
+C8F6: 00                    NOP
+C8F7: 00                    NOP
+C8F8: 00                    NOP
+C8F9: 43                    LD      B,E
+C8FA: 43                    LD      B,E
+C8FB: 43                    LD      B,E
+C8FC: 43                    LD      B,E
+C8FD: 42                    LD      B,D
+C8FE: 00                    NOP
+C8FF: 00                    NOP
+C900: 00                    NOP
+C901: 00                    NOP
+C902: 43                    LD      B,E
+C903: 43                    LD      B,E
+C904: 43                    LD      B,E
+C905: 43                    LD      B,E
+C906: 43                    LD      B,E
+C907: 56                    LD      D,(HL)
+C908: 00                    NOP
+C909: 00                    NOP
+C90A: 00                    NOP
+C90B: 00                    NOP
+C90C: 00                    NOP
+C90D: 4E                    LD      C,(HL)
+C90E: 43                    LD      B,E
+                      RMC90F:
+C90F: 42                    LD      B,D
+C910: 3A 42 43              LD      A,(RM4342)
+C913: 00                    NOP
+                      RMC914:
+C914: 43                    LD      B,E
+C915: 00                    NOP
+C916: 43                    LD      B,E
+C917: 4D                    LD      C,L
+C918: 7A                    LD      A,D
+C919: 4D                    LD      C,L
+C91A: 43                    LD      B,E
+C91B: 56                    LD      D,(HL)
+C91C: 00                    NOP
+C91D: 00                    NOP
+C91E: 00                    NOP
+C91F: 00                    NOP
+C920: 00                    NOP
+C921: 43                    LD      B,E
+C922: 43                    LD      B,E
+C923: 43                    LD      B,E
+C924: 43                    LD      B,E
+C925: 43                    LD      B,E
+C926: 00                    NOP
+C927: 00                    NOP
+C928: 43                    LD      B,E
+C929: 00                    NOP
+C92A: 00                    NOP
+C92B: 43                    LD      B,E
+C92C: 43                    LD      B,E
+C92D: 43                    LD      B,E
+C92E: 43                    LD      B,E
+C92F: 43                    LD      B,E
+C930: 00                    NOP
+C931: 00                    NOP
+C932: 00                    NOP
+C933: 00                    NOP
+C934: 00                    NOP
+C935: 00                    NOP
+C936: 00                    NOP
+C937: 00                    NOP
+C938: 00                    NOP
+C939: 00                    NOP
+C93A: 00                    NOP
+C93B: 00                    NOP
+C93C: 00                    NOP
+C93D: 00                    NOP
+C93E: 00                    NOP
+C93F: 00                    NOP
+C940: 00                    NOP
+C941: 00                    NOP
+C942: 00                    NOP
+C943: 00                    NOP
+C944: 00                    NOP
+C945: 00                    NOP
+C946: 00                    NOP
+C947: 00                    NOP
+C948: 00                    NOP
+C949: 00                    NOP
+C94A: 00                    NOP
+C94B: 00                    NOP
+C94C: 00                    NOP
+C94D: 00                    NOP
+C94E: 43                    LD      B,E
+C94F: 43                    LD      B,E
+C950: 43                    LD      B,E
+C951: 43                    LD      B,E
+C952: 43                    LD      B,E
+C953: 7B                    LD      A,E
+C954: 00                    NOP
+C955: 00                    NOP
+C956: 00                    NOP
+C957: 7B                    LD      A,E
+C958: 00                    NOP
+C959: 00                    NOP
+C95A: 00                    NOP
+C95B: 00                    NOP
+C95C: 00                    NOP
+C95D: 4E                    LD      C,(HL)
+C95E: 43                    LD      B,E
+C95F: 42                    LD      B,D
+C960: 3A 42 43              LD      A,(RM4342)
+C963: 00                    NOP
+C964: 43                    LD      B,E
+C965: 00                    NOP
+C966: 43                    LD      B,E
+C967: 4D                    LD      C,L
+C968: 7A                    LD      A,D
+C969: 4D                    LD      C,L
+C96A: 43                    LD      B,E
+C96B: 56                    LD      D,(HL)
+C96C: 00                    NOP
+C96D: 00                    NOP
+C96E: 00                    NOP
+C96F: 00                    NOP
+C970: 00                    NOP
+C971: 3B                    DEC     SP
+C972: 00                    NOP
+C973: 00                    NOP
+C974: 00                    NOP
+C975: 3B                    DEC     SP
+C976: 43                    LD      B,E
+C977: 43                    LD      B,E
+C978: 43                    LD      B,E
+C979: 43                    LD      B,E
+C97A: 43                    LD      B,E
+C97B: 00                    NOP
+C97C: 00                    NOP
+C97D: 00                    NOP
+C97E: 00                    NOP
+C97F: 00                    NOP
+C980: 00                    NOP
+C981: 00                    NOP
+C982: 00                    NOP
+C983: 00                    NOP
+C984: 00                    NOP
+C985: 00                    NOP
+C986: 00                    NOP
+C987: 00                    NOP
+C988: 00                    NOP
+C989: 00                    NOP
+C98A: 00                    NOP
+C98B: 00                    NOP
+C98C: 00                    NOP
+C98D: 00                    NOP
+C98E: 00                    NOP
+C98F: 00                    NOP
+C990: 00                    NOP
+C991: 00                    NOP
+C992: 00                    NOP
+C993: 00                    NOP
+C994: 00                    NOP
+C995: 00                    NOP
+C996: 00                    NOP
+C997: 00                    NOP
+C998: 00                    NOP
+C999: 43                    LD      B,E
+C99A: 43                    LD      B,E
+C99B: 43                    LD      B,E
+C99C: 43                    LD      B,E
+C99D: 43                    LD      B,E
+C99E: 00                    NOP
+C99F: 4E                    LD      C,(HL)
+C9A0: 43                    LD      B,E
+C9A1: 42                    LD      B,D
+C9A2: 00                    NOP
+C9A3: 4E                    LD      C,(HL)
+C9A4: 56                    LD      D,(HL)
+C9A5: 00                    NOP
+C9A6: 4D                    LD      C,L
+C9A7: 42                    LD      B,D
+C9A8: 00                    NOP
+C9A9: 00                    NOP
+C9AA: 00                    NOP
+C9AB: 00                    NOP
+C9AC: 00                    NOP
+C9AD: 43                    LD      B,E
+C9AE: 43                    LD      B,E
+C9AF: 43                    LD      B,E
+C9B0: 43                    LD      B,E
+C9B1: 43                    LD      B,E
+C9B2: 43                    LD      B,E
+C9B3: 00                    NOP
+C9B4: 43                    LD      B,E
+C9B5: 00                    NOP
+C9B6: 43                    LD      B,E
+C9B7: 43                    LD      B,E
+C9B8: 00                    NOP
+C9B9: 43                    LD      B,E
+C9BA: 00                    NOP
+C9BB: 43                    LD      B,E
+C9BC: 00                    NOP
+C9BD: 00                    NOP
+C9BE: 00                    NOP
+C9BF: 00                    NOP
+C9C0: 00                    NOP
+C9C1: 43                    LD      B,E
+C9C2: 43                    LD      B,E
+C9C3: 42                    LD      B,D
+C9C4: 00                    NOP
+C9C5: 00                    NOP
+C9C6: 00                    NOP
+C9C7: 00                    NOP
+C9C8: 43                    LD      B,E
+C9C9: 43                    LD      B,E
+C9CA: 43                    LD      B,E
+C9CB: 43                    LD      B,E
+C9CC: 43                    LD      B,E
+C9CD: 56                    LD      D,(HL)
+C9CE: 00                    NOP
+C9CF: 00                    NOP
+C9D0: 00                    NOP
+C9D1: 00                    NOP
+C9D2: 00                    NOP
+C9D3: 00                    NOP
+C9D4: 00                    NOP
+C9D5: 00                    NOP
+C9D6: 00                    NOP
+C9D7: 00                    NOP
+C9D8: 00                    NOP
+C9D9: 00                    NOP
+C9DA: 00                    NOP
+C9DB: 00                    NOP
+C9DC: 00                    NOP
+C9DD: 00                    NOP
+C9DE: 00                    NOP
+C9DF: 00                    NOP
+C9E0: 00                    NOP
+C9E1: 00                    NOP
+C9E2: 00                    NOP
+C9E3: 00                    NOP
+C9E4: 00                    NOP
+C9E5: 00                    NOP
+C9E6: 00                    NOP
+C9E7: 00                    NOP
+C9E8: 00                    NOP
+C9E9: 00                    NOP
+C9EA: 00                    NOP
+C9EB: 00                    NOP
+C9EC: 00                    NOP
+C9ED: 00                    NOP
+C9EE: 00                    NOP
+C9EF: 00                    NOP
+C9F0: 00                    NOP
+C9F1: 00                    NOP
+C9F2: 00                    NOP
+C9F3: 00                    NOP
+C9F4: 00                    NOP
+C9F5: 00                    NOP
+C9F6: 00                    NOP
+C9F7: 00                    NOP
+C9F8: 00                    NOP
+C9F9: 00                    NOP
+C9FA: 00                    NOP
+C9FB: 00                    NOP
+C9FC: 00                    NOP
+C9FD: 00                    NOP
+C9FE: 00                    NOP
+C9FF: 00                    NOP
+CA00: 00                    NOP
+CA01: 00                    NOP
+CA02: 00                    NOP
+CA03: 00                    NOP
+CA04: 00                    NOP
+CA05: 00                    NOP
+CA06: 00                    NOP
+CA07: 00                    NOP
+CA08: 00                    NOP
+CA09: 00                    NOP
+CA0A: 00                    NOP
+CA0B: 00                    NOP
+CA0C: 00                    NOP
+CA0D: 00                    NOP
+CA0E: 00                    NOP
+CA0F: 00                    NOP
+CA10: 00                    NOP
+CA11: 00                    NOP
+CA12: 00                    NOP
+CA13: 00                    NOP
+CA14: 00                    NOP
+CA15: 00                    NOP
+CA16: 00                    NOP
+CA17: 00                    NOP
+CA18: 00                    NOP
+CA19: 00                    NOP
+CA1A: 00                    NOP
+CA1B: 00                    NOP
+CA1C: 00                    NOP
+CA1D: 00                    NOP
+CA1E: 00                    NOP
+CA1F: 00                    NOP
+CA20: 00                    NOP
+CA21: 00                    NOP
+CA22: 00                    NOP
+CA23: 00                    NOP
+CA24: 00                    NOP
+CA25: 00                    NOP
+CA26: 00                    NOP
+CA27: 00                    NOP
+CA28: 00                    NOP
+CA29: 00                    NOP
+CA2A: 00                    NOP
+CA2B: 00                    NOP
+CA2C: 00                    NOP
+CA2D: 00                    NOP
+CA2E: 00                    NOP
+CA2F: 00                    NOP
+CA30: 00                    NOP
+CA31: 00                    NOP
+CA32: 00                    NOP
+CA33: 00                    NOP
+CA34: 00                    NOP
+CA35: 00                    NOP
+CA36: 00                    NOP
+CA37: 00                    NOP
+CA38: 00                    NOP
+CA39: 00                    NOP
+CA3A: 00                    NOP
+CA3B: 00                    NOP
+CA3C: 00                    NOP
+CA3D: 00                    NOP
+CA3E: 00                    NOP
+CA3F: 00                    NOP
+CA40: 00                    NOP
+CA41: 00                    NOP
+CA42: 00                    NOP
+CA43: 00                    NOP
+CA44: 00                    NOP
+CA45: 00                    NOP
+CA46: 00                    NOP
+CA47: 00                    NOP
+CA48: 00                    NOP
+CA49: 00                    NOP
+CA4A: 00                    NOP
+CA4B: 00                    NOP
+CA4C: 00                    NOP
+CA4D: 00                    NOP
+CA4E: 00                    NOP
+CA4F: 00                    NOP
+CA50: 00                    NOP
+CA51: 00                    NOP
+CA52: 00                    NOP
+CA53: 00                    NOP
+CA54: 00                    NOP
+CA55: 00                    NOP
+CA56: 00                    NOP
+CA57: 00                    NOP
+CA58: 00                    NOP
+CA59: 00                    NOP
+CA5A: 00                    NOP
+CA5B: 00                    NOP
+CA5C: 00                    NOP
+CA5D: 00                    NOP
+CA5E: 00                    NOP
+CA5F: 00                    NOP
+CA60: 00                    NOP
+CA61: 00                    NOP
+CA62: 00                    NOP
+CA63: 00                    NOP
+CA64: 00                    NOP
+CA65: 00                    NOP
+CA66: 00                    NOP
+CA67: 00                    NOP
+CA68: 00                    NOP
+CA69: 00                    NOP
+CA6A: 00                    NOP
+CA6B: 00                    NOP
+CA6C: 00                    NOP
+CA6D: 00                    NOP
+CA6E: 00                    NOP
+CA6F: 00                    NOP
+CA70: 00                    NOP
+CA71: 00                    NOP
+CA72: 00                    NOP
+CA73: 00                    NOP
+CA74: 00                    NOP
+CA75: 00                    NOP
+CA76: 00                    NOP
+CA77: 00                    NOP
+CA78: 00                    NOP
+CA79: 00                    NOP
+CA7A: 00                    NOP
+CA7B: 00                    NOP
+CA7C: 00                    NOP
+CA7D: 00                    NOP
+CA7E: 00                    NOP
+CA7F: 00                    NOP
+CA80: 00                    NOP
+CA81: 00                    NOP
+CA82: 00                    NOP
+CA83: 00                    NOP
+CA84: 00                    NOP
+CA85: 00                    NOP
+CA86: 00                    NOP
+CA87: 00                    NOP
+CA88: 00                    NOP
+CA89: 4E                    LD      C,(HL)
+CA8A: 43                    LD      B,E
+CA8B: 43                    LD      B,E
+CA8C: 43                    LD      B,E
+CA8D: 42                    LD      B,D
+CA8E: 43                    LD      B,E
+CA8F: 00                    NOP
+CA90: 3A 00 43              LD      A,(RM4300)
+CA93: 4D                    LD      C,L
+CA94: 7A                    LD      A,D
+CA95: 3A 43 56              LD      A,(RM5643)
+CA98: 00                    NOP
+CA99: 00                    NOP
+CA9A: 00                    NOP
+CA9B: 00                    NOP
+CA9C: 00                    NOP
+CA9D: 4E                    LD      C,(HL)
+CA9E: 43                    LD      B,E
+CA9F: 43                    LD      B,E
+CAA0: 43                    LD      B,E
+CAA1: 42                    LD      B,D
+CAA2: 43                    LD      B,E
+CAA3: 00                    NOP
+CAA4: 00                    NOP
+CAA5: 00                    NOP
+CAA6: 43                    LD      B,E
+CAA7: 4D                    LD      C,L
+CAA8: 43                    LD      B,E
+CAA9: 43                    LD      B,E
+CAAA: 43                    LD      B,E
+CAAB: 56                    LD      D,(HL)
+CAAC: 00                    NOP
+CAAD: 00                    NOP
+CAAE: 00                    NOP
+CAAF: 00                    NOP
+CAB0: 00                    NOP
+CAB1: 00                    NOP
+CAB2: 00                    NOP
+CAB3: 00                    NOP
+CAB4: 00                    NOP
+CAB5: 00                    NOP
+CAB6: 00                    NOP
+CAB7: 00                    NOP
+CAB8: 00                    NOP
+CAB9: 00                    NOP
+CABA: 00                    NOP
+CABB: 00                    NOP
+CABC: 00                    NOP
+CABD: 00                    NOP
+CABE: 00                    NOP
+CABF: 00                    NOP
+CAC0: 00                    NOP
+CAC1: 00                    NOP
+CAC2: 00                    NOP
+CAC3: 00                    NOP
+CAC4: 00                    NOP
+CAC5: 43                    LD      B,E
+CAC6: 43                    LD      B,E
+CAC7: 43                    LD      B,E
+CAC8: 43                    LD      B,E
+CAC9: 43                    LD      B,E
+CACA: 00                    NOP
+CACB: 4D                    LD      C,L
+CACC: 43                    LD      B,E
+CACD: 42                    LD      B,D
+CACE: 00                    NOP
+CACF: 43                    LD      B,E
+CAD0: 43                    LD      B,E
+CAD1: 43                    LD      B,E
+CAD2: 43                    LD      B,E
+CAD3: 43                    LD      B,E
+CAD4: 00                    NOP
+CAD5: 00                    NOP
+CAD6: 00                    NOP
+CAD7: 00                    NOP
+CAD8: 00                    NOP
+CAD9: 43                    LD      B,E
+CADA: 43                    LD      B,E
+CADB: 43                    LD      B,E
+CADC: 43                    LD      B,E
+CADD: 43                    LD      B,E
+CADE: 43                    LD      B,E
+CADF: 00                    NOP
+CAE0: 43                    LD      B,E
+CAE1: 00                    NOP
+CAE2: 43                    LD      B,E
+CAE3: 43                    LD      B,E
+CAE4: 00                    NOP
+CAE5: 43                    LD      B,E
+CAE6: 00                    NOP
+CAE7: 43                    LD      B,E
+CAE8: 00                    NOP
+CAE9: 00                    NOP
+CAEA: 00                    NOP
+CAEB: 00                    NOP
+CAEC: 00                    NOP
+CAED: 43                    LD      B,E
+CAEE: 42                    LD      B,D
+CAEF: 00                    NOP
+CAF0: 4E                    LD      C,(HL)
+CAF1: 43                    LD      B,E
+CAF2: 00                    NOP
+CAF3: 00                    NOP
+CAF4: 43                    LD      B,E
+CAF5: 00                    NOP
+CAF6: 00                    NOP
+CAF7: 43                    LD      B,E
+CAF8: 56                    LD      D,(HL)
+CAF9: 00                    NOP
+CAFA: 4D                    LD      C,L
+CAFB: 43                    LD      B,E
+CAFC: 00                    NOP
+CAFD: 00                    NOP
+CAFE: 00                    NOP
+CAFF: 00                    NOP
+CB00: 00                    NOP
+CB01: 43                    LD      B,E
+CB02: 00                    NOP
+CB03: 00                    NOP
+CB04: 00                    NOP
+CB05: 00                    NOP
+CB06: 43                    LD      B,E
+CB07: 43                    LD      B,E
+CB08: 43                    LD      B,E
+CB09: 43                    LD      B,E
+CB0A: 43                    LD      B,E
+CB0B: 43                    LD      B,E
+CB0C: 00                    NOP
+CB0D: 00                    NOP
+CB0E: 00                    NOP
+CB0F: 00                    NOP
+CB10: 00                    NOP
+CB11: 00                    NOP
+CB12: 00                    NOP
+CB13: 00                    NOP
+CB14: 00                    NOP
+CB15: 00                    NOP
+CB16: 00                    NOP
+CB17: 00                    NOP
+CB18: 00                    NOP
+CB19: 00                    NOP
+CB1A: 4E                    LD      C,(HL)
+CB1B: 43                    LD      B,E
+CB1C: 43                    LD      B,E
+CB1D: 43                    LD      B,E
+CB1E: 42                    LD      B,D
+CB1F: 43                    LD      B,E
+CB20: 00                    NOP
+CB21: 3A 00 43              LD      A,(RM4300)
+CB24: 4D                    LD      C,L
+CB25: 7A                    LD      A,D
+CB26: 3A 43 56              LD      A,(RM5643)
+CB29: 00                    NOP
+CB2A: 00                    NOP
+CB2B: 00                    NOP
+CB2C: 00                    NOP
+CB2D: 00                    NOP
+CB2E: 4E                    LD      C,(HL)
+CB2F: 43                    LD      B,E
+CB30: 43                    LD      B,E
+CB31: 43                    LD      B,E
+CB32: 43                    LD      B,E
+CB33: 43                    LD      B,E
+CB34: 00                    NOP
+CB35: 00                    NOP
+CB36: 43                    LD      B,E
+CB37: 00                    NOP
+CB38: 4D                    LD      C,L
+CB39: 43                    LD      B,E
+CB3A: 43                    LD      B,E
+CB3B: 43                    LD      B,E
+CB3C: 43                    LD      B,E
+CB3D: 00                    NOP
+CB3E: 00                    NOP
+CB3F: 00                    NOP
+CB40: 00                    NOP
+CB41: 00                    NOP
+CB42: 4D                    LD      C,L
+CB43: 43                    LD      B,E
+CB44: 43                    LD      B,E
+CB45: 43                    LD      B,E
+CB46: 43                    LD      B,E
+CB47: 00                    NOP
+CB48: 43                    LD      B,E
+CB49: 00                    NOP
+CB4A: 00                    NOP
+CB4B: 00                    NOP
+CB4C: 4E                    LD      C,(HL)
+CB4D: 43                    LD      B,E
+CB4E: 43                    LD      B,E
+CB4F: 43                    LD      B,E
+CB50: 43                    LD      B,E
+CB51: 00                    NOP
+CB52: 00                    NOP
+CB53: 00                    NOP
+CB54: 00                    NOP
+CB55: 00                    NOP
+CB56: 43                    LD      B,E
+CB57: 43                    LD      B,E
+CB58: 43                    LD      B,E
+CB59: 43                    LD      B,E
+CB5A: 43                    LD      B,E
+CB5B: 43                    LD      B,E
+CB5C: 00                    NOP
+CB5D: 43                    LD      B,E
+CB5E: 00                    NOP
+CB5F: 43                    LD      B,E
+CB60: 43                    LD      B,E
+CB61: 00                    NOP
+CB62: 43                    LD      B,E
+CB63: 00                    NOP
+CB64: 43                    LD      B,E
+CB65: 00                    NOP
+CB66: 00                    NOP
+CB67: 00                    NOP
+CB68: 00                    NOP
+CB69: 00                    NOP
+CB6A: 4E                    LD      C,(HL)
+CB6B: 43                    LD      B,E
+CB6C: 43                    LD      B,E
+CB6D: 43                    LD      B,E
+CB6E: 42                    LD      B,D
+CB6F: 43                    LD      B,E
+CB70: 00                    NOP
+CB71: 00                    NOP
+CB72: 00                    NOP
+CB73: 43                    LD      B,E
+CB74: 4D                    LD      C,L
+CB75: 43                    LD      B,E
+CB76: 43                    LD      B,E
+CB77: 43                    LD      B,E
+CB78: 56                    LD      D,(HL)
+CB79: 00                    NOP
+CB7A: 00                    NOP
+CB7B: 00                    NOP
+CB7C: 00                    NOP
+CB7D: 00                    NOP
+CB7E: 43                    LD      B,E
+CB7F: 43                    LD      B,E
+CB80: 43                    LD      B,E
+CB81: 42                    LD      B,D
+CB82: 00                    NOP
+CB83: 00                    NOP
+CB84: 00                    NOP
+CB85: 00                    NOP
+CB86: 00                    NOP
+CB87: 43                    LD      B,E
+CB88: 43                    LD      B,E
+CB89: 43                    LD      B,E
+CB8A: 43                    LD      B,E
+CB8B: 56                    LD      D,(HL)
+CB8C: 00                    NOP
+CB8D: 00                    NOP
+CB8E: 00                    NOP
+CB8F: 00                    NOP
+CB90: 00                    NOP
+CB91: 00                    NOP
+CB92: 43                    LD      B,E
+CB93: 43                    LD      B,E
+CB94: 43                    LD      B,E
+CB95: 43                    LD      B,E
+CB96: 43                    LD      B,E
+CB97: 43                    LD      B,E
+CB98: 00                    NOP
+CB99: 43                    LD      B,E
+CB9A: 00                    NOP
+CB9B: 43                    LD      B,E
+CB9C: 43                    LD      B,E
+CB9D: 00                    NOP
+CB9E: 43                    LD      B,E
+CB9F: 00                    NOP
+CBA0: 43                    LD      B,E
+CBA1: 00                    NOP
+CBA2: 00                    NOP
+CBA3: 00                    NOP
+CBA4: 00                    NOP
+CBA5: 00                    NOP
+CBA6: 43                    LD      B,E
+CBA7: 43                    LD      B,E
+CBA8: 43                    LD      B,E
+CBA9: 43                    LD      B,E
+CBAA: 43                    LD      B,E
+CBAB: 43                    LD      B,E
+CBAC: 00                    NOP
+CBAD: 43                    LD      B,E
+CBAE: 42                    LD      B,D
+CBAF: 00                    NOP
+CBB0: 4D                    LD      C,L
+CBB1: 43                    LD      B,E
+CBB2: 43                    LD      B,E
+CBB3: 4D                    LD      C,L
+CBB4: 43                    LD      B,E
+CBB5: 00                    NOP
+CBB6: 00                    NOP
+CBB7: 00                    NOP
+CBB8: 00                    NOP
+CBB9: 00                    NOP
+CBBA: 00                    NOP
+CBBB: 00                    NOP
+CBBC: 00                    NOP
+CBBD: 00                    NOP
+CBBE: 00                    NOP
+CBBF: 43                    LD      B,E
+CBC0: 43                    LD      B,E
+CBC1: 43                    LD      B,E
+CBC2: 43                    LD      B,E
+CBC3: 43                    LD      B,E
+CBC4: 00                    NOP
+CBC5: 00                    NOP
+CBC6: 43                    LD      B,E
+CBC7: 00                    NOP
+CBC8: 00                    NOP
+CBC9: 43                    LD      B,E
+CBCA: 43                    LD      B,E
+CBCB: 43                    LD      B,E
+CBCC: 43                    LD      B,E
+CBCD: 43                    LD      B,E
+CBCE: 00                    NOP
+CBCF: 00                    NOP
+CBD0: 00                    NOP
+CBD1: 00                    NOP
+CBD2: 00                    NOP
+CBD3: 43                    LD      B,E
+CBD4: 00                    NOP
+CBD5: 00                    NOP
+CBD6: 00                    NOP
+CBD7: 43                    LD      B,E
+CBD8: 43                    LD      B,E
+CBD9: 43                    LD      B,E
+CBDA: 43                    LD      B,E
+CBDB: 43                    LD      B,E
+CBDC: 43                    LD      B,E
+CBDD: 43                    LD      B,E
+CBDE: 00                    NOP
+CBDF: 00                    NOP
+CBE0: 00                    NOP
+CBE1: 43                    LD      B,E
+CBE2: 00                    NOP
+CBE3: 00                    NOP
+CBE4: 00                    NOP
+CBE5: 00                    NOP
+CBE6: 00                    NOP
+CBE7: 00                    NOP
+CBE8: 00                    NOP
+CBE9: 43                    LD      B,E
+CBEA: 00                    NOP
+CBEB: 00                    NOP
+CBEC: 00                    NOP
+CBED: 00                    NOP
+CBEE: 43                    LD      B,E
+CBEF: 00                    NOP
+CBF0: 00                    NOP
+CBF1: 00                    NOP
+CBF2: 00                    NOP
+CBF3: 43                    LD      B,E
+CBF4: 00                    NOP
+CBF5: 00                    NOP
+CBF6: 00                    NOP
+CBF7: 00                    NOP
+CBF8: 00                    NOP
+CBF9: 00                    NOP
+CBFA: 00                    NOP
+CBFB: 4E                    LD      C,(HL)
+CBFC: 43                    LD      B,E
+CBFD: 42                    LD      B,D
+CBFE: 3A 42 43              LD      A,(RM4342)
+CC01: 00                    NOP
+CC02: 43                    LD      B,E
+CC03: 00                    NOP
+CC04: 43                    LD      B,E
+CC05: 4D                    LD      C,L
+CC06: 7A                    LD      A,D
+CC07: 4D                    LD      C,L
+CC08: 43                    LD      B,E
+CC09: 56                    LD      D,(HL)
+CC0A: 00                    NOP
+CC0B: 00                    NOP
+CC0C: 00                    NOP
+CC0D: 00                    NOP
+CC0E: 00                    NOP
+CC0F: 4E                    LD      C,(HL)
+CC10: 43                    LD      B,E
+CC11: 43                    LD      B,E
+CC12: 43                    LD      B,E
+CC13: 42                    LD      B,D
+CC14: 43                    LD      B,E
+CC15: 00                    NOP
+CC16: 00                    NOP
+CC17: 00                    NOP
+CC18: 43                    LD      B,E
+CC19: 4D                    LD      C,L
+CC1A: 7A                    LD      A,D
+CC1B: 00                    NOP
+CC1C: 3A 56 00              LD      A,(RM0056)
+CC1F: 00                    NOP
+CC20: 00                    NOP
+CC21: 00                    NOP
+CC22: 00                    NOP
+CC23: 4E                    LD      C,(HL)
+CC24: 43                    LD      B,E
+CC25: 43                    LD      B,E
+CC26: 43                    LD      B,E
+CC27: 42                    LD      B,D
+CC28: 43                    LD      B,E
+CC29: 00                    NOP
+CC2A: 00                    NOP
+CC2B: 00                    NOP
+CC2C: 43                    LD      B,E
+CC2D: 4D                    LD      C,L
+CC2E: 43                    LD      B,E
+CC2F: 43                    LD      B,E
+CC30: 43                    LD      B,E
+CC31: 56                    LD      D,(HL)
+CC32: 00                    NOP
+CC33: 00                    NOP
+CC34: 00                    NOP
+CC35: 00                    NOP
+CC36: 00                    NOP
+CC37: 43                    LD      B,E
+CC38: 43                    LD      B,E
+CC39: 43                    LD      B,E
+CC3A: 43                    LD      B,E
+CC3B: 43                    LD      B,E
+CC3C: 43                    LD      B,E
+CC3D: 00                    NOP
+CC3E: 43                    LD      B,E
+CC3F: 42                    LD      B,D
+CC40: 00                    NOP
+CC41: 4D                    LD      C,L
+CC42: 43                    LD      B,E
+CC43: 43                    LD      B,E
+CC44: 4D                    LD      C,L
+CC45: 43                    LD      B,E
+CC46: 00                    NOP
+CC47: 00                    NOP
+CC48: 00                    NOP
+CC49: 00                    NOP
+CC4A: 00                    NOP
+CC4B: 43                    LD      B,E
+CC4C: 43                    LD      B,E
+CC4D: 43                    LD      B,E
+CC4E: 43                    LD      B,E
+CC4F: 43                    LD      B,E
+CC50: 43                    LD      B,E
+CC51: 00                    NOP
+CC52: 43                    LD      B,E
+CC53: 00                    NOP
+CC54: 43                    LD      B,E
+CC55: 43                    LD      B,E
+CC56: 00                    NOP
+CC57: 43                    LD      B,E
+CC58: 00                    NOP
+CC59: 43                    LD      B,E
+CC5A: 00                    NOP
+CC5B: 00                    NOP
+CC5C: 00                    NOP
+CC5D: 00                    NOP
+CC5E: 00                    NOP
+CC5F: 00                    NOP
+CC60: 00                    NOP
+CC61: 00                    NOP
+CC62: 00                    NOP
+CC63: 00                    NOP
+CC64: 4E                    LD      C,(HL)
+CC65: 43                    LD      B,E
+CC66: 43                    LD      B,E
+CC67: 43                    LD      B,E
+CC68: 42                    LD      B,D
+CC69: 43                    LD      B,E
+CC6A: 00                    NOP
+CC6B: 3A 00 43              LD      A,(RM4300)
+CC6E: 4D                    LD      C,L
+CC6F: 7A                    LD      A,D
+CC70: 3A 43 56              LD      A,(RM5643)
+CC73: 00                    NOP
+CC74: 00                    NOP
+CC75: 00                    NOP
+CC76: 00                    NOP
+CC77: 00                    NOP
+CC78: 4E                    LD      C,(HL)
+CC79: 43                    LD      B,E
+CC7A: 43                    LD      B,E
+CC7B: 43                    LD      B,E
+CC7C: 42                    LD      B,D
+CC7D: 43                    LD      B,E
+CC7E: 00                    NOP
+CC7F: 00                    NOP
+CC80: 00                    NOP
+CC81: 43                    LD      B,E
+CC82: 4D                    LD      C,L
+CC83: 43                    LD      B,E
+CC84: 43                    LD      B,E
+CC85: 43                    LD      B,E
+CC86: 56                    LD      D,(HL)
+CC87: 00                    NOP
+CC88: 00                    NOP
+CC89: 00                    NOP
+CC8A: 00                    NOP
+CC8B: 00                    NOP
+CC8C: 4E                    LD      C,(HL)
+CC8D: 43                    LD      B,E
+CC8E: 43                    LD      B,E
+CC8F: 43                    LD      B,E
+CC90: 42                    LD      B,D
+CC91: 43                    LD      B,E
+CC92: 00                    NOP
+CC93: 00                    NOP
+CC94: 00                    NOP
+CC95: 43                    LD      B,E
+CC96: 4D                    LD      C,L
+CC97: 43                    LD      B,E
+CC98: 43                    LD      B,E
+CC99: 43                    LD      B,E
+CC9A: 56                    LD      D,(HL)
+CC9B: 00                    NOP
+CC9C: 00                    NOP
+CC9D: 00                    NOP
+CC9E: 00                    NOP
+CC9F: 00                    NOP
+CCA0: 43                    LD      B,E
+CCA1: 43                    LD      B,E
+CCA2: 43                    LD      B,E
+CCA3: 43                    LD      B,E
+CCA4: 43                    LD      B,E
+CCA5: 43                    LD      B,E
+CCA6: 00                    NOP
+CCA7: 00                    NOP
+CCA8: 00                    NOP
+CCA9: 43                    LD      B,E
+CCAA: 4D                    LD      C,L
+CCAB: 43                    LD      B,E
+CCAC: 43                    LD      B,E
+CCAD: 43                    LD      B,E
+CCAE: 56                    LD      D,(HL)
+CCAF: 00                    NOP
+CCB0: 00                    NOP
+CCB1: 00                    NOP
+CCB2: 00                    NOP
+CCB3: 00                    NOP
+CCB4: 00                    NOP
+CCB5: 00                    NOP
+CCB6: 00                    NOP
+CCB7: 00                    NOP
+CCB8: 00                    NOP
+CCB9: 00                    NOP
+CCBA: 00                    NOP
+CCBB: 00                    NOP
+CCBC: 00                    NOP
+CCBD: 00                    NOP
+CCBE: 00                    NOP
+CCBF: 00                    NOP
+CCC0: 00                    NOP
+CCC1: 00                    NOP
+CCC2: 00                    NOP
+CCC3: 00                    NOP
+CCC4: 00                    NOP
+CCC5: 00                    NOP
+CCC6: 00                    NOP
+                      RMCCC7:
+CCC7: 00                    NOP
+CCC8: 43                    LD      B,E
+CCC9: 43                    LD      B,E
+CCCA: 43                    LD      B,E
+CCCB: 43                    LD      B,E
+                      RMCCCC:
+CCCC: 43                    LD      B,E
+CCCD: 43                    LD      B,E
+CCCE: 00                    NOP
+CCCF: 43                    LD      B,E
+CCD0: 00                    NOP
+CCD1: 43                    LD      B,E
+CCD2: 4D                    LD      C,L
+CCD3: 56                    LD      D,(HL)
+CCD4: 00                    NOP
+CCD5: 4D                    LD      C,L
+CCD6: 56                    LD      D,(HL)
+CCD7: 00                    NOP
+CCD8: 00                    NOP
+CCD9: 00                    NOP
+CCDA: 00                    NOP
+CCDB: 00                    NOP
+CCDC: 43                    LD      B,E
+CCDD: 43                    LD      B,E
+CCDE: 42                    LD      B,D
+CCDF: 00                    NOP
+CCE0: 00                    NOP
+CCE1: 00                    NOP
+CCE2: 00                    NOP
+CCE3: 43                    LD      B,E
+CCE4: 43                    LD      B,E
+CCE5: 43                    LD      B,E
+CCE6: 43                    LD      B,E
+CCE7: 43                    LD      B,E
+CCE8: 56                    LD      D,(HL)
+CCE9: 00                    NOP
+CCEA: 00                    NOP
+CCEB: 00                    NOP
+CCEC: 00                    NOP
+CCED: 00                    NOP
+CCEE: 00                    NOP
+CCEF: 00                    NOP
+CCF0: 43                    LD      B,E
+CCF1: 43                    LD      B,E
+CCF2: 43                    LD      B,E
+CCF3: 43                    LD      B,E
+CCF4: 43                    LD      B,E
+CCF5: 43                    LD      B,E
+CCF6: 00                    NOP
+CCF7: 43                    LD      B,E
+CCF8: 00                    NOP
+CCF9: 43                    LD      B,E
+CCFA: 43                    LD      B,E
+CCFB: 00                    NOP
+CCFC: 43                    LD      B,E
+CCFD: 00                    NOP
+CCFE: 43                    LD      B,E
+CCFF: 00                    NOP
+CD00: 00                    NOP
+CD01: 00                    NOP
+CD02: 00                    NOP
+CD03: 00                    NOP
+CD04: 00                    NOP
+CD05: 00                    NOP
+CD06: 00                    NOP
+CD07: 00                    NOP
+CD08: 00                    NOP
+CD09: 43                    LD      B,E
+CD0A: 43                    LD      B,E
+CD0B: 43                    LD      B,E
+CD0C: 43                    LD      B,E
+CD0D: 43                    LD      B,E
+CD0E: 43                    LD      B,E
+CD0F: 00                    NOP
+CD10: 43                    LD      B,E
+CD11: 42                    LD      B,D
+CD12: 00                    NOP
+CD13: 4D                    LD      C,L
+                      RMCD14:
+CD14: 43                    LD      B,E
+CD15: 43                    LD      B,E
+CD16: 4D                    LD      C,L
+CD17: 43                    LD      B,E
+CD18: 00                    NOP
+CD19: 00                    NOP
+CD1A: 00                    NOP
+CD1B: 00                    NOP
+CD1C: 00                    NOP
+CD1D: 43                    LD      B,E
+CD1E: 43                    LD      B,E
+CD1F: 43                    LD      B,E
+CD20: 43                    LD      B,E
+CD21: 43                    LD      B,E
+CD22: 43                    LD      B,E
+CD23: 00                    NOP
+CD24: 43                    LD      B,E
+CD25: 00                    NOP
+CD26: 43                    LD      B,E
+CD27: 43                    LD      B,E
+CD28: 00                    NOP
+CD29: 43                    LD      B,E
+CD2A: 00                    NOP
+CD2B: 43                    LD      B,E
+CD2C: 00                    NOP
+CD2D: 00                    NOP
+CD2E: 00                    NOP
+CD2F: 00                    NOP
+CD30: 00                    NOP
+CD31: 43                    LD      B,E
+CD32: 43                    LD      B,E
+CD33: 43                    LD      B,E
+CD34: 43                    LD      B,E
+CD35: 43                    LD      B,E
+CD36: 43                    LD      B,E
+CD37: 00                    NOP
+CD38: 43                    LD      B,E
+CD39: 00                    NOP
+CD3A: 00                    NOP
+CD3B: 4D                    LD      C,L
+CD3C: 43                    LD      B,E
+CD3D: 43                    LD      B,E
+CD3E: 00                    NOP
+CD3F: 00                    NOP
+CD40: 00                    NOP
+CD41: 00                    NOP
+CD42: 00                    NOP
+CD43: 00                    NOP
+CD44: 00                    NOP
+CD45: 43                    LD      B,E
+CD46: 43                    LD      B,E
+                      RMCD47:
+CD47: 43                    LD      B,E
+CD48: 43                    LD      B,E
+CD49: 43                    LD      B,E
+CD4A: 00                    NOP
+CD4B: 00                    NOP
+CD4C: 00                    NOP
+CD4D: 00                    NOP
+CD4E: 43                    LD      B,E
+CD4F: 00                    NOP
+CD50: 00                    NOP
+CD51: 00                    NOP
+CD52: 00                    NOP
+CD53: 43                    LD      B,E
+CD54: 00                    NOP
+CD55: 00                    NOP
+CD56: 00                    NOP
+CD57: 00                    NOP
+CD58: 00                    NOP
+CD59: 4E                    LD      C,(HL)
+CD5A: 43                    LD      B,E
+CD5B: 43                    LD      B,E
+CD5C: 43                    LD      B,E
+CD5D: 43                    LD      B,E
+CD5E: 43                    LD      B,E
+CD5F: 00                    NOP
+CD60: 00                    NOP
+CD61: 43                    LD      B,E
+CD62: 00                    NOP
+CD63: 4D                    LD      C,L
+CD64: 43                    LD      B,E
+CD65: 43                    LD      B,E
+CD66: 43                    LD      B,E
+CD67: 43                    LD      B,E
+CD68: 00                    NOP
+CD69: 00                    NOP
+CD6A: 00                    NOP
+CD6B: 00                    NOP
+CD6C: 00                    NOP
+CD6D: 43                    LD      B,E
+CD6E: 43                    LD      B,E
+CD6F: 42                    LD      B,D
+CD70: 00                    NOP
+CD71: 00                    NOP
+CD72: 00                    NOP
+CD73: 00                    NOP
+CD74: 43                    LD      B,E
+CD75: 43                    LD      B,E
+CD76: 43                    LD      B,E
+CD77: 43                    LD      B,E
+CD78: 43                    LD      B,E
+CD79: 56                    LD      D,(HL)
+CD7A: 00                    NOP
+CD7B: 00                    NOP
+CD7C: 00                    NOP
+CD7D: 00                    NOP
+CD7E: 00                    NOP
+CD7F: 00                    NOP
+CD80: 00                    NOP
+CD81: 4E                    LD      C,(HL)
+CD82: 43                    LD      B,E
+CD83: 00                    NOP
+CD84: 00                    NOP
+CD85: 00                    NOP
+CD86: 43                    LD      B,E
+CD87: 00                    NOP
+CD88: 4E                    LD      C,(HL)
+CD89: 7A                    LD      A,D
+CD8A: 43                    LD      B,E
+CD8B: 4D                    LD      C,L
+CD8C: 43                    LD      B,E
+CD8D: 56                    LD      D,(HL)
+CD8E: 00                    NOP
+CD8F: 00                    NOP
+CD90: 00                    NOP
+CD91: 00                    NOP
+CD92: 00                    NOP
+CD93: 00                    NOP
+CD94: 00                    NOP
+CD95: 00                    NOP
+CD96: 52                    LD      D,D
+CD97: 00                    NOP
+CD98: 52                    LD      D,D
+CD99: 00                    NOP
+CD9A: 00                    NOP
+CD9B: 19                    ADD     HL,DE
+CD9C: 00                    NOP
+CD9D: 0E 00                 LD      C,00h
+CD9F: 00                    NOP
+CDA0: 54                    LD      D,H
+CDA1: 00                    NOP
+CDA2: 54                    LD      D,H
+CDA3: 00                    NOP
+CDA4: 00                    NOP
+CDA5: 00                    NOP
+CDA6: 00                    NOP
+CDA7: 00                    NOP
+CDA8: 00                    NOP
+                      RMCDA9:
+CDA9: 06 41                 LD      B,41h
+CDAB: 37                    SCF
+CDAC: 23                    INC     HL
+CDAD: 46                    LD      B,(HL)
+CDAE: 36 47                 LD      (HL),47h
+CDB0: 33                    INC     SP
+CDB1: 41                    LD      B,C
+CDB2: 37                    SCF
+CDB3: 44                    LD      B,H
+CDB4: 37                    SCF
+CDB5: 45                    LD      B,L
+CDB6: 33                    INC     SP
+CDB7: 23                    INC     HL
+CDB8: 46                    LD      B,(HL)
+CDB9: 47                    LD      B,A
+CDBA: 41                    LD      B,C
+CDBB: 47                    LD      B,A
+CDBC: 35                    DEC     (HL)
+CDBD: 23                    INC     HL
+CDBE: 46                    LD      B,(HL)
+CDBF: 35                    DEC     (HL)
+CDC0: 45                    LD      B,L
+CDC1: 38 52                 JR      C,RMCE15
+CDC3: 35                    DEC     (HL)
+CDC4: 23                    INC     HL
+CDC5: 46                    LD      B,(HL)
+CDC6: 33                    INC     SP
+CDC7: 47                    LD      B,A
+CDC8: 41                    LD      B,C
+CDC9: 42                    LD      B,D
+CDCA: 41                    LD      B,C
+CDCB: 35                    DEC     (HL)
+CDCC: 52                    LD      D,D
+CDCD: 30 41                 JR      NC,RMCE10
+CDCF: 35                    DEC     (HL)
+CDD0: D7                    RST     10h
+CDD1: 44                    LD      B,H
+CDD2: 37                    SCF
+CDD3: 41                    LD      B,C
+CDD4: 37                    SCF
+CDD5: 47                    LD      B,A
+CDD6: 35                    DEC     (HL)
+CDD7: 23                    INC     HL
+CDD8: 46                    LD      B,(HL)
+CDD9: 33                    INC     SP
+CDDA: 45                    LD      B,L
+CDDB: 33                    INC     SP
+CDDC: 52                    LD      D,D
+CDDD: 30 45                 JR      NC,RMCE24
+CDDF: 36 44                 LD      (HL),44h
+CDE1: 33                    INC     SP
+CDE2: 52                    LD      D,D
+CDE3: 30 44                 JR      NC,RMCE29
+CDE5: 38 52                 JR      C,RMCE39
+CDE7: 34                    INC     (HL)
+CDE8: 0D                    DEC     C
+                      RMCDE9:
+CDE9: 05                    DEC     B
+CDEA: 43                    LD      B,E
+CDEB: 35                    DEC     (HL)
+CDEC: 46                    LD      B,(HL)
+CDED: 36 52                 LD      (HL),52h
+CDEF: 30 46                 JR      NC,RMCE37
+CDF1: 33                    INC     SP
+CDF2: 52                    LD      D,D
+CDF3: 30 46                 JR      NC,RMCE3B
+CDF5: 35                    DEC     (HL)
+CDF6: 41                    LD      B,C
+CDF7: 35                    DEC     (HL)
+CDF8: 47                    LD      B,A
+CDF9: 36 46                 LD      (HL),46h
+CDFB: 33                    INC     SP
+CDFC: 47                    LD      B,A
+CDFD: 35                    DEC     (HL)
+CDFE: 41                    LD      B,C
+CDFF: 46                    LD      B,(HL)
+CE00: 52                    LD      D,D
+CE01: 30 46                 JR      NC,RMCE49
+CE03: 35                    DEC     (HL)
+CE04: 41                    LD      B,C
+CE05: D7                    RST     10h
+CE06: 43                    LD      B,E
+CE07: D7                    RST     10h
+CE08: 44                    LD      B,H
+CE09: 37                    SCF
+CE0A: 52                    LD      D,D
+CE0B: 34                    INC     (HL)
+CE0C: D7                    RST     10h
+CE0D: 44                    LD      B,H
+CE0E: 35                    DEC     (HL)
+                      RMCE0F:
+CE0F: D7                    RST     10h
+                      RMCE10:
+CE10: 43                    LD      B,E
+CE11: 36 41                 LD      (HL),41h
+CE13: 33                    INC     SP
+CE14: 52                    LD      D,D
+                      RMCE15:
+CE15: 30 41                 JR      NC,RMCE58
+CE17: 35                    DEC     (HL)
+CE18: 46                    LD      B,(HL)
+CE19: 35                    DEC     (HL)
+CE1A: 47                    LD      B,A
+CE1B: 36 46                 LD      (HL),46h
+CE1D: 33                    INC     SP
+CE1E: 47                    LD      B,A
+CE1F: 35                    DEC     (HL)
+CE20: 41                    LD      B,C
+CE21: 35                    DEC     (HL)
+CE22: 46                    LD      B,(HL)
+CE23: 36 44                 LD      (HL),44h
+CE25: 33                    INC     SP
+CE26: 52                    LD      D,D
+CE27: 30 44                 JR      NC,RMCE6D
+                      RMCE29:
+CE29: 35                    DEC     (HL)
+CE2A: 43                    LD      B,E
+CE2B: 35                    DEC     (HL)
+CE2C: 46                    LD      B,(HL)
+CE2D: 37                    SCF
+CE2E: 52                    LD      D,D
+CE2F: 34                    INC     (HL)
+                      RMCE30:
+CE30: 0D                    DEC     C
+                      RMCE31:
+CE31: 05                    TEMPO5→7に仮変更（★後で5に戻すか？）
+CE32: D7                    RST     10h
+CE33: 43                    LD      B,E
+CE34: 36 52                 LD      (HL),52h
+CE36: 30 D7                 JR      NC,RMCE0F
+CE38: 43                    LD      B,E
+                      RMCE39:
+CE39: 33                    INC     SP
+CE3A: D7                    RST     10h
+                      RMCE3B:
+CE3B: 44                    LD      B,H
+CE3C: D7                    RST     10h
+CE3D: 43                    LD      B,E
+CE3E: 41                    LD      B,C
+CE3F: 46                    LD      B,(HL)
+CE40: 52                    LD      D,D
+CE41: 30 46                 JR      NC,RMCE89
+CE43: 37                    SCF
+CE44: 44                    LD      B,H
+CE45: 37                    SCF
+CE46: 43                    LD      B,E
+CE47: 36 46                 LD      (HL),46h
+                      RMCE49:
+CE49: 33                    INC     SP
+CE4A: 41                    LD      B,C
+CE4B: 46                    LD      B,(HL)
+CE4C: D7                    RST     10h
+CE4D: 43                    LD      B,E
+CE4E: 41                    LD      B,C
+CE4F: 47                    LD      B,A
+CE50: 36 52                 LD      (HL),52h
+CE52: 34                    INC     (HL)
+CE53: D7                    RST     10h
+CE54: 43                    LD      B,E
+CE55: 36 52                 LD      (HL),52h
+CE57: 30 D7                 JR      NC,RMCE30
+                      RMCE59:
+CE59: 43                    LD      B,E
+CE5A: 33                    INC     SP
+CE5B: D7                    RST     10h
+CE5C: 44                    LD      B,H
+CE5D: D7                    RST     10h
+CE5E: 43                    LD      B,E
+CE5F: 41                    LD      B,C
+CE60: 46                    LD      B,(HL)
+CE61: 52                    LD      D,D
+CE62: 30 46                 JR      NC,RMCEAA
+CE64: 37                    SCF
+CE65: 44                    LD      B,H
+CE66: 37                    SCF
+CE67: 43                    LD      B,E
+CE68: 36 46                 LD      (HL),46h
+CE6A: 33                    INC     SP
+CE6B: 41                    LD      B,C
+CE6C: 47                    LD      B,A
+                      RMCE6D:
+CE6D: 46                    LD      B,(HL)
+CE6E: 45                    LD      B,L
+CE6F: 46                    LD      B,(HL)
+CE70: 37                    SCF
+CE71: 52                    LD      D,D
+CE72: 34                    INC     (HL)
+CE73: 0D                    DEC     C
+                      RMCE74:
+CE74: 04                    INC     B
+CE75: 42                    LD      B,D
+CE76: 33                    INC     SP
+CE77: 52                    LD      D,D
+CE78: 30 42                 JR      NC,RMCEBC
+CE7A: 33                    INC     SP
+CE7B: D7                    RST     10h
+CE7C: 43                    LD      B,E
+CE7D: D7                    RST     10h
+                      RMCE7E:
+CE7E: 44                    LD      B,H
+CE7F: 52                    LD      D,D
+CE80: 30 D7                 JR      NC,RMCE59
+CE82: 44                    LD      B,H
+CE83: 33                    INC     SP
+CE84: D7                    RST     10h
+CE85: 43                    LD      B,E
+CE86: 42                    LD      B,D
+CE87: 41                    LD      B,C
+CE88: 47                    LD      B,A
+                      RMCE89:
+CE89: 52                    LD      D,D
+CE8A: 30 47                 JR      NC,RMCED3
+CE8C: 33                    INC     SP
+CE8D: 41                    LD      B,C
+CE8E: 42                    LD      B,D
+CE8F: 52                    LD      D,D
+CE90: 30 42                 JR      NC,RMCED4
+CE92: 34                    INC     (HL)
+CE93: 41                    LD      B,C
+CE94: 31 52 30              LD      SP,3052h
+CE97: 41                    LD      B,C
+CE98: 33                    INC     SP
+CE99: 52                    LD      D,D
+CE9A: 33                    INC     SP
+CE9B: 42                    LD      B,D
+CE9C: 52                    LD      D,D
+CE9D: 30 42                 JR      NC,RMCEE1
+CE9F: 33                    INC     SP
+CEA0: D7                    RST     10h
+CEA1: 43                    LD      B,E
+CEA2: D7                    RST     10h
+CEA3: 44                    LD      B,H
+CEA4: 52                    LD      D,D
+CEA5: 30 D7                 JR      NC,RMCE7E
+CEA7: 44                    LD      B,H
+CEA8: 33                    INC     SP
+CEA9: D7                    RST     10h
+                      RMCEAA:
+CEAA: 43                    LD      B,E
+CEAB: 42                    LD      B,D
+CEAC: 41                    LD      B,C
+CEAD: 47                    LD      B,A
+CEAE: 52                    LD      D,D
+CEAF: 30 47                 JR      NC,RMCEF8
+CEB1: 33                    INC     SP
+CEB2: 41                    LD      B,C
+CEB3: 42                    LD      B,D
+CEB4: 41                    LD      B,C
+CEB5: 34                    INC     (HL)
+CEB6: 47                    LD      B,A
+CEB7: 31 52 30              LD      SP,3052h
+CEBA: 47                    LD      B,A
+CEBB: 33                    INC     SP
+                      RMCEBC:
+CEBC: 52                    LD      D,D
+CEBD: 32 0D 05              LD      (RM050D),A
+CEC0: CF                    RST     08h
+CEC1: 44                    LD      B,H
+CEC2: 34                    INC     (HL)
+CEC3: 52                    LD      D,D
+CEC4: 30 CF                 JR      NC,RMCE95
+CEC6: 44                    LD      B,H
+CEC7: 33                    INC     SP
+CEC8: CF                    RST     08h
+CEC9: 44                    LD      B,H
+CECA: 30 52                 JR      NC,RMCF1E
+CECC: CF                    RST     08h
+CECD: 44                    LD      B,H
+CECE: 32 52 30              LD      (RM3052),A
+CED1: CF                    RST     08h
+CED2: 44                    LD      B,H
+                      RMCED3:
+CED3: 35                    DEC     (HL)
+                      RMCED4:
+CED4: CF                    RST     08h
+CED5: 46                    LD      B,(HL)
+CED6: 34                    INC     (HL)
+CED7: CF                    RST     08h
+CED8: 45                    LD      B,L
+CED9: 30 52                 JR      NC,RMCF2D
+CEDB: CF                    RST     08h
+CEDC: 45                    LD      B,L
+CEDD: 34                    INC     (HL)
+CEDE: CF                    RST     08h
+CEDF: 44                    LD      B,H
+CEE0: 30 52                 JR      NC,RMCF34
+CEE2: CF                    RST     08h
+CEE3: 44                    LD      B,H
+CEE4: 34                    INC     (HL)
+CEE5: CF                    RST     08h
+CEE6: 23                    INC     HL
+CEE7: 43                    LD      B,E
+CEE8: 31 CF 44              LD      SP,44CFh
+CEEB: 37                    SCF
+CEEC: 0D                    DEC     C
+                      RMCEED:
+CEED: 00                    NOP
+CEEE: D1                    POP     DE
+CEEF: 24                    INC     H
+CEF0: 00                    NOP
+CEF1: D1                    POP     DE
+CEF2: 28 00                 JR      Z,RMCEF4
+                      RMCEF4:
+CEF4: D1                    POP     DE
+CEF5: 2C                    INC     L
+CEF6: 00                    NOP
+CEF7: D1                    POP     DE
+                      RMCEF8:
+CEF8: 30 00                 JR      NC,RMCEFA
+                      RMCEFA:
+CEFA: D1                    POP     DE
+CEFB: 34                    INC     (HL)
+                      RMCEFC:
+CEFC: 00                    NOP
+CEFD: D1                    POP     DE
+CEFE: 38 00                 JR      C,RMCF00
+                      RMCF00:
+CF00: D1                    POP     DE
+CF01: 1C                    INC     E
+                      RMCF02:
+CF02: 0C                    INC     C
+CF03: D1                    POP     DE
+CF04: 20 00                 JR      NZ,RMCF06
+                      RMCF06:
+CF06: 00                    NOP
+                      RMCF07:
+CF07: 00                    NOP
+CF08: 00                    NOP
+                      RMCF09:
+CF09: 00                    NOP
+                      RMCF0A:
+CF0A: 00                    NOP
+                      RMCF0B:
+CF0B: 37                    SCF
+                      RMCF0C:
+CF0C: 5B                    LD      E,E
+                      RMCF0D:
+CF0D: 00                    NOP
+                      RMCF0E:
+CF0E: 01 01 1E              LD      BC,1E01h
+CF11: 1E 19                 LD      E,19h
+CF13: 14                    INC     D
+CF14: 0F                    RRCA
+CF15: 0A                    LD      A,(BC)
+CF16: 08                    EX      AF,AF'
+CF17: 06 04                 LD      B,04h
+CF19: 02                    LD      (BC),A
+                      RMCF1A:
+CF1A: 00                    NOP
+CF1B: 00                    NOP
+                      RMCF1C:
+CF1C: 00                    NOP
+CF1D: 00                    NOP
+                      RMCF1E:
+CF1E: 00                    NOP
+CF1F: 00                    NOP
+CF20: 00                    NOP
+CF21: 00                    NOP
+CF22: 00                    NOP
+CF23: 00                    NOP
+CF24: 00                    NOP
+CF25: 00                    NOP
+CF26: 00                    NOP
+CF27: 00                    NOP
+CF28: 00                    NOP
+CF29: 00                    NOP
+CF2A: 00                    NOP
+CF2B: 00                    NOP
+CF2C: 00                    NOP
+                      RMCF2D:
+CF2D: 00                    NOP
+CF2E: 00                    NOP
+CF2F: 00                    NOP
+CF30: 00                    NOP
+CF31: 00                    NOP
+CF32: 00                    NOP
+CF33: 00                    NOP
+                      RMCF34:
+CF34: 00                    NOP
+CF35: 00                    NOP
+CF36: 00                    NOP
+CF37: 00                    NOP
+CF38: 00                    NOP
+CF39: 00                    NOP
+CF3A: 00                    NOP
+CF3B: 00                    NOP
+CF3C: 00                    NOP
+CF3D: 00                    NOP
+CF3E: 00                    NOP
+CF3F: 00                    NOP
+CF40: 00                    NOP
+CF41: 00                    NOP
+CF42: 00                    NOP
+CF43: 00                    NOP
+CF44: 00                    NOP
+CF45: 00                    NOP
+CF46: 00                    NOP
+CF47: 00                    NOP
+CF48: 00                    NOP
+CF49: 00                    NOP
+CF4A: 00                    NOP
+CF4B: 00                    NOP
+CF4C: 00                    NOP
+CF4D: 00                    NOP
+CF4E: 00                    NOP
+CF4F: 00                    NOP
+CF50: 00                    NOP
+CF51: 00                    NOP
+CF52: 00                    NOP
+CF53: 00                    NOP
+CF54: 00                    NOP
+CF55: 00                    NOP
+CF56: 00                    NOP
+CF57: 00                    NOP
+CF58: 00                    NOP
+CF59: 00                    NOP
+CF5A: 00                    NOP
+CF5B: 00                    NOP
+CF5C: 00                    NOP
+CF5D: 00                    NOP
+CF5E: 00                    NOP
+CF5F: 00                    NOP
+CF60: 00                    NOP
+CF61: 00                    NOP
+CF62: 00                    NOP
+CF63: 00                    NOP
+CF64: 00                    NOP
+CF65: 00                    NOP
+CF66: 00                    NOP
+CF67: 00                    NOP
+CF68: 00                    NOP
+CF69: 00                    NOP
+CF6A: 00                    NOP
+CF6B: 00                    NOP
+CF6C: 00                    NOP
+CF6D: 00                    NOP
+CF6E: 00                    NOP
+CF6F: 00                    NOP
+CF70: 00                    NOP
+CF71: 00                    NOP
+CF72: 00                    NOP
+CF73: 00                    NOP
+CF74: 00                    NOP
+CF75: 00                    NOP
+CF76: 00                    NOP
+CF77: 00                    NOP
+CF78: 00                    NOP
+CF79: 00                    NOP
+CF7A: 00                    NOP
+CF7B: 00                    NOP
+CF7C: 00                    NOP
+CF7D: 00                    NOP
+CF7E: 00                    NOP
+CF7F: 00                    NOP
+CF80: 00                    NOP
+CF81: 00                    NOP
+CF82: 00                    NOP
+CF83: 00                    NOP
+CF84: 00                    NOP
+CF85: 00                    NOP
+CF86: 00                    NOP
+CF87: 00                    NOP
+CF88: 00                    NOP
+CF89: 00                    NOP
+CF8A: 00                    NOP
+CF8B: 00                    NOP
+CF8C: 00                    NOP
+CF8D: 00                    NOP
+CF8E: 00                    NOP
+CF8F: 00                    NOP
+CF90: 00                    NOP
+CF91: 00                    NOP
+CF92: 00                    NOP
+CF93: 00                    NOP
+CF94: 00                    NOP
+CF95: 00                    NOP
+CF96: 00                    NOP
+CF97: 00                    NOP
+CF98: 00                    NOP
+CF99: 00                    NOP
+CF9A: 00                    NOP
+CF9B: 00                    NOP
+CF9C: 00                    NOP
+CF9D: 00                    NOP
+CF9E: 00                    NOP
+CF9F: 00                    NOP
+CFA0: 00                    NOP
+CFA1: 00                    NOP
+CFA2: 00                    NOP
+CFA3: 00                    NOP
+CFA4: 00                    NOP
+CFA5: 00                    NOP
+CFA6: 00                    NOP
+CFA7: 00                    NOP
+CFA8: 00                    NOP
+CFA9: 00                    NOP
+CFAA: 00                    NOP
+CFAB: 00                    NOP
+CFAC: 00                    NOP
+CFAD: 00                    NOP
+CFAE: 00                    NOP
+CFAF: 00                    NOP
+CFB0: 00                    NOP
+CFB1: 00                    NOP
+CFB2: 00                    NOP
+CFB3: 00                    NOP
+CFB4: 00                    NOP
+CFB5: 00                    NOP
+CFB6: 00                    NOP
+CFB7: 00                    NOP
+CFB8: 00                    NOP
+CFB9: 00                    NOP
+CFBA: 00                    NOP
+CFBB: 00                    NOP
+CFBC: 00                    NOP
+CFBD: 00                    NOP
+CFBE: 00                    NOP
+CFBF: 00                    NOP
+CFC0: 00                    NOP
+CFC1: 00                    NOP
+CFC2: 00                    NOP
+CFC3: 00                    NOP
+CFC4: 00                    NOP
+CFC5: 00                    NOP
+CFC6: 00                    NOP
+CFC7: 00                    NOP
+CFC8: 00                    NOP
+CFC9: 00                    NOP
+CFCA: 00                    NOP
+CFCB: 00                    NOP
+CFCC: 00                    NOP
+CFCD: 00                    NOP
+CFCE: 00                    NOP
+CFCF: 00                    NOP
+CFD0: 00                    NOP
+CFD1: 00                    NOP
+CFD2: 00                    NOP
+CFD3: 00                    NOP
+CFD4: 00                    NOP
+CFD5: 00                    NOP
+CFD6: 00                    NOP
+CFD7: 00                    NOP
+CFD8: 00                    NOP
+CFD9: 00                    NOP
+CFDA: 00                    NOP
+CFDB: 00                    NOP
+CFDC: 00                    NOP
+CFDD: 00                    NOP
+CFDE: 00                    NOP
+CFDF: 00                    NOP
+CFE0: 00                    NOP
+CFE1: 00                    NOP
+CFE2: 00                    NOP
+CFE3: 00                    NOP
+CFE4: 00                    NOP
+CFE5: 00                    NOP
+CFE6: 00                    NOP
+CFE7: 00                    NOP
+CFE8: 00                    NOP
+CFE9: 00                    NOP
+CFEA: 00                    NOP
+CFEB: 00                    NOP
+CFEC: 00                    NOP
+CFED: 00                    NOP
+CFEE: 00                    NOP
+CFEF: 00                    NOP
+CFF0: 00                    NOP
+CFF1: 00                    NOP
+CFF2: 00                    NOP
+CFF3: 00                    NOP
+CFF4: 00                    NOP
+CFF5: 00                    NOP
+CFF6: 00                    NOP
+CFF7: 00                    NOP
+CFF8: 00                    NOP
+CFF9: 00                    NOP
+CFFA: 00                    NOP
+CFFB: 00                    NOP
+CFFC: 00                    NOP
+CFFD: 00                    NOP
+CFFE: 00                    NOP
+CFFF: 00                    NOP
