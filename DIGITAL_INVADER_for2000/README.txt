@@ -1,38 +1,38 @@
-I/O 1982�N6�����Ɍf�ڂ��ꂽ
-DIGITAL INVADER��MZ-2000�p�ɈڐA�������̂ł��B
-���쌠�͍H����Y�l�ɂ���܂��B
+I/O 1982年6月号に掲載された
+DIGITAL INVADERをMZ-2000用に移植したものです。
+著作権は工藤一郎様にあります。
 
-�|�|�f������|�|�|�|�|�|�|�|�|�|�|�|�|�|�|�|�|�|�|
+－－デモ動画－－－－－－－－－－－－－－－－－－－
 https://www.youtube.com/watch?v=xXplv1aI-i4
-�`�����l���o�^���Ă��炦��Ɗ������ł�(^^)
+チャンネル登録してもらえると嬉しいです(^^)
 
-�|�|�t�@�C���̐����|�|�|�|�|�|�|�|�|�|�|�|�|�|�|�|
-��DIGITAL_INVADER_for2000.wav
-�e�[�v�C���[�W�iMZ-1Z001�œ���m�F�ρj
-���j�^�[���烍�[�h����ƃQ�[�����n�܂�܂�
+－－ファイルの説明－－－－－－－－－－－－－－－－
+■DIGITAL_INVADER_for2000.wav
+テープイメージ（MZ-1Z001で動作確認済）
+モニターからロードするとゲームが始まります
 START ADR:BD00
 END ADR  :CFFF
 JUMP ADR :BE00
 
-��DIGITAL_INVADE.dis�F�f�B�X�A�Z���u�������\�[�X
+■DIGITAL_INVADE.dis：ディスアセンブルしたソースとメモ
 
-���t���[�`���[�g.xlsx�F�ڐA���ɍ���������p�t�@�C��
+■フローチャート.xlsx：移植時に作ったメモ用ファイル
 
-�|�|���������Ă���o�O�Ǝd�l�|�|�|�|�|�|�|�|�|�|�|�|
-1.�[���T�v���X(���ʂ�0��\��)�����܂������Ȃ�
-�i�O��C���ňꎞ���������ǂ��𒼂������Y�ꂽ�j
+－－今分かっているバグと仕様－－－－－－－－－－－－
+1.ゼロサプレス(無駄な0非表示)がうまく動かない
+（前回修正で一時直ったがどこを直したか忘れた）
 
-2.���Ԃ��R���y�A���Ă���̂Ō��ʉ��𗬂���
-�R���y�A���Ԃ�ʂ�߂��āA�����҂����Ԃ��������邱�Ƃ�����
+2.時間をコンペアしているので効果音を流すと
+コンペア時間を通り過ぎて、長い待ち時間が発生することがある
 
-3.���ʉ���������BEEP�B���̌�������A���ʉ���̓^�C�}�[��
-���Z�b�g����d�l�ύX���K�v�����B
+3.効果音がただのBEEP。↑の件もあり、効果音後はタイマーを
+リセットする仕様変更が必要そう。
 
-�EGO NEXT�̉�ʂ��o�Ȃ��i�d�l�H�j
+・GO NEXTの画面が出ない（仕様？）
 
-�EPUSH [S] KEY��������ʂ��������̂��߈ꎞ�I��
-BEEP����wait���Ă��邪���邳���B
+・PUSH [S] KEYが流れる画面が早すぎのため一時的に
+BEEP音でwaitしているがうるさい。
 
-�ȉ��̓o�O�Ƃ������d�l�ɂ�����
-�EUFO�o���̓����_���i�{�Ƃ͊m��������10�ŏo���������͂��j
-�E���y�̃e���|���߂���x���i80�N��͂̂�т肵�Ă��������H�j���C���ς̂͂�
+以下はバグというより仕様によるもの
+・UFO出現はランダム（本家は確か足して10で出現だったはず）
+・音楽のテンポがめちゃ遅い（80年代はのんびりしていたかも？）→修正済のはず
