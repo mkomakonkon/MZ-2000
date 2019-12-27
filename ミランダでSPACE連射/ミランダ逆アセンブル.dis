@@ -3313,7 +3313,7 @@
 12B2: CD 2F 25              CALL    RM252F
 12B5: CD 70 23              CALL    RM2370
 12B8: CD FE 22              CALL    RM22FE
-12BB: CD 9B 32              CALL    RM329B
+12BB: CD 9B 32              CALL    RM329B	星サブルーチン
 12BE: CD B7 28              CALL    RM28B7
 12C1: CD AD 2D              CALL    RM2DAD	自分の当たり判定
 12C4: CD 85 34              CALL    RM3485
@@ -6498,7 +6498,7 @@
 2C0B: D9                    EXX
 2C0C: CD C1 34              CALL    RM34C1
                       RM2C0F:
-2C0F: CD 68 31              CALL    RM3168
+2C0F: CD 68 31              CALL    RM3168	CRチェック
 2C12: C2 0F 2C              JP      NZ,RM2C0F
 2C15: C3 A0 12              JP      RM12A0
                       RM2C18:
@@ -6756,17 +6756,17 @@
 2E08: CD 8B 32              CALL    RM328B
 2E0B: C9                    RET
                       RM2E0C:
-2E0C: CD AE 31              CALL    RM31AE
+2E0C: CD AE 31              CALL    RM31AE	グラフィックオン(RGB:〇〇〇)
 2E0F: 3E 01                 LD      A,01h
 2E11: D3 F7                 !OUT     (F7h),A
-2E13: CD DA 35              CALL    RM35DA
+2E13: CD DA 35              CALL    RM35DA	C000hの値でGRAM画面を埋める。
 2E16: 3C                    INC     A
 2E17: D3 F7                 !OUT     (F7h),A
-2E19: CD DA 35              CALL    RM35DA
+2E19: CD DA 35              CALL    RM35DA	C000hの値でGRAM画面を埋める。
 2E1C: 3C                    INC     A
 2E1D: D3 F7                 !OUT     (F7h),A
-2E1F: CD DA 35              CALL    RM35DA
-2E22: CD B7 31              CALL    RM31B7
+2E1F: CD DA 35              CALL    RM35DA	C000hの値でGRAM画面を埋める。
+2E22: CD B7 31              CALL    RM31B7	DISPオフ、GRAMオン、CHR40
 2E25: C9                    RET
                       RM2E26:
 2E26: 21 E8 03              LD      HL,03E8h
@@ -6798,7 +6798,7 @@
 2E59: 10 F9                 DJNZ    RM2E54
 2E5B: C9                    RET
                       RM2E5C:
-2E5C: CD AE 31              CALL    RM31AE
+2E5C: CD AE 31              CALL    RM31AE	グラフィックオン(RGB:〇〇〇)
 2E5F: 3E 01                 LD      A,01h
 2E61: D3 F7                 !OUT     (F7h),A
 2E63: CD 78 2E              CALL    RM2E78
@@ -6809,7 +6809,7 @@
                       RM2E6F:
 2E6F: D3 F7                 !OUT     (F7h),A
 2E71: CD 78 2E              CALL    RM2E78
-2E74: CD B7 31              CALL    RM31B7
+2E74: CD B7 31              CALL    RM31B7	DISPオフ、GRAMオン、CHR40
 2E77: C9                    RET
                       RM2E78:
 2E78: D9                    EXX
@@ -6838,7 +6838,7 @@
 2E95: D9                    EXX
 2E96: C9                    RET
                       RM2E97:
-2E97: CD AE 31              CALL    RM31AE
+2E97: CD AE 31              CALL    RM31AE	グラフィックオン(RGB:〇〇〇)
 2E9A: 3E 01                 LD      A,01h
 2E9C: D3 F7                 !OUT     (F7h),A
 2E9E: CD 01 30              CALL    RM3001
@@ -6848,10 +6848,10 @@
 2EA8: 3E 03                 LD      A,03h
 2EAA: D3 F7                 !OUT     (F7h),A
 2EAC: CD 01 30              CALL    RM3001
-2EAF: CD B7 31              CALL    RM31B7
+2EAF: CD B7 31              CALL    RM31B7	DISPオフ、GRAMオン、CHR40
 2EB2: C9                    RET
                       RM2EB3:
-2EB3: CD AE 31              CALL    RM31AE
+2EB3: CD AE 31              CALL    RM31AE	グラフィックオン(RGB:〇〇〇)
 2EB6: 79                    LD      A,C
 2EB7: E6 01                 AND     01h
 2EB9: CA C1 2E              JP      Z,RM2EC1
@@ -6871,10 +6871,10 @@
 2ED4: D3 F7                 !OUT     (F7h),A
 2ED6: CD 1C 30              CALL    RM301C
                       RM2ED9:
-2ED9: CD B7 31              CALL    RM31B7
+2ED9: CD B7 31              CALL    RM31B7	DISPオフ、GRAMオン、CHR40
 2EDC: C9                    RET
                       RM2EDD:
-2EDD: CD AE 31              CALL    RM31AE
+2EDD: CD AE 31              CALL    RM31AE	グラフィックオン(RGB:〇〇〇)
 2EE0: 48                    LD      C,B
 2EE1: 3E 01                 LD      A,01h
 2EE3: D3 F7                 !OUT     (F7h),A
@@ -6895,10 +6895,10 @@
 2EFF: 09                    ADD     HL,BC
 2F00: D9                    EXX
 2F01: CD 35 30              CALL    RM3035
-2F04: CD B7 31              CALL    RM31B7
+2F04: CD B7 31              CALL    RM31B7	DISPオフ、GRAMオン、CHR40
 2F07: C9                    RET
                       RM2F08:
-2F08: CD AE 31              CALL    RM31AE
+2F08: CD AE 31              CALL    RM31AE	グラフィックオン(RGB:〇〇〇)
 2F0B: D9                    EXX
 2F0C: 3E 01                 LD      A,01h
 2F0E: D3 F7                 !OUT     (F7h),A
@@ -6918,10 +6918,10 @@
 2F22: D3 F7                 !OUT     (F7h),A
 2F24: ED B0                 LDIR
 2F26: D9                    EXX
-2F27: CD B7 31              CALL    RM31B7
+2F27: CD B7 31              CALL    RM31B7	DISPオフ、GRAMオン、CHR40
 2F2A: C9                    RET
                       RM2F2B:
-2F2B: CD AE 31              CALL    RM31AE
+2F2B: CD AE 31              CALL    RM31AE	グラフィックオン(RGB:〇〇〇)
 2F2E: 3E 01                 LD      A,01h
 2F30: D3 F7                 !OUT     (F7h),A
 2F32: CD 62 30              CALL    RM3062
@@ -6931,10 +6931,10 @@
 2F3C: 3E 03                 LD      A,03h
 2F3E: D3 F7                 !OUT     (F7h),A
 2F40: CD 62 30              CALL    RM3062
-2F43: CD B7 31              CALL    RM31B7
+2F43: CD B7 31              CALL    RM31B7	DISPオフ、GRAMオン、CHR40
 2F46: C9                    RET
                       RM2F47:
-2F47: CD AE 31              CALL    RM31AE
+2F47: CD AE 31              CALL    RM31AE	グラフィックオン(RGB:〇〇〇)
 2F4A: 48                    LD      C,B
 2F4B: 3E 01                 LD      A,01h
 2F4D: D3 F7                 !OUT     (F7h),A
@@ -6955,10 +6955,10 @@
 2F69: 09                    ADD     HL,BC
 2F6A: D9                    EXX
 2F6B: CD 83 30              CALL    RM3083
-2F6E: CD B7 31              CALL    RM31B7
+2F6E: CD B7 31              CALL    RM31B7	DISPオフ、GRAMオン、CHR40
 2F71: C9                    RET
                       RM2F72:
-2F72: CD AE 31              CALL    RM31AE
+2F72: CD AE 31              CALL    RM31AE	グラフィックオン(RGB:〇〇〇)
 2F75: 3E 01                 LD      A,01h
 2F77: D3 F7                 !OUT     (F7h),A
 2F79: CD 9E 30              CALL    RM309E
@@ -6968,10 +6968,10 @@
 2F83: 3E 03                 LD      A,03h
 2F85: D3 F7                 !OUT     (F7h),A
 2F87: CD 9E 30              CALL    RM309E
-2F8A: CD B7 31              CALL    RM31B7
+2F8A: CD B7 31              CALL    RM31B7	DISPオフ、GRAMオン、CHR40
 2F8D: C9                    RET
                       RM2F8E:
-2F8E: CD AE 31              CALL    RM31AE
+2F8E: CD AE 31              CALL    RM31AE	グラフィックオン(RGB:〇〇〇)
 2F91: 3E 01                 LD      A,01h
 2F93: D3 F7                 !OUT     (F7h),A
 2F95: CD CA 30              CALL    RM30CA
@@ -6981,10 +6981,10 @@
 2F9F: 3E 03                 LD      A,03h
 2FA1: D3 F7                 !OUT     (F7h),A
 2FA3: CD CA 30              CALL    RM30CA
-2FA6: CD B7 31              CALL    RM31B7
+2FA6: CD B7 31              CALL    RM31B7	DISPオフ、GRAMオン、CHR40
 2FA9: C9                    RET
                       RM2FAA:
-2FAA: CD AE 31              CALL    RM31AE
+2FAA: CD AE 31              CALL    RM31AE	グラフィックオン(RGB:〇〇〇)
 2FAD: 3E 01                 LD      A,01h
 2FAF: D3 F7                 !OUT     (F7h),A
 2FB1: CD B5 30              CALL    RM30B5
@@ -6994,10 +6994,10 @@
 2FBB: 3E 03                 LD      A,03h
 2FBD: D3 F7                 !OUT     (F7h),A
 2FBF: CD B5 30              CALL    RM30B5
-2FC2: CD B7 31              CALL    RM31B7
+2FC2: CD B7 31              CALL    RM31B7	DISPオフ、GRAMオン、CHR40
 2FC5: C9                    RET
                       RM2FC6:
-2FC6: CD AE 31              CALL    RM31AE
+2FC6: CD AE 31              CALL    RM31AE	グラフィックオン(RGB:〇〇〇)
 2FC9: 48                    LD      C,B
 2FCA: 3E 01                 LD      A,01h
 2FCC: D3 F7                 !OUT     (F7h),A
@@ -7010,10 +7010,10 @@
 2FDA: 3E 03                 LD      A,03h
 2FDC: D3 F7                 !OUT     (F7h),A
 2FDE: CD DA 30              CALL    RM30DA
-2FE1: CD B7 31              CALL    RM31B7
+2FE1: CD B7 31              CALL    RM31B7	DISPオフ、GRAMオン、CHR40
 2FE4: C9                    RET
                       RM2FE5:
-2FE5: CD AE 31              CALL    RM31AE
+2FE5: CD AE 31              CALL    RM31AE	グラフィックオン(RGB:〇〇〇)
 2FE8: 3E 01                 LD      A,01h
 2FEA: D3 F7                 !OUT     (F7h),A
 2FEC: CD 01 31              CALL    RM3101
@@ -7023,7 +7023,7 @@
 2FF6: 3E 03                 LD      A,03h
 2FF8: D3 F7                 !OUT     (F7h),A
 2FFA: CD 01 31              CALL    RM3101
-2FFD: CD B7 31              CALL    RM31B7
+2FFD: CD B7 31              CALL    RM31B7	DISPオフ、GRAMオン、CHR40
                       RM3000:
 3000: C9                    RET
                       RM3001:
@@ -7372,13 +7372,13 @@
 31AB: D1                    POP     DE
 31AC: E1                    POP     HL
 31AD: C9                    RET
-                      RM31AE:
+                      RM31AE:			グラフィックオン(RGB:〇〇〇)
 31AE: 3E 80                 LD      A,80h
-31B0: D3 E8                 !OUT     (E8h),A
+31B0: D3 E8                 !OUT     (E8h),A	Bit7:DISPオン,Bit6:グラフィックオン
 31B2: 3E 07                 LD      A,07h
-31B4: D3 F6                 !OUT     (F6h),A
+31B4: D3 F6                 !OUT     (F6h),A	BLUE:〇,RED:〇、GREEN:〇
 31B6: C9                    RET
-                      RM31B7:
+                      RM31B7:			DISPオフ、GRAMオン、CHR40
 31B7: 3E 00                 LD      A,00h
 31B9: D3 E8                 !OUT     (E8h),A
 31BB: C9                    RET
@@ -7519,7 +7519,7 @@
 3297: 19                    ADD     HL,DE
 3298: 10 F9                 DJNZ    RM3293
 329A: C9                    RET
-                      RM329B:
+                      RM329B:			～星～
 329B: 3A 3A C0              LD      A,(RMC03A)
 329E: 3C                    INC     A
 329F: E6 03                 AND     03h
@@ -7564,7 +7564,7 @@
 32F3: 79                    LD      A,C
 32F4: CD 3F 31              CALL    RM313F
 32F7: 4F                    LD      C,A
-32F8: CD AE 31              CALL    RM31AE
+32F8: CD AE 31              CALL    RM31AE	グラフィックオン(RGB:〇〇〇)
 32FB: 3E 01                 LD      A,01h
 32FD: D3 F7                 !OUT     (F7h),A
 32FF: 7E                    LD      A,(HL)
@@ -7580,10 +7580,10 @@
 3311: 7E                    LD      A,(HL)
 3312: A1                    AND     C
                       RM3313:
-3313: CD B7 31              CALL    RM31B7
+3313: CD B7 31              CALL    RM31B7	DISPオフ、GRAMオン、CHR40
 3316: C0                    RET     NZ
 3317: DD 46 00              LD      B,(IX+00h)
-331A: CD AE 31              CALL    RM31AE
+331A: CD AE 31              CALL    RM31AE	グラフィックオン(RGB:〇〇〇)
 331D: 78                    LD      A,B
 331E: E6 01                 AND     01h
 3320: CA 2A 33              JP      Z,RM332A
@@ -7611,7 +7611,7 @@
 3342: B1                    OR      C
 3343: 77                    LD      (HL),A
                       RM3344:
-3344: CD B7 31              CALL    RM31B7
+3344: CD B7 31              CALL    RM31B7	DISPオフ、GRAMオン、CHR40
 3347: 78                    LD      A,B
 3348: E6 07                 AND     07h
 334A: DD 77 00              LD      (IX+00h),A
@@ -7621,7 +7621,7 @@
 334F: CD 3F 31              CALL    RM313F
 3352: 4F                    LD      C,A
 3353: 06 00                 LD      B,00h
-3355: CD AE 31              CALL    RM31AE
+3355: CD AE 31              CALL    RM31AE	グラフィックオン(RGB:〇〇〇)
 3358: 3E 01                 LD      A,01h
 335A: D3 F7                 !OUT     (F7h),A
 335C: 7E                    LD      A,(HL)
@@ -7643,7 +7643,7 @@
 3374: CA 79 33              JP      Z,RM3379
 3377: CB D0                 SET     2,B
                       RM3379:
-3379: CD B7 31              CALL    RM31B7
+3379: CD B7 31              CALL    RM31B7	DISPオフ、GRAMオン、CHR40
 337C: DD 7E 00              LD      A,(IX+00h)
 337F: B8                    CP      B
 3380: C0                    RET     NZ
@@ -7651,7 +7651,7 @@
 3382: 79                    LD      A,C
 3383: 2F                    CPL
 3384: 4F                    LD      C,A
-3385: CD AE 31              CALL    RM31AE
+3385: CD AE 31              CALL    RM31AE	グラフィックオン(RGB:〇〇〇)
 3388: 78                    LD      A,B
 3389: E6 01                 AND     01h
 338B: CA 95 33              JP      Z,RM3395
@@ -7679,7 +7679,7 @@
 33AD: A1                    AND     C
 33AE: 77                    LD      (HL),A
                       RM33AF:
-33AF: CD B7 31              CALL    RM31B7
+33AF: CD B7 31              CALL    RM31B7	DISPオフ、GRAMオン、CHR40
 33B2: C9                    RET
                       RM33B3:
 33B3: FE 01                 CP      01h
@@ -8006,12 +8006,12 @@
 35D6: C3 B7 35              JP      RM35B7
                       RM35D9:
 35D9: C9                    RET
-                      RM35DA:
+                      RM35DA:			C000hの値でGRAM画面を埋める。
 35DA: 21 00 C0              LD      HL,C000h
 35DD: 11 01 C0              LD      DE,C001h
 35E0: 01 80 3E              LD      BC,3E80h
 35E3: 36 00                 LD      (HL),00h
-35E5: ED B0                 LDIR
+35E5: ED B0                 LDIR		(DE)←(HL),DE→DE+1,HL→HL+1,BC←BC-1(メモリ転送)
 35E7: C9                    RET
                       RM35E8:
 35E8: 36 00                 LD      (HL),00h
@@ -8182,81 +8182,81 @@
 36CE: C9                    RET
                       RM36CF:			～タイトル～
 36CF: 3E C0                 LD      A,C0h
-36D1: D3 E8                 !OUT     (E8h),A
-36D3: 21 00 D0              LD      HL,D000h
+36D1: D3 E8                 !OUT     (E8h),A	Bit7:DISPオン、Bit6:キャラクタアクセス
+36D3: 21 00 D0              LD      HL,D000h　　D000hの値で画面を埋めている。
 36D6: 11 01 D0              LD      DE,D001h
 36D9: 01 E7 03              LD      BC,03E7h
 36DC: 36 00                 LD      (HL),00h
-36DE: ED B0                 LDIR
-36E0: CD AE 31              CALL    RM31AE
+36DE: ED B0                 LDIR		(DE)←(HL),DE→DE+1,HL→HL+1,BC←BC-1(メモリ転送)
+36E0: CD AE 31              CALL    RM31AE	グラフィックオン(RGB:〇〇〇)
 36E3: 3E 01                 LD      A,01h
-36E5: D3 F7                 !OUT     (F7h),A
-36E7: CD DA 35              CALL    RM35DA
+36E5: D3 F7                 !OUT     (F7h),A	V-RAM(BLUE):〇
+36E7: CD DA 35              CALL    RM35DA	C000hの値でGRAM画面を埋める。
 36EA: 21 00 B0              LD      HL,B000h
 36ED: 11 08 04              LD      DE,0408h
 36F0: 0E 01                 LD      C,01h
 36F2: CD BC 37              CALL    RM37BC
 36F5: 3E 02                 LD      A,02h
-36F7: D3 F7                 !OUT     (F7h),A
-36F9: CD DA 35              CALL    RM35DA
+36F7: D3 F7                 !OUT     (F7h),A	V-RAM(RED):〇
+36F9: CD DA 35              CALL    RM35DA	C000hの値でGRAM画面を埋める。
 36FC: 21 60 B0              LD      HL,B060h
 36FF: 11 08 04              LD      DE,0408h
 3702: 0E 01                 LD      C,01h
 3704: CD BC 37              CALL    RM37BC
 3707: 3E 03                 LD      A,03h
-3709: D3 F7                 !OUT     (F7h),A
-370B: CD DA 35              CALL    RM35DA
+3709: D3 F7                 !OUT     (F7h),A	V-RAM(GREEN):〇
+370B: CD DA 35              CALL    RM35DA	C000hの値でGRAM画面を埋める。
 370E: 21 C0 B0              LD      HL,B0C0h
 3711: 11 08 04              LD      DE,0408h
 3714: 0E 01                 LD      C,01h
 3716: CD BC 37              CALL    RM37BC
-3719: CD B7 31              CALL    RM31B7
+3719: CD B7 31              CALL    RM31B7	DISPオフ、GRAMオン、CHR40
 371C: 21 00 CE              LD      HL,CE00h
 371F: CD B7 35              CALL    RM35B7
 3722: CD 8B 32              CALL    RM328B
 3725: 3E 01                 LD      A,01h
 3727: 32 0B C0              LD      (RMC00B),A
-                      RM372A:
-372A: CD 9B 32              CALL    RM329B
+                      RM372A:			～タイトルキー入力～
+372A: CD 9B 32              CALL    RM329B	星サブルーチン
 372D: CD 75 31              CALL    RM3175
-3730: FE FB                 CP      FBh
-3732: CA 3C 37              JP      Z,RM373C
-3735: CD 68 31              CALL    RM3168
-3738: C2 2A 37              JP      NZ,RM372A
-373B: C9                    RET
+3730: FE FB                 CP      FBh		A-FBh
+3732: CA 3C 37              JP      Z,RM373C	2ならRM373Cへ
+3735: CD 68 31              CALL    RM3168	CRチェック	CRチェック
+3738: C2 2A 37              JP      NZ,RM372A	CRを押していなければループ
+373B: C9                    RET			CRを押していればタイトル終了
                       RM373C:
-373C: CD 9B 32              CALL    RM329B
+373C: CD 9B 32              CALL    RM329B	星サブルーチン
 373F: CD 75 31              CALL    RM3175
 3742: FE FB                 CP      FBh
-3744: CA 3C 37              JP      Z,RM373C
+3744: CA 3C 37              JP      Z,RM373C	2を離すまでループ
                       RM3747:
-3747: CD 9B 32              CALL    RM329B
-374A: CD 68 31              CALL    RM3168
-374D: C8                    RET     Z
+3747: CD 9B 32              CALL    RM329B	星サブルーチン
+374A: CD 68 31              CALL    RM3168	CRチェック
+374D: C8                    RET     Z		CRを押していればタイトル終了
 374E: CD 75 31              CALL    RM3175
-3751: FE EF                 CP      EFh
-3753: CA 5E 37              JP      Z,RM375E
-3756: FE FF                 CP      FFh
+3751: FE EF                 CP      EFh		A-EFh（0か？）
+3753: CA 5E 37              JP      Z,RM375E	0ならRM375Eへ
+3756: FE FF                 CP      FFh		A-FFh
 3758: CA 47 37              JP      Z,RM3747
 375B: C3 2A 37              JP      RM372A
                       RM375E:
-375E: CD 9B 32              CALL    RM329B
+375E: CD 9B 32              CALL    RM329B	星サブルーチン
 3761: CD 75 31              CALL    RM3175
-3764: FE EF                 CP      EFh
-3766: CA 5E 37              JP      Z,RM375E
+3764: FE EF                 CP      EFh		A-EFh
+3766: CA 5E 37              JP      Z,RM375E	0を離すまでループ
                       RM3769:
-3769: CD 9B 32              CALL    RM329B
-376C: CD 68 31              CALL    RM3168
-376F: C8                    RET     Z
-3770: CD 4E 31              CALL    RM314E
-3773: CA 81 37              JP      Z,RM3781
+3769: CD 9B 32              CALL    RM329B	星サブルーチン
+376C: CD 68 31              CALL    RM3168	CRチェック
+376F: C8                    RET     Z		CRを押していればタイトル終了
+3770: CD 4E 31              CALL    RM314E	SPACEチェック
+3773: CA 81 37              JP      Z,RM3781	SPACEならRM3781へ
 3776: CD 75 31              CALL    RM3175
 3779: FE FF                 CP      FFh
 377B: CA 69 37              JP      Z,RM3769
 377E: C3 2A 37              JP      RM372A
                       RM3781:
-3781: CD 9B 32              CALL    RM329B
-3784: CD 68 31              CALL    RM3168
+3781: CD 9B 32              CALL    RM329B	星サブルーチン
+3784: CD 68 31              CALL    RM3168	CRチェック
 3787: C8                    RET     Z
 3788: CD 4E 31              CALL    RM314E
 378B: CA 81 37              JP      Z,RM3781
@@ -8271,8 +8271,8 @@
                       RM37A1:
 37A1: 32 0B C0              LD      (RMC00B),A
                       RM37A4:
-37A4: CD 9B 32              CALL    RM329B
-37A7: CD 68 31              CALL    RM3168
+37A4: CD 9B 32              CALL    RM329B	星サブルーチン
+37A7: CD 68 31              CALL    RM3168	CRチェック
 37AA: C8                    RET     Z
 37AB: CD 4E 31              CALL    RM314E
 37AE: CA 81 37              JP      Z,RM3781
@@ -8281,11 +8281,11 @@
 37B6: CA A4 37              JP      Z,RM37A4
 37B9: C3 2A 37              JP      RM372A
                       RM37BC:
-37BC: E5                    PUSH    HL
-37BD: C5                    PUSH    BC
-37BE: D5                    PUSH    DE
+37BC: E5                    PUSH    HL		HL退避
+37BD: C5                    PUSH    BC		BC退避
+37BE: D5                    PUSH    DE		DE退避
 37BF: 7E                    LD      A,(HL)
-37C0: A1                    AND     C
+37C0: A1                    AND     C		CをANDした結果をZフラグへ
 37C1: 3E 00                 LD      A,00h
 37C3: CA C8 37              JP      Z,RM37C8
 37C6: 3E FF                 LD      A,FFh
@@ -8326,7 +8326,7 @@
 37F7: E1                    POP     HL
 37F8: C9                    RET
                       RM37F9:
-37F9: CD AE 31              CALL    RM31AE
+37F9: CD AE 31              CALL    RM31AE	グラフィックオン(RGB:〇〇〇)
 37FC: D9                    EXX
 37FD: 11 B8 C2              LD      DE,C2B8h
 3800: 21 00 B0              LD      HL,B000h
@@ -8348,7 +8348,7 @@
 3822: 3E 03                 LD      A,03h
 3824: D3 F7                 !OUT     (F7h),A
 3826: CD 2D 38              CALL    RM382D
-3829: CD B7 31              CALL    RM31B7
+3829: CD B7 31              CALL    RM31B7	DISPオフ、GRAMオン、CHR40
 382C: C9                    RET
                       RM382D:
 382D: D9                    EXX
@@ -8373,7 +8373,7 @@
 384B: 10 E7                 DJNZ    RM3834
 384D: C9                    RET
                       RM384E:
-384E: CD AE 31              CALL    RM31AE
+384E: CD AE 31              CALL    RM31AE	グラフィックオン(RGB:〇〇〇)
 3851: 3E 01                 LD      A,01h
 3853: D3 F7                 !OUT     (F7h),A
 3855: 21 28 C0              LD      HL,C028h
@@ -8388,7 +8388,7 @@
 3865: 06 28                 LD      B,28h
 3867: 0D                    DEC     C
 3868: C2 60 38              JP      NZ,RM3860
-386B: CD B7 31              CALL    RM31B7
+386B: CD B7 31              CALL    RM31B7	DISPオフ、GRAMオン、CHR40
 386E: C9                    RET
                       RM386F:
 386F: 3A 0B C0              LD      A,(RMC00B)
