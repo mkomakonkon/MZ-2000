@@ -6,7 +6,7 @@ E-ADR:CE7Fh
 です。
 J-ADRは12A0のままとしました。
 
-■CE80h～D7FFhを3E80h～47FFhに格納
+■CE80h～D7FFhを3E80h～47FFhに格納(これはセーブ不要)
 E000: 21 80 CE              LD      HL,CE80h　　コピー元アドレス
     : 11 80 3E              LD      DE,3E80h	コピー先アドレス
     : 01 7F 09              LD      BC,097Fh	転送回数
