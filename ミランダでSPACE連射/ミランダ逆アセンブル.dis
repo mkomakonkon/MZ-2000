@@ -7808,9 +7808,9 @@
                       RM3494:
 3494: 23                    INC     HL
 3495: 10 F3                 DJNZ    RM348A
-3497: 3A 84 C0              LD      A,(RMC084)
+3497: 3A 84 C0              LD      A,(RMC084)	スコアの1万の桁→RMC082にすれば500点ごとに1up
 349A: 47                    LD      B,A
-349B: 3A 37 C0              LD      A,(RMC037)
+349B: 3A 37 C0              LD      A,(RMC037)	1upの得点(デフォルト５)
 349E: B8                    CP      B
 349F: C2 B7 34              JP      NZ,RM34B7
 34A2: 3E 05                 LD      A,05h
