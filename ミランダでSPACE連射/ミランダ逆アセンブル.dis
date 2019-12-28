@@ -5668,13 +5668,13 @@
 25FB: CD 4E 31              CALL    RM314E
 25FE: CA 06 26              JP      Z,RM2606	SPACE押下なら
 2601: AF                    XOR     A		A＝0
-2602: 32 07 C0              LD      (RMC007),A
+2602: 32 07 C0              LD      (RMC007),A  
 2605: C9                    RET
                       RM2606:
 2606: 3A 07 C0              LD      A,(RMC007)
 2609: FE 00                 CP      00h
 260B: C0                    RET     NZ
-260C: 3E 01                 LD      A,01h
+260C: 3E 01                 LD      A,01h	ここを0にすればスペース連射
 260E: 32 07 C0              LD      (RMC007),A
 2611: 3A 04 C0              LD      A,(RMC004)
 2614: 32 14 C0              LD      (RMC014),A
@@ -8186,7 +8186,7 @@
 36D3: 21 00 D0              LD      HL,D000h　　D000hの値で画面を埋めている。
 36D6: 11 01 D0              LD      DE,D001h
 36D9: 01 E7 03              LD      BC,03E7h
-36DC: 36 00                 LD      (HL),00h
+36DC: 36 00                 LD      (HL),00h　　D000hの値を0にする。
 36DE: ED B0                 LDIR		(DE)←(HL),DE→DE+1,HL→HL+1,BC←BC-1(メモリ転送)
 36E0: CD AE 31              CALL    RM31AE	グラフィックオン(RGB:〇〇〇)
 36E3: 3E 01                 LD      A,01h
@@ -39640,7 +39640,7 @@ C005: 00                    NOP
                       RMC006:
 C006: 00                    NOP
                       RMC007:
-C007: 00                    NOP
+C007: 00                    NOP		SPACEを押しっぱなしなら１、離すとクリア
                       RMC008:
 C008: 00                    NOP
                       RMC009:
