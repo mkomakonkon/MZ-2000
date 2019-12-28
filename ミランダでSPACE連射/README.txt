@@ -16,3 +16,6 @@ Arduino Leonardoを使って連射モードにしてみたけど
 MIRANDA_S1200_ECE7F_J12A0　を追加しました。
 ファイルサイズをC000h以内にしています。
 J-ADRは12A0のままです。
+
+MIRANDA_S1200_ECE7F_J12A0_SPACE-REP　を追加しました。
+スペース押しっぱなしで連射できます。
