@@ -1,0 +1,19 @@
+MIRANDA_S1200_CE7F_J12A0メモ
+
+MIRANDAのファイルサイズをC000h以内(BC80h)にまとめたものです。
+
+■CE80h～D7FFhを3E80h～47FFhに格納
+E000: 21 80 CE              LD      HL,CE80h　　コピー元アドレス
+    : 11 80 3E              LD      DE,3E80h	コピー先アドレス
+    : 01 7F 09              LD      BC,097Fh	転送回数
+    : ED B0                 LDIR		(DE)←(HL),DE→DE+1,HL→HL+1,BC←BC-1(メモリ転送)
+
+■J 12A0hで元位置にメモリ転送して起動
+12A0: C3 00 3E              JP      3E00h	メモリ転送＋初期設定
+3E00: 21 80 3E              LD      HL,3E80h　　コピー元アドレス
+    : 11 80 CE              LD      DE,CE80h	コピー先アドレス
+    : 01 7F 09              LD      BC,097Fh
+    : ED B0                 LDIR		(DE)←(HL),DE→DE+1,HL→HL+1,BC←BC-1(メモリ転送)
+3E10: CD 63 3A              CALL    RM3A63	初期設定
+    : C3 A3 12              JP      RM12A3	メインルーチンへ
+
