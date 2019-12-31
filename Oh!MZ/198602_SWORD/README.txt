@@ -1,6 +1,6 @@
-Oh!MZ 1986�N2���� �f�B�X�N�Ή�S-0S"SWORD"
+Oh!MZ 1986年2月号 ディスク対応S-OS"SWORD"
 
-MZ-1Z001�̃��j�^�[���烍�[�h
+MZ-1Z001のモニターからロード
 
 SWORD.wav
  S-ADR.1300h
