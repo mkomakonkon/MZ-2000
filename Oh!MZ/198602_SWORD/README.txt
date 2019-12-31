@@ -1,0 +1,13 @@
+Oh!MZ 1986年2月号 ディスク対応S-0S"SWORD"
+
+MZ-1Z001のモニターからロード
+
+SWORD.wav
+ S-ADR.1300h
+ E-ADR.2CFFh
+ J-ADR.1FFDh
+
+FORMAT+SYSGEN.wav
+ S-ADR.7000h
+ E-ADR.727Fh
+ J-ADR.7000h
