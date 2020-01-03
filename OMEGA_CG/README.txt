@@ -1,7 +1,9 @@
-TAPE_IMAGE‚ÌŽg‚¢•û
+TAPE_IMAGEã®ä½¿ã„æ–¹
 
-MZ-1Z001‚ÌBASIC‚Å
+MZ-1Z001ã®BASICã§
 OMEGA_MAIN.wav
-‚ðLOAD,RUN
+ã‚’LOAD,RUN
 
-Œã‚ÍƒvƒƒOƒ‰ƒ€‚ÌŽwŽ¦‚É]‚Á‚Ä‚­‚¾‚³‚¢B
+å¾Œã¯ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®æŒ‡ç¤ºã«å¾“ã£ã¦ãã ã•ã„ã€‚
+
+https://github.com/mkomakonkon/MZ-2000/blob/master/OMEGA_CG/OMEGA.png
