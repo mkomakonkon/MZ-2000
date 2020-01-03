@@ -5,5 +5,3 @@ OMEGA_MAIN.wav
 をLOAD,RUN
 
 後はプログラムの指示に従ってください。
-
-![gazou](https://github.com/mkomakonkon/MZ-2000/blob/master/OMEGA_CG/OMEGA.png)
