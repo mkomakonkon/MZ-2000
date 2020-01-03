@@ -1,0 +1,35 @@
+BF00: DBE8      GRAMON: IN      A,(0E8H)
+BF02: CBFF              SET     7,A
+BF04: CBB7              RES     6,A
+BF06: D3E8              OUT     (0E8H),A
+
+BF08: 21 00 80              LD      HL,8000h　　コピー元アドレス
+BF0B: 11 00 C0              LD      DE,C000h	コピー先アドレス
+BF0E: 01 7F 3E              LD      BC,3E7Fh
+BF11: ED B0                 LDIR		(DE)←(HL),DE→DE+1,HL→HL+1,BC←BC-1(メモリ転送)
+
+BF13: DB E8      GRAMOFF:IN      A,(0E8H)
+BF15: CB F7              SET     6,A
+BF17: D3 E8              OUT     (0E8H),A
+
+BF19: C9                    RET
+
+
+
+OMEGA_GRAM1.wav
+FILE NAME:OMEGA BLUE
+S-ADR.$8000
+E-ADR.$BF19
+J-ADR.$
+
+OMEGA_GRAM2.wav
+FILE NAME:OMEGA RED
+S-ADR.$8000
+E-ADR.$BEFF
+J-ADR.$
+
+OMEGA_GRAM3.wav
+FILE NAME:OMEGA GREEN
+S-ADR.$8000
+E-ADR.$BEFF
+J-ADR.$
