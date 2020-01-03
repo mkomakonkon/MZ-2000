@@ -6,4 +6,4 @@ OMEGA_MAIN.wav
 
 後はプログラムの指示に従ってください。
 
-https://github.com/mkomakonkon/MZ-2000/blob/master/OMEGA_CG/OMEGA.png
+![gazou](https://github.com/mkomakonkon/MZ-2000/blob/master/OMEGA_CG/OMEGA.png)
