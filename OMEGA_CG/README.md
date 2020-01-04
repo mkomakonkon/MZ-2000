@@ -1,4 +1,4 @@
-#TAPE_IMAGEの使い方
+# TAPE_IMAGEの使い方
 
 MZ-1Z001のBASICで
 OMEGA_MAIN.wav
@@ -6,4 +6,4 @@ OMEGA_MAIN.wav
 
 後はプログラムの指示に従ってください。
 
-https://github.com/mkomakonkon/MZ-2000/blob/master/OMEGA_CG/OMEGA.png
+![ブリジットちゃん](https://github.com/mkomakonkon/MZ-2000/blob/master/OMEGA_CG/OMEGA.png "ブリジットちゃん")
