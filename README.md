@@ -5,7 +5,6 @@
 
 ■OMEGA_CG
 　ブリジットちゃん描いてみた
-https://github.com/mkomakonkon/MZ-2000/blob/master/OMEGA_CG/OMEGA.png
 
 ■Oh!MZ/198602_SWORD
 　DISK版S-OS（バグ未確認）
@@ -18,4 +17,3 @@ https://github.com/mkomakonkon/MZ-2000/blob/master/OMEGA_CG/OMEGA.png
  
 ■ミランダでSPACE連射
 　ミランダをいろいろ改造してみた
-
