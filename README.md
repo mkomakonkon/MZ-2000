@@ -6,8 +6,8 @@
 ■OMEGA_CG
 　ブリジットちゃん描いてみた
 
-■Oh!MZ/198602_SWORD
-　DISK版S-OS（バグ未確認）
+■Oh!MZ
+　Oh!MZを打ち込み直した物
  
 ■TIME_LIMIT2
 　昔作ったゲームをマシン語化でちょっと機能追加
