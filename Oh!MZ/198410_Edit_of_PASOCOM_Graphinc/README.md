@@ -1,4 +1,4 @@
-# Edit. of PASOCOM Graphin
+# Edit. of PASOCOM Graphic
 Oh!MZ1984年10月号に掲載の物です。  
 
 機能が多くて取説嫌いの私には使い方が良く分かりません(^_^;;;  
