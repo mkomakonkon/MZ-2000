@@ -17,3 +17,5 @@
  
 ■ミランダでSPACE連射
 　ミランダをいろいろ改造してみた
+
+[wiki作ってみました](https://github.com/mkomakonkon/MZ-2000/wiki)  
