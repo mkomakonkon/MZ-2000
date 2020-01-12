@@ -1,13 +1,15 @@
 # MZ-2000
 
 ■DIGITAL_INVADER_for2000
-　MZ-80K/Cからの移植
+　MZ-80K/Cからの移植  
+ 
+■IO I/Oを打ち込んだ物
 
 ■OMEGA_CG
 　ブリジットちゃん描いてみた
 
 ■Oh!MZ
-　Oh!MZを打ち込み直した物
+　Oh!MZを打ち込んだ物
  
 ■TIME_LIMIT2
 　昔作ったゲームをマシン語化でちょっと機能追加
