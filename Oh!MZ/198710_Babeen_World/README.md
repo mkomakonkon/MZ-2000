@@ -1,0 +1,11 @@
+# ロールプレイングゲーム　Babeen World  
+BASICなのでもしかすると打ち込みミスがあるかもしれません。  
+MZ80B/2000/2200用でグリーンモニターの方がプレイしやすいです。  
+MZ-2000用に特化するなら  
+・キャラクタのカラー対応とマシン語化  
+・MAPをマシン語化して表示を広げる  
+・プレイ中の音楽追加  
+・操作性の改善  
+あたりを改良すると更に面白くなりそうです。  
+
+![Babeen_World](https://raw.githubusercontent.com/mkomakonkon/MZ-2000/master/Oh!MZ/198710_Babeen_World/capture.bmp "Babeen_World")
