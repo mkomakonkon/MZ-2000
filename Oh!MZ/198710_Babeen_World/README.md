@@ -8,4 +8,8 @@ MZ-2000用に特化するなら
 ・操作性の改善  
 あたりを改良すると更に面白くなりそうです。  
 
+ゲーム中にデータをセーブ/ロードできるんですが  
+なぜか一度セーブに失敗すると次からプロテクトがかかってると言われセーブできなくなりました。  
+原因不明なのでTFエディションの状態セーブを使った方が良いかもしれません。  
+
 ![Babeen_World](https://raw.githubusercontent.com/mkomakonkon/MZ-2000/master/Oh!MZ/198710_Babeen_World/capture.bmp "Babeen_World")
