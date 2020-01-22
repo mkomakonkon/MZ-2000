@@ -1,2 +1,2 @@
-# T.T.L INTERPRETTER  
+# T.T.L INTERPRETER  
 説明が無いと分からないと思うので、説明のキャプチャも付けておきます。
