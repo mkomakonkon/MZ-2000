@@ -29,7 +29,7 @@ http://fukui.s17.xrea.com/comp/pub/mz20emu/emuz2000plugins_src_tf0_95_4.zip
 4=mz_1e18.dll  
 5=cmu_800.dll　←これ（既に5番を使っていたら別のスロットIDでもOK）  
 6=mz_1r13.dll  
-8=pio-3034.dll 
+8=pio-3034.dll   
 ------------------------ ここまで -----------------------------------   
 
 【４】EmuZ2000TF.exeを起動して、「ツール」→「プラグイン設定」で  
