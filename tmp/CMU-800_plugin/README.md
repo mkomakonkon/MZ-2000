@@ -30,5 +30,5 @@ http://fukui.s17.xrea.com/comp/pub/mz20emu/emuz2000plugins_src_tf0_95_4.zip
 8=pio-3034.dll  
 
 【４】EmuZ2000TF.exeを起動して、「ツール」→「プラグイン設定」で  
-      【３】で指定したスロットIDにCOMP-MUSIC CMU-800…  
+      ３で指定したスロットIDに"COMP-MUSIC CMU-800…"  
       が表示されれば設定完了。  
