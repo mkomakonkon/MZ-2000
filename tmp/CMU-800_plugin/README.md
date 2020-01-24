@@ -5,6 +5,7 @@ http://fukui.s17.xrea.com/comp/mz2000/emulator.html#DOWNLOADS
 ドラムはポートの該当ビットに0を書き込むとそのパートを連打するっぽいので、タイミングよく1に書き戻す必要があるみたい。  
 BASICレベルのwaitでも音が出ないケースがあるので、いろいろ調べる必要がありそう。  
 本家AMDEKかRoland-DGのアプリ欲しいなぁ…  
+ちなみに実機はエッジで動作するので、タイミング気にせず使えたりします。  
 
 デモ動画を限定公開しておきます。
 https://youtu.be/5rqPqXQJq-Q
