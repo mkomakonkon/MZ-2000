@@ -19,6 +19,8 @@ http://fukui.s17.xrea.com/comp/pub/mz20emu/emuz2000plugins_src_tf0_95_4.zip
 【２】cmu_800.dllをEmuZ2000TF.exeと同じフォルダに入れる  
 
 【３】EmuZ2000TF.iniに下記を追加する  
+（既に他のプラグイン設定をしているなら、使っていないスロットIDを追加）
+------------------------ ここから -----------------------------------  
 [Plugin]  
 0=emuz_1m03.dll  
 ;1=mz_1e08f.dll  
@@ -27,7 +29,8 @@ http://fukui.s17.xrea.com/comp/pub/mz20emu/emuz2000plugins_src_tf0_95_4.zip
 4=mz_1e18.dll  
 5=cmu_800.dll　←これ（既に5番を使っていたら別のスロットIDでもOK）  
 6=mz_1r13.dll  
-8=pio-3034.dll  
+8=pio-3034.dll 
+------------------------ ここまで -----------------------------------   
 
 【４】EmuZ2000TF.exeを起動して、「ツール」→「プラグイン設定」で  
       ３で指定したスロットIDに"COMP-MUSIC CMU-800…"  
