@@ -9,3 +9,26 @@ BASICレベルのwaitでも音が出ないケースがあるので、いろい�
 
 デモ動画を限定公開しておきます。
 https://youtu.be/5rqPqXQJq-Q
+
+
+# CMU-800プラグインの設定方法(EmuZ2000TFエディション版)
+
+【１】以下のプラグインをDLする  
+http://fukui.s17.xrea.com/comp/pub/mz20emu/emuz2000plugins_src_tf0_95_4.zip
+
+【２】cmu_800.dllをEmuZ2000TF.exeと同じフォルダに入れる  
+
+【３】EmuZ2000TF.iniに下記を追加する  
+[Plugin]  
+0=emuz_1m03.dll  
+;1=mz_1e08f.dll  
+;2=mz_1e24.dll  
+;3=mz_1e08.dll  
+4=mz_1e18.dll  
+5=cmu_800.dll　←これ（既に5番を使っていたら別のスロットIDでもOK）  
+6=mz_1r13.dll  
+8=pio-3034.dll  
+
+【４】EmuZ2000TF.exeを起動して、「ツール」→「プラグイン設定」で  
+      【３】で指定したスロットIDにCOMP-MUSIC CMU-800…  
+      が表示されれば設定完了。  
