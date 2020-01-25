@@ -1,4 +1,6 @@
-# MZ-2000
+# MZ-2000　　
+
+[wiki作ってみました](https://github.com/mkomakonkon/MZ-2000/wiki)  
 
 ■DIGITAL_INVADER_for2000
 　MZ-80K/Cからの移植  
@@ -16,11 +18,14 @@
  
 ■image
   キャプチャなどの画像置き場(公開用ではないです)  
-  
+
+■misc
+  なんか作ってみた
+
 ■tmp
 　未完成のもの
  
 ■ミランダでSPACE連射
 　ミランダをいろいろ改造してみた
 
-[wiki作ってみました](https://github.com/mkomakonkon/MZ-2000/wiki)  
+ごちゃごちゃしてきたのでフォルダ構成見直そうかな？
