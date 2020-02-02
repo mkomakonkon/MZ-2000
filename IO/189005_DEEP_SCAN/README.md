@@ -5,3 +5,4 @@ mz2200.exeのFONT.ROMをこれに入れ替えてください。
 元のフォントはファイル名を変えて保管し、いつでも修復できるようにしてください。  
 [デモ動画](https://youtu.be/Pp3HfviuPxo)  
 
+![キャプチャ](https://github.com/mkomakonkon/MZ-2000/blob/master/image/DEEP_SCAN.png)
