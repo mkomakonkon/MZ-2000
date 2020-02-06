@@ -8,7 +8,7 @@ Oh!MZ1984年10月号に掲載の物です。
 起動するところまでは動画で撮っています。  
 zipはwavの圧縮ファイルです。
 
-![screen_capture](https://github.com/mkomakonkon/MZ-2000/blob/master/Oh!MZ/198410_Edit_of_PASOCOM_Graphic/screen_capture.jpg "screen_capture")
+[![Edit of PASOCOM Graphinc](https://img.youtube.com/vi/oOXapTsM9rQ/0.jpg)](https://www.youtube.com/watch?v=oOXapTsM9rQ)
 
 グラフィックデータは直接G-RAMにR/Wしているようなので
 このプログラムを応用すれば全画面表示のカラーCGをいろいろ読み込めるプログラムが作れるかも。
