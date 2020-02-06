@@ -6,6 +6,4 @@ Emuz-2200用です。(それ以外でも動くけど正しく表示できませ�
 mz2200.exeと一緒に置いてあるFONT.ROMをここのフォントに入れ替えてください。  
 元のフォントはファイル名を変えて保管し、いつでも修復できるようにしてください。  
 同時キー入力できないのと、音が仮のBEEP音なのでそのうち修正するかも…  
-[デモ動画](https://youtu.be/Pp3HfviuPxo)  
-
-![キャプチャ](https://github.com/mkomakonkon/MZ-2000/blob/master/image/DEEP_SCAN.png)
+[![MZ-2000でDEEP SCAN](https://img.youtube.com/vi/Pp3HfviuPxo&feature=youtu.be/0.jpg)](https://www.youtube.com/watch?v=Pp3HfviuPxo&feature=youtu.be)
