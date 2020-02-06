@@ -36,3 +36,5 @@ BEEP音でwaitしているがうるさい。
 以下はバグというより仕様によるもの
 ・UFO出現はランダム（本家は確か足して10で出現だったはず）
 ・音楽のテンポがめちゃ遅い（80年代はのんびりしていたかも？）→修正済のはず
+
+[![MZ-80K/CのDIGITAL INVADERをMZ-2000に移植してみました](https://img.youtube.com/vi/xXplv1aI-i4/0.jpg)](https://www.youtube.com/watch?v=xXplv1aI-i4)
