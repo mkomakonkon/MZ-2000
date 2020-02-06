@@ -3,7 +3,7 @@ DIGITAL INVADERをMZ-2000用に移植したものです。
 著作権は工藤一郎様にあります。
 
 －－デモ動画－－－－－－－－－－－－－－－－－－－  
-[![MZ-2000でDEEP SCAN](https://img.youtube.com/vi/Pp3HfviuPxo/0.jpg)](https://www.youtube.com/watch?v=Pp3HfviuPxo)
+[![TEST](https://img.youtube.com/vi/xXplv1aI-i4/0.jpg)](https://www.youtube.com/watch?v=xXplv1aI-i4)
 
 －－ファイルの説明－－－－－－－－－－－－－－－－
 ■DIGITAL_INVADER_for2000.wav
@@ -37,4 +37,4 @@ BEEP音でwaitしているがうるさい。
 ・UFO出現はランダム（本家は確か足して10で出現だったはず）
 ・音楽のテンポがめちゃ遅い（80年代はのんびりしていたかも？）→修正済のはず
 
-[![TEST](https://img.youtube.com/vi/xXplv1aI-i4/0.jpg)](https://www.youtube.com/watch?v=xXplv1aI-i4)
+
