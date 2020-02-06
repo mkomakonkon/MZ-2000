@@ -37,4 +37,4 @@ BEEP音でwaitしているがうるさい。
 ・UFO出現はランダム（本家は確か足して10で出現だったはず）
 ・音楽のテンポがめちゃ遅い（80年代はのんびりしていたかも？）→修正済のはず
 
-[![DIGITAL_INVADER移植](https://img.youtube.com/vi/xXplv1aI-i4/0.jpg)](https://www.youtube.com/watch?v=xXplv1aI-i4)
+[![TEST](https://img.youtube.com/vi/xXplv1aI-i4/0.jpg)](https://www.youtube.com/watch?v=xXplv1aI-i4)
