@@ -2,8 +2,8 @@
 ATARI_美咲.ROMをFONT.ROMにリネームしてmz2200.exeと同じフォルダに置くとフォントが変わります。  
 元のフォントのバックアップを忘れずに。  
 
-デモ動画：https://youtu.be/d83Iz1t_SwQ
-[![FONT](https://img.youtube.com/vi/d83Iz1t_SwQ&feature=youtu.be/0.jpg)](https://www.youtube.com/watch?v=d83Iz1t_SwQ&feature=youtu.be)
+デモ動画：  
+[![FONT](https://img.youtube.com/vi/d83Iz1t_SwQ/0.jpg)](https://www.youtube.com/watch?v=d83Iz1t_SwQ)
 
 ASCII.zipは作ったフォント確認用のテープイメージです。  
 LISTで↓のような表示をします。  
