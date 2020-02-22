@@ -9,3 +9,7 @@ WICS80B.zip：TS-1000を読み込んだ後にWICS80Bを読み込みます
 コールドスタート：$1500のはず  
 ホットスタート　：$1503のはず  
 <img src="https://github.com/mkomakonkon/MZ-2000/blob/master/image/WICS80B.png" width="480">  
+
+## WICS80B Super COMPILER  
+J-ADR:$D000  
+<img src="https://github.com/mkomakonkon/MZ-2000/blob/master/image/WICS80B_Super_COMPILER.png" width="480">  
