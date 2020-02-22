@@ -11,6 +11,6 @@ WICS80B.zip：TS-1000を読み込んだ後にWICS80Bを読み込みます
 <img src="https://github.com/mkomakonkon/MZ-2000/blob/master/image/WICS80B.png" width="480">  
 
 ## WICS80B Super COMPILER  
-WICS80B_Super_COMPILER.zip：コンパイラ
+WICS80B_Super_COMPILER.zip：コンパイラ  
 J-ADR:$D000  
 <img src="https://github.com/mkomakonkon/MZ-2000/blob/master/image/WICS80B_Super_COMPILER.png" width="480">  
