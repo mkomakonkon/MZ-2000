@@ -2,8 +2,7 @@
 
 ## TS-1000  
 TS1000.zip：TS-1000単体です。  
-![TS-1000](https://github.com/mkomakonkon/MZ-2000/blob/master/image/TS-1000.png?raw=true)  
-<img src="https://github.com/mkomakonkon/MZ-2000/blob/master/image/TS-1000.png" width="320">
+<img src="https://github.com/mkomakonkon/MZ-2000/blob/master/image/TS-1000.png" width="480">
 
 ## WICS80B  
 WICS80B.zip：TS-1000を読み込んだ後にWICS80Bを読み込みます  
