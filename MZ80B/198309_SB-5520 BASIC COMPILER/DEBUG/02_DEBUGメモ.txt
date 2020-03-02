@@ -1,0 +1,104 @@
+【DEBUG履歴】
+1回目のセルフコンパイル結果はNN=10　orz
+
+どこから手を付けたらよいか分からなかったので
+とりあえず全ての行を1行ずつRUN→シンタックスエラー無し
+
+デバッグ用にコピーしたファイルにプログラムを追加してチェック。
+10060行にPRINT"SYNTAX"を追加し、シンタックスエラーが出たら分かるように変更
+
+10160 PRINT"CHECK!!"を追加し、先頭から順にGOTO 10060→GOTO 10160に変更しながらRUN
+→5440行のGOTO 10060が作動している。
+PT(ソースのアドレス)はLIMITのアドレスになっていた
+5770のON GOTOは動作していない→LIMIT($A5)のデコードに失敗している模様
+→1460行 RETURNが消えていた。
+
+2回目のセルフコンパイル結果はNN=2470
+2470行 ×REN→〇REM
+
+3回目のセルフコンパイルでNN=0(コンパイル完了)
+
+
+【変数確認】
+PT:読みだすソースアドレス($515C～)
+SC:上の初期値($515C)
+AD:出力(オブジェクト)の書き込みアドレス(初期値$C000)
+OS:出力(オブジェクト)のオフセット
+TT:コンパイル用テーブルアドレス(初期値$B200)
+RR:ランタイムルーチンの先頭アドレス($8000)
+SA=AD+OS
+A=SA
+OS:どこで定義している？64行のVOSと関係あり？
+SF:STOPフラグ？
+PS:コンパイルのPASS(多分)
+ET:TAを格納している
+TA:オブジェクト作成エリアのアドレス($B200～)
+TT:↑の初期値($B200)
+V:汎用変数
+	NN:次の行のアドレス
+        A-OS
+W0:(上位バイト)
+W1:(下位バイト)
+
+
+【中間言語確認】
+80H 80H:REM
+80H 81H:DATA
+80H 82H:DEF KEY(
+80H 84H:READ
+80H 85H:LIST
+80H 86H:RUN
+80H 87H:NEW
+80H 88H:PRINT
+80H 89H:LET
+80H 8AH:FOR
+80H 8BH:IF
+80H 8CH:THEN
+80H 8DH:GOTO
+80H 8EH:GOSUB
+80H 8FH:RETURN
+80H 90H:NEXT
+80H 91H:STOP
+80H 92H:END
+80H 94H:ON
+80H 95H:LOAD
+80H 96H:SAVE
+80H 97H:VERIFY
+80H 98H:POKE
+80H 99H:DIM
+80H 9AH:DEF FN
+80H 9BH:INPUT
+80H 9CH:RESTORE
+80H 9DH:CLR
+80H 9EH:MUSIC
+80H 9FH:TEMPO
+80H A0H:USR(
+80H A1H:WOPEN
+80H A2H:ROPEN
+80H A3H:CLOSE
+80H A4H:MON
+80H A5H:LIMIT
+80H A6H:CONT
+80H A7H:GET
+80H A8H:INP@
+80H A9H:OUT@
+80H AAH:CURSOR
+80H ABH:SET
+80H ACH:RESET
+80H ADH:LINE
+80H AEH:BLINE
+80H AFH:CONSOLE
+80H B0H:GRAPH
+80H B1H:POSITION
+80H B2H:PATTERN
+80H B3H:AUTO
+80H B5H:IMAGE/P
+80H B6H:COPY/P
+80H B7H:PAGE/P
+80H B9H:BOOT
+80H BAH:KLIST
+80H BBH:CHANGE
+80H BEH:REW
+80H BFH:FAST
+
+
