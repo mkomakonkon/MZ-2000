@@ -1,47 +1,50 @@
-�yDEBUG�����z
-1��ڂ̃Z���t�R���p�C�����ʂ�NN=10�@orz
+【DEBUG履歴】
+1回目のセルフコンパイル結果はNN=10　orz
 
-�ǂ�������t������悢��������Ȃ������̂�
-�Ƃ肠�����S�Ă̍s��1�s����RUN���V���^�b�N�X�G���[����
+どこから手を付けたらよいか分からなかったので
+とりあえず全ての行を1行ずつRUN→シンタックスエラー無し
 
-�f�o�b�O�p�ɃR�s�[�����t�@�C���Ƀv���O������ǉ����ă`�F�b�N�B
-10060�s��PRINT"SYNTAX"��ǉ����A�V���^�b�N�X�G���[���o���番����悤�ɕύX
+デバッグ用にコピーしたファイルにプログラムを追加してチェック。
+10060行にPRINT"SYNTAX"を追加し、シンタックスエラーが出たら分かるように変更
+#私はシンタックスエラーが疑わしかったので10060行だけいじりましたが
+#他の100x0行も「エラーが出たらPRINT文でエラー表示する」ようにすればデバッグが進むと思います
 
-10160 PRINT"CHECK!!"��ǉ����A�擪���珇��GOTO 10060��GOTO 10160�ɕύX���Ȃ���RUN
-��5440�s��GOTO 10060���쓮���Ă���B
-PT(�\�[�X�̃A�h���X)��LIMIT�̃A�h���X�ɂȂ��Ă���
-5770��ON GOTO�͓��삵�Ă��Ȃ���LIMIT($A5)�̃f�R�[�h�Ɏ��s���Ă���͗l
-��1460�s RETURN�������Ă����B
+で、10160 PRINT"CHECK!!"を追加し、先頭から順にGOTO 10060→GOTO 10160に変更しながらRUN
+→5440行のGOTO 10060が作動していることが分かった。
+その時のPT(ソースのアドレス)はLIMITのアドレスになっていた
+5770行のON GOTOは動作していない→LIMIT($A5)のデコードに失敗している模様。
+→デコード部分を順に追っていったら1460行 RETURNが無いことが判明。
 
-2��ڂ̃Z���t�R���p�C�����ʂ�NN=2470
-2470�s �~REN���ZREM
+2回目のセルフコンパイル結果はNN=2470
+2470行 ×REN→〇REM
 
-3��ڂ̃Z���t�R���p�C����NN=0(�R���p�C������)
+3回目のセルフコンパイルでNN=0(コンパイル完了)
 
 
-�y�ϐ��m�F�z
-PT:�ǂ݂����\�[�X�A�h���X($515C�`)
-SC:��̏����l($515C)
-AD:�o��(�I�u�W�F�N�g)�̏������݃A�h���X(�����l$C000)
-OS:�o��(�I�u�W�F�N�g)�̃I�t�Z�b�g
-TT:�R���p�C���p�e�[�u���A�h���X(�����l$B200)
-RR:�����^�C�����[�`���̐擪�A�h���X($8000)
+【変数確認】
+PT:読みだすソースアドレス($515C～)
+SC:上の初期値($515C)
+AD:出力(オブジェクト)の書き込みアドレス(初期値$C000)
+OS:出力(オブジェクト)のオフセット
+TT:コンパイル用テーブルアドレス(初期値$B200)
+RR:ランタイムルーチンの先頭アドレス($8000)
 SA=AD+OS
 A=SA
-OS:�ǂ��Œ�`���Ă���H64�s��VOS�Ɗ֌W����H
-SF:STOP�t���O�H
-PS:�R���p�C����PASS(����)
-ET:TA���i�[���Ă���
-TA:�I�u�W�F�N�g�쐬�G���A�̃A�h���X($B200�`)
-TT:���̏����l($B200)
-V:�ėp�ϐ�
-	NN:���̍s�̃A�h���X
+OS:どこで定義している？64行のVOSと関係あり？
+SF:STOPフラグ？
+PS:コンパイルのPASS(多分)
+ET:TAを格納している
+TA:オブジェクト作成エリアのアドレス($B200～)
+TT:↑の初期値($B200)
+V:汎用変数
+	NN:次の行のアドレス
         A-OS
-W0:(��ʃo�C�g)
-W1:(���ʃo�C�g)
+W0:(上位バイト)
+W1:(下位バイト)
 
 
-�y���Ԍ���m�F�z
+【中間言語確認】
+ソースは中間言語で格納されているので、これが分かっているとデバッグ効率が上がると思います。
 80H 80H:REM
 80H 81H:DATA
 80H 82H:DEF KEY(
