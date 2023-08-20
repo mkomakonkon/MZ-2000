@@ -1,5 +1,7 @@
 # MZ-2000　　
 
+★このページのデータをDLしてエミュで再生するだけの動画を投稿する人は、自分でプログラムを組む勉強くらいした方がいいと思います。 
+
 [wiki作ってみました](https://github.com/mkomakonkon/MZ-2000/wiki)  
 
 ■DIGITAL_INVADER_for2000
