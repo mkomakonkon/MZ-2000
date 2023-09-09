@@ -2,6 +2,7 @@
 【タイトル】マインスイーパー forMZ-2000(WICSバージョンβ版)  
 【作者】えむこま  
 オブジェクトファイルがうまくセーブできないので、emuz-2000の状態ファイルとWICSのソースファイルも起きました。  
+オブジェクトファイルがcheck sum errorになってしまう件、MZ-1Z001MでREAD&WRITEすることで動作するようになりました。  
   
 [![](https://img.youtube.com/vi/j7a2YeUoy5M/0.jpg)](https://youtu.be/j7a2YeUoy5M)      
   
