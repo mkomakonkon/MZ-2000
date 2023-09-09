@@ -2,7 +2,7 @@
 【タイトル】マインスイーパー forMZ-2000(WICSバージョンβ版)  
 【作者】えむこま  
   
-[![](https://img.youtube.com/vi/6rtF77oA4QA/0.jpg)](https://www.youtube.com/watch?v=6rtF77oA4QA)    
+[![](https://img.youtube.com/vi/j7a2YeUoy5M/0.jpg)](https://youtu.be/j7a2YeUoy5M)      
   
 【キー操作】  
 移動：  
