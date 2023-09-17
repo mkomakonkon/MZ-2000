@@ -3,6 +3,7 @@
 【作者】えむこま  
 オブジェクトファイルがうまくセーブできないので、emuz-2000の状態ファイルとWICSのソースファイルも置きました。  
 オブジェクトファイルがcheck sum errorになってしまう件、MZ-1Z001MでLOAD&SAVEすることで動作するようになりました。  
+"C-DOS rot-N MINE_SWEEPER_V02.D88"が最新版です。DIRしてRUN"MINE-SWEEPER-V02"で起動します。  
   
 [![](https://img.youtube.com/vi/j7a2YeUoy5M/0.jpg)](https://youtu.be/j7a2YeUoy5M)      
   
