@@ -1,9 +1,6 @@
 【機種】MZ-2000/2200(TS-2000)  
 【タイトル】マインスイーパー forMZ-2000(WICSバージョンβ版)  
 【作者】えむこま  
-オブジェクトファイルがうまくセーブできないので、emuz-2000の状態ファイルとWICSのソースファイルも置きました。  
-オブジェクトファイルがcheck sum errorになってしまう件、MZ-1Z001MでLOAD&SAVEすることで動作するようになりました。  
-最新版は以下です。  
 TAPE版："WICS版マインスイーパV02_compile済状態File.mze"V02ではセーブが成功しなかったのでEmuZ-2000の状態ファイルです。  
 DISC版："C-DOS rot-N MINE_SWEEPER_V02.D88"DIRしてRUN"MINE-SWEEPER-V02"で起動します。  
   
