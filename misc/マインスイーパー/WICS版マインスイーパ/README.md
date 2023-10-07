@@ -1,7 +1,8 @@
 【機種】MZ-2000/2200(TS-2000)  
 【タイトル】マインスイーパー forMZ-2000(WICSバージョンβ版)  
 【作者】えむこま  
-TAPE版："WICS版マインスイーパV02_compile済状態File.mze"V02ではセーブが成功しなかったのでEmuZ-2000の状態ファイルです。  
+TAPE版：~~"WICS版マインスイーパV02_compile済状態File.mze"V02ではセーブが成功しなかったのでEmuZ-2000の状態ファイルです。~~  
+       "最終_IPLオートロード版マインスイーパ.wav"をIPLからロードすると起動します。  
 DISC版："C-DOS rot-N MINE_SWEEPER_V02.D88"DIRしてRUN"MINE-SWEEPER-V02"で起動します。  
   
 [![](https://img.youtube.com/vi/j7a2YeUoy5M/0.jpg)](https://youtu.be/j7a2YeUoy5M)      
