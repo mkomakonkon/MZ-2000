@@ -9,7 +9,8 @@
 **[EmuZ-2200 v1.0.0-beta3](https://github.com/kuran-kuran/CommonSourceCodeProject/releases)の場合**<br>
 ・状態ファイル（mz2200.sta7）エミュレータと同じフォルダに格納する。<br>
 ・iniファイルのTempoを160とか好きなテンポに変更。<br>
-・エミュレータを実行し、Pを押せば再生開始。<br><br>
+・エミュレータを起動し状態保存ファイルをLOAD。<br>
+・Pを押せば再生開始。<br><br>
 https://x.com/i/status/1838491367510806615
 
 
