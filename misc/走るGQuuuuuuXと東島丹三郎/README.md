@@ -1,0 +1,2 @@
+使い方  
+MZ-2000_SDでGQ-RD-MAIN.mztをLOAD,RUN
