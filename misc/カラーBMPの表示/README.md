@@ -1,5 +1,6 @@
 # カラーBMPをMZ-2000で表示する
 <img src="https://pbs.twimg.com/media/G-RX9YiasAE41ap?format=jpg&name=large" width="300"><br>
+
 # MZ-2000 画像変換スクリプト用 Python セットアップ手順
 
 この手順に従えば、BMP 画像を SHARP MZ-2000 用の  
