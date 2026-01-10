@@ -93,7 +93,7 @@ PATH が通っていないため、再インストール時に
 ---
 
 ## 補足
-bmp2bin.pyを生成するためのCopilot への指示文
+bmp2bin.pyを生成するためのCopilot への指示文（概要）
 ```
 Python で、BMP 画像を SHARP MZ-2000 用の 8色 GRAM1/2/3.mzt に変換するスクリプトを作ってください。
 
