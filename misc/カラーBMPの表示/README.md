@@ -25,10 +25,13 @@ brew install python
 ## 2. 必要なライブラリをインストールする
 
 このスクリプトで必要なのは **Pillow（画像処理ライブラリ）** だけです。
+```
 pip install pillow
+```
 pip が使えない場合：
+```
 python -m pip install pillow
-
+```
 ---
 
 ## 3. スクリプトと画像を配置する
@@ -43,15 +46,21 @@ python -m pip install pillow
 ## 4. スクリプトを実行する
 
 ターミナル（または PowerShell）でフォルダに移動：
+```
 cd フォルダのパス
+```
 実行：
+```
 python convert.py
+```
 ---
 
 ## 5. ディザ方式を選択する
 
 実行すると次のような選択肢が表示されます：
+```
 A = Floyd–Steinberg B = Bayer C = Atkinson
+```
 A / B / C のいずれかを入力してください。
 
 ---
