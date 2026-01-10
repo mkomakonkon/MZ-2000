@@ -59,7 +59,9 @@ python convert.py
 
 実行すると次のような選択肢が表示されます：
 ```
-A = Floyd–Steinberg  B = Bayer  C = Atkinson
+A = Floyd–Steinberg  
+B = Bayer  
+C = Atkinson
 ```
 A / B / C のいずれかを入力してください。
 
