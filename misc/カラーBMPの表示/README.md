@@ -45,7 +45,7 @@ python -m pip install pillow
 
 ## 4. スクリプトを実行する
 
-ターミナル（または PowerShell）でフォルダに移動：
+コマンド プロンプト（または PowerShell）でフォルダに移動：
 ```
 cd フォルダのパス
 ```
