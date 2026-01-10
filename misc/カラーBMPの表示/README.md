@@ -17,9 +17,9 @@ GRAM1/2/3.mzt に変換する Python スクリプトを実行できます。
 
 ### macOS
 Homebrew がある場合：
-'''
+```
 brew install python
-'''
+```
 ---
 
 ## 2. 必要なライブラリをインストールする
