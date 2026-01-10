@@ -38,7 +38,7 @@ python -m pip install pillow
 
 1. 任意のフォルダを作成（例：`mz2000_converter`）
 2. 以下のファイルを置く：
-   - Python スクリプト（例：`convert.py`）
+   - Python スクリプト（例：`bmp2bin.py`）
    - 入力画像（`input.bmp`）
 
 ---
@@ -51,7 +51,7 @@ cd フォルダのパス
 ```
 実行：
 ```
-python convert.py
+python bmp2bin.py
 ```
 ---
 
