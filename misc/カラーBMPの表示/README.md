@@ -1,6 +1,6 @@
 # カラーBMPをMZ-2000で表示する
 <img src="https://pbs.twimg.com/media/G-RX9YiasAE41ap?format=jpg&name=large" width="400"><br>
-[![](https://pbs.twimg.com/media/G-RX9YiasAE41ap?format=jpg&name=large)](https://x.com/mkomapfu/status/2010175728269307952?s=20)width="400"
+[![](https://pbs.twimg.com/media/G-RX9YiasAE41ap?format=jpg&name=small)](https://x.com/mkomapfu/status/2010175728269307952?s=20)width="400"
 
 # MZ-2000 画像変換スクリプト用 Python セットアップ手順
 
