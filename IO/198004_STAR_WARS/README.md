@@ -1,5 +1,6 @@
 # MZ-80K/C版STAR WARSの移植
 1980年4月号掲載の物の移植です。  
+https://archive.org/details/Io19804/page/n135/mode/1up
 J-ADR$4000です。 
 
 Emuz-2200用です(TFエディションの場合：FONT.ROM → mzfont.romにファイル名変更)  
@@ -7,5 +8,5 @@ Emuz-2200用です(TFエディションの場合：FONT.ROM → mzfont.romにフ
 mz2200.exeと一緒に置いてあるFONT.ROMをここのフォントに入れ替えてください。  
 元のフォントはファイル名を変えて保管し、いつでも修復できるようにしてください。  
 同時キー入力できないのと、音が仮のBEEP音なのでそのうち修正するかも…  
-－－デモ動画－－－－－－－－－－－－－－－－－－－
+－－デモ動画－－－－－－－－－－－－－－－－－－－<br>
 [![STAR WARS](https://img.youtube.com/vi/wtkpdxHZtW8/0.jpg)](https://www.youtube.com/watch?v=wtkpdxHZtW8)
