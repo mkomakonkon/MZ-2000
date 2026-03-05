@@ -21,7 +21,7 @@ CLOCK INにクロックを入れるとそれに対応したテンポで演奏す
 |基板|秋月|[103411]両面ガラス・ユニバーサル基板 140×40mm|https://akizukidenshi.com/catalog/g/g103411/|
 |Arduino NANO|Amazonとか|Arduino IDEで[CMU_CLOCK_MODULE.ino](https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/CMU_CLOCK_MODULE/CMU_CLOCK_MODULE.ino)を書き込んでください||
 |OLED|Amazonとか|OLED 0.91インチディスプレイ I2C||
-|DCジャック(任意)|秋月|USB給電だと間違って書き込んでしまいそうなので…<br>実はこの開発中にもやらかしてます（＾＾；；<br>VINの入力電圧7～12V(私は9Vを入れてます)|https://akizukidenshi.com/catalog/g/g109408/|
+|DCジャック(任意)|秋月|USB給電だと間違って書き込んでしまいそうなので…<br>実はこの開発中にもやらかしてます（＾＾；；<br>9Vを接続)|https://akizukidenshi.com/catalog/g/g109408/|
 |ステレオジャック|秋月|ジャックの先端(L/MONO)を使用すること<br>CLOCK INはモノラルなのでJACK中央のRはGNDにつながります|https://akizukidenshi.com/catalog/g/g102460/|
 |押しボタンスイッチ|アリエク|秋月にはLED無しが売ってないので…|[参考URL](https://ja.aliexpress.com/item/1005002884956069.html?spm=a2g0o.order_list.order_list_main.15.e9fb585aThOZR9&gatewayAdapt=glo2jpn)|
 |ゴム足|Amazonとか|私のは滑ってるので、シリコンタイプのものが滑らなくて良さそうです||
