@@ -1,6 +1,6 @@
 # CMU-800を正確なBPMで演奏する<BR>
 CLOCK IN入力につないでください。<BR>
-![CLOCK_IN.JPG](https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/CMU_CLOCK_MODULE/photo/CLOCK_IN.JPG)  
+![CLOCK_IN.JPG](https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/CMU_CLOCK_MODULE/photo/CLOCK_IN.JPG&name=small)  
 接続図はスケッチのコメントに記載しています。<BR>
 ## 部品一覧<BR>
 |品名|購入先|備考|参考URL|
