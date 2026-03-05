@@ -26,5 +26,5 @@ CLOCK INにクロックを入れるとそれに対応したテンポで演奏す
 |ゴム足|Amazonとか|私のは滑ってるので、シリコンタイプのものが滑らなくて良さそうです||
 
 
-CLOCK IN入力につないでください。<BR>
+CLOCK INにつないでください。<BR>
 <img src="https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/CMU_CLOCK_MODULE/photo/CLOCK_IN.JPG" width="400"><br>
