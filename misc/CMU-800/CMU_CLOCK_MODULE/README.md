@@ -2,6 +2,9 @@
 CLOCK IN入力につないでください。<BR>
 <img src="https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/CMU_CLOCK_MODULE/photo/CLOCK_IN.JPG" width="400"><br>
 接続図はスケッチのコメントに記載しています。<BR>
+<img src="https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/CMU_CLOCK_MODULE/photo/photo1.jpg" width="400"><br>
+<img src="https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/CMU_CLOCK_MODULE/photo/top-side.jpg" width="400"><br>
+<img src="https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/CMU_CLOCK_MODULE/photo/bottom-side.jpg" width="400"><br>
 ## 部品一覧<BR>
 |品名|購入先|備考|参考URL|
 |---|---|---|---|
