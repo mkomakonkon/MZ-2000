@@ -8,6 +8,7 @@ CLOCK INにクロックを入れるとそれに対応したテンポで演奏す
 ディグダグの歩行音（150BPM）  
 ディグダグの歩行音（180BPM）  
 ギャラクシアンの開始音（450BPM）  
+を演奏しています。  
 ＝＝＝＝＝ DEMO動画 ＝＝＝＝＝<br>
 [![CMU_CLOCK_MODULE](https://img.youtube.com/vi/pMFT1GAt9vs/0.jpg)](https://www.youtube.com/watch?v=pMFT1GAt9vs)  
 接続図はスケッチのコメントに記載しています。<BR>
