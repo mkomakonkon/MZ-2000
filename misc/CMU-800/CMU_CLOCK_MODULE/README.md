@@ -22,7 +22,7 @@ CLOCK INにクロックを入れるとそれに対応したテンポで演奏す
 |OLED|Amazonとか|OLED 0.91インチディスプレイ I2C||
 |DCジャック(任意)|秋月|USB給電だと間違って書き込んでしまいそうなので…|https://akizukidenshi.com/catalog/g/g109408/|
 |ステレオジャック|秋月|ジャックの先端(L/MONO)を使用すること<br>CLOCK INはモノラルなのでJACK中央のRはGNDにつながります|https://akizukidenshi.com/catalog/g/g102460/|
-|押しボタンスイッチ|アリエク|秋月にはLED無しが売ってないので…|https://ja.aliexpress.com/item/1005002884956069.html?spm=a2g0o.order_list.order_list_main.15.e9fb585aThOZR9&gatewayAdapt=glo2jpn|
+|押しボタンスイッチ|アリエク|秋月にはLED無しが売ってないので…|[参考URL](https://ja.aliexpress.com/item/1005002884956069.html?spm=a2g0o.order_list.order_list_main.15.e9fb585aThOZR9&gatewayAdapt=glo2jpn)|
 |ゴム足|Amazonとか|私のは滑ってるので、シリコンタイプのものが滑らなくて良さそうです||
 
 
