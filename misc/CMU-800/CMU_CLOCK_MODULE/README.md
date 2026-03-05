@@ -19,7 +19,7 @@ CLOCK INにクロックを入れるとそれに対応したテンポで演奏す
 |品名|購入先|備考|参考URL|
 |---|---|---|---|
 |基板|秋月|[103411]両面ガラス・ユニバーサル基板 140×40mm|https://akizukidenshi.com/catalog/g/g103411/|
-|Arduino NANO|Amazonとか|安い互換機で十分かと…||
+|Arduino NANO|Amazonとか|Arduino IDEでCMU_CLOCK_MODULE.inoを書き込んでください||
 |OLED|Amazonとか|OLED 0.91インチディスプレイ I2C||
 |DCジャック(任意)|秋月|USB給電だと間違って書き込んでしまいそうなので…<br>実はこの開発中にもやらかしてます（＾＾；；|https://akizukidenshi.com/catalog/g/g109408/|
 |ステレオジャック|秋月|ジャックの先端(L/MONO)を使用すること<br>CLOCK INはモノラルなのでJACK中央のRはGNDにつながります|https://akizukidenshi.com/catalog/g/g102460/|
