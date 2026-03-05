@@ -6,3 +6,4 @@ CLOCK IN入力につないでください。<BR>
 |---|---|---|---|
 |基板|秋月|[103411]両面ガラス・ユニバーサル基板 140×40mm|https://akizukidenshi.com/catalog/g/g103411/|
 |Arduino NANO|Amazonとか|安い互換機で十分かと…||
+|OLED|Amazonとか|OLED 0.91インチディスプレイ I2C||
