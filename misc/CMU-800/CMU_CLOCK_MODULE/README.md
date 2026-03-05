@@ -1,4 +1,4 @@
-# CMU-800を正確なBPMで演奏する<BR>
+# CMU-800のテンポをBPM指定できるようにする<BR>
 接続図はスケッチのコメントに記載しています。<BR>
 <img src="https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/CMU_CLOCK_MODULE/photo/photo1.jpg" width="800"><br>
 <img src="https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/CMU_CLOCK_MODULE/photo/top-side.jpg" width="800"><br>
