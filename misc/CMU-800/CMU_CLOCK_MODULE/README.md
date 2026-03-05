@@ -8,6 +8,7 @@ CLOCK INにクロックを入れるとそれに対応したテンポで演奏す
 ディグダグの歩行音（150BPM）  
 ディグダグの歩行音（180BPM）  
 ギャラクシアンの開始音（450BPM）  
+----- DEMO動画 -----
 [![CMU_CLOCK_MODULE](https://img.youtube.com/vi/pMFT1GAt9vs/0.jpg)](https://www.youtube.com/watch?v=pMFT1GAt9vs)  
 接続図はスケッチのコメントに記載しています。<BR>
 <img src="https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/CMU_CLOCK_MODULE/photo/photo1.jpg" width="800"><br>
@@ -22,6 +23,7 @@ CLOCK INにクロックを入れるとそれに対応したテンポで演奏す
 |DCジャック(任意)|秋月|USB給電だと間違って書き込んでしまいそうなので…|https://akizukidenshi.com/catalog/g/g109408/|
 |ステレオジャック|秋月|L（先端）を使用すること|https://akizukidenshi.com/catalog/g/g102460/|
 |押しボタンスイッチ|アリエク|秋月にはLED無しが売ってないので…|https://ja.aliexpress.com/item/1005002884956069.html?spm=a2g0o.order_list.order_list_main.15.e9fb585aThOZR9&gatewayAdapt=glo2jpn|
+|ゴム足|Amazonとか|私のは滑ってるので、シリコンタイプのものが滑らなくて良さそうです||
 
 
 CLOCK IN入力につないでください。<BR>
