@@ -1,4 +1,14 @@
 # CMU-800のテンポをBPM指定できるようにする<BR>
+CMU-800はTEMPOボリュームでテンポ指定ができますが、BPMの指定ができません。  
+また最速でも380BPM程度なのでギャラクシアンの開始音が演奏できません。（当時これが不満でしたｗ）  
+
+CLOCK INにクロックを入れるとそれに対応したテンポで演奏することができるので、外部からクロックを入れることでテンポ指定できるようにしました。  
+デモでは  
+ディグダグの歩行音（112BPM）  
+ディグダグの歩行音（150BPM）  
+ディグダグの歩行音（180BPM）  
+ギャラクシアンの開始音（450BPM）  
+[![CMU_CLOCK_MODULE](https://img.youtube.com/vi/pMFT1GAt9vs/0.jpg)](https://www.youtube.com/watch?v=pMFT1GAt9vs)  
 接続図はスケッチのコメントに記載しています。<BR>
 <img src="https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/CMU_CLOCK_MODULE/photo/photo1.jpg" width="800"><br>
 <img src="https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/CMU_CLOCK_MODULE/photo/top-side.jpg" width="800"><br>
