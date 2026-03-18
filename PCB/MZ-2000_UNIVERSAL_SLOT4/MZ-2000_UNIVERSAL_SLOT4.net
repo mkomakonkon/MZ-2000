@@ -1,0 +1,955 @@
+(export 
+  (version D) 
+  (design 
+    (source C:\Users\yanat\Documents\GitHub\MZ-2000_SD\KiCad\MZ-2000_CMU\mz-2000.sch) 
+    (date "2025/10/21 22:05:55") 
+    (tool "Eeschema (5.1.9)-1") 
+    (sheet 
+      (number 1) 
+      (name /) 
+      (tstamps /) 
+      (title_block 
+        (title MZ-2000_SD) 
+        (company) 
+        (rev Rev4.3) 
+        (date) 
+        (source mz-2000.sch) 
+        (comment 
+          (number 1) 
+          (value "")) 
+        (comment 
+          (number 2) 
+          (value "")) 
+        (comment 
+          (number 3) 
+          (value "")) 
+        (comment 
+          (number 4) 
+          (value ""))))) 
+  (components 
+    (comp 
+      (ref J1) 
+      (value Conn_02x22_Row_Letter_First) 
+      (footprint mz-2000:BUS_MZ2000) 
+      (datasheet ~) 
+      (libsource 
+        (lib Connector_Generic) 
+        (part Conn_02x22_Row_Letter_First) 
+        (description "Generic connector, double row, 02x22, row letter first pin numbering scheme (pin number consists of a letter for the row and a number for the pin index in this row. a1, ..., aN; b1, ..., bN), script generated (kicad-library-utils/schlib/autogen/connector/)")) 
+      (sheetpath 
+        (names /) 
+        (tstamps /)) 
+      (tstamp 627EE89C)) 
+    (comp 
+      (ref J2) 
+      (value Conn_02x25_Odd_Even) 
+      (footprint MZ-2000_SD_3_2:BUS_50Pin) 
+      (datasheet ~) 
+      (libsource 
+        (lib Connector_Generic) 
+        (part Conn_02x25_Odd_Even) 
+        (description "Generic connector, double row, 02x25, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)")) 
+      (sheetpath 
+        (names /) 
+        (tstamps /)) 
+      (tstamp 68F77FF1))) 
+  (libparts 
+    (libpart 
+      (lib Connector_Generic) 
+      (part Conn_02x22_Row_Letter_First) 
+      (description "Generic connector, double row, 02x22, row letter first pin numbering scheme (pin number consists of a letter for the row and a number for the pin index in this row. a1, ..., aN; b1, ..., bN), script generated (kicad-library-utils/schlib/autogen/connector/)") 
+      (docs ~) 
+      (footprints 
+        (fp Connector*:*_2x??_*)) 
+      (fields 
+        (field 
+          (name Reference) J) 
+        (field 
+          (name Value) Conn_02x22_Row_Letter_First)) 
+      (pins 
+        (pin 
+          (num a1) 
+          (name Pin_a1) 
+          (type passive)) 
+        (pin 
+          (num a2) 
+          (name Pin_a2) 
+          (type passive)) 
+        (pin 
+          (num a3) 
+          (name Pin_a3) 
+          (type passive)) 
+        (pin 
+          (num a4) 
+          (name Pin_a4) 
+          (type passive)) 
+        (pin 
+          (num a5) 
+          (name Pin_a5) 
+          (type passive)) 
+        (pin 
+          (num a6) 
+          (name Pin_a6) 
+          (type passive)) 
+        (pin 
+          (num a7) 
+          (name Pin_a7) 
+          (type passive)) 
+        (pin 
+          (num a8) 
+          (name Pin_a8) 
+          (type passive)) 
+        (pin 
+          (num a9) 
+          (name Pin_a9) 
+          (type passive)) 
+        (pin 
+          (num a10) 
+          (name Pin_a10) 
+          (type passive)) 
+        (pin 
+          (num a11) 
+          (name Pin_a11) 
+          (type passive)) 
+        (pin 
+          (num a12) 
+          (name Pin_a12) 
+          (type passive)) 
+        (pin 
+          (num a13) 
+          (name Pin_a13) 
+          (type passive)) 
+        (pin 
+          (num a14) 
+          (name Pin_a14) 
+          (type passive)) 
+        (pin 
+          (num a15) 
+          (name Pin_a15) 
+          (type passive)) 
+        (pin 
+          (num a16) 
+          (name Pin_a16) 
+          (type passive)) 
+        (pin 
+          (num a17) 
+          (name Pin_a17) 
+          (type passive)) 
+        (pin 
+          (num a18) 
+          (name Pin_a18) 
+          (type passive)) 
+        (pin 
+          (num a19) 
+          (name Pin_a19) 
+          (type passive)) 
+        (pin 
+          (num a20) 
+          (name Pin_a20) 
+          (type passive)) 
+        (pin 
+          (num a21) 
+          (name Pin_a21) 
+          (type passive)) 
+        (pin 
+          (num a22) 
+          (name Pin_a22) 
+          (type passive)) 
+        (pin 
+          (num b1) 
+          (name Pin_b1) 
+          (type passive)) 
+        (pin 
+          (num b2) 
+          (name Pin_b2) 
+          (type passive)) 
+        (pin 
+          (num b3) 
+          (name Pin_b3) 
+          (type passive)) 
+        (pin 
+          (num b4) 
+          (name Pin_b4) 
+          (type passive)) 
+        (pin 
+          (num b5) 
+          (name Pin_b5) 
+          (type passive)) 
+        (pin 
+          (num b6) 
+          (name Pin_b6) 
+          (type passive)) 
+        (pin 
+          (num b7) 
+          (name Pin_b7) 
+          (type passive)) 
+        (pin 
+          (num b8) 
+          (name Pin_b8) 
+          (type passive)) 
+        (pin 
+          (num b9) 
+          (name Pin_b9) 
+          (type passive)) 
+        (pin 
+          (num b10) 
+          (name Pin_b10) 
+          (type passive)) 
+        (pin 
+          (num b11) 
+          (name Pin_b11) 
+          (type passive)) 
+        (pin 
+          (num b12) 
+          (name Pin_b12) 
+          (type passive)) 
+        (pin 
+          (num b13) 
+          (name Pin_b13) 
+          (type passive)) 
+        (pin 
+          (num b14) 
+          (name Pin_b14) 
+          (type passive)) 
+        (pin 
+          (num b15) 
+          (name Pin_b15) 
+          (type passive)) 
+        (pin 
+          (num b16) 
+          (name Pin_b16) 
+          (type passive)) 
+        (pin 
+          (num b17) 
+          (name Pin_b17) 
+          (type passive)) 
+        (pin 
+          (num b18) 
+          (name Pin_b18) 
+          (type passive)) 
+        (pin 
+          (num b19) 
+          (name Pin_b19) 
+          (type passive)) 
+        (pin 
+          (num b20) 
+          (name Pin_b20) 
+          (type passive)) 
+        (pin 
+          (num b21) 
+          (name Pin_b21) 
+          (type passive)) 
+        (pin 
+          (num b22) 
+          (name Pin_b22) 
+          (type passive)))) 
+    (libpart 
+      (lib Connector_Generic) 
+      (part Conn_02x25_Odd_Even) 
+      (description "Generic connector, double row, 02x25, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)") 
+      (docs ~) 
+      (footprints 
+        (fp Connector*:*_2x??_*)) 
+      (fields 
+        (field 
+          (name Reference) J) 
+        (field 
+          (name Value) Conn_02x25_Odd_Even)) 
+      (pins 
+        (pin 
+          (num 1) 
+          (name Pin_1) 
+          (type passive)) 
+        (pin 
+          (num 2) 
+          (name Pin_2) 
+          (type passive)) 
+        (pin 
+          (num 3) 
+          (name Pin_3) 
+          (type passive)) 
+        (pin 
+          (num 4) 
+          (name Pin_4) 
+          (type passive)) 
+        (pin 
+          (num 5) 
+          (name Pin_5) 
+          (type passive)) 
+        (pin 
+          (num 6) 
+          (name Pin_6) 
+          (type passive)) 
+        (pin 
+          (num 7) 
+          (name Pin_7) 
+          (type passive)) 
+        (pin 
+          (num 8) 
+          (name Pin_8) 
+          (type passive)) 
+        (pin 
+          (num 9) 
+          (name Pin_9) 
+          (type passive)) 
+        (pin 
+          (num 10) 
+          (name Pin_10) 
+          (type passive)) 
+        (pin 
+          (num 11) 
+          (name Pin_11) 
+          (type passive)) 
+        (pin 
+          (num 12) 
+          (name Pin_12) 
+          (type passive)) 
+        (pin 
+          (num 13) 
+          (name Pin_13) 
+          (type passive)) 
+        (pin 
+          (num 14) 
+          (name Pin_14) 
+          (type passive)) 
+        (pin 
+          (num 15) 
+          (name Pin_15) 
+          (type passive)) 
+        (pin 
+          (num 16) 
+          (name Pin_16) 
+          (type passive)) 
+        (pin 
+          (num 17) 
+          (name Pin_17) 
+          (type passive)) 
+        (pin 
+          (num 18) 
+          (name Pin_18) 
+          (type passive)) 
+        (pin 
+          (num 19) 
+          (name Pin_19) 
+          (type passive)) 
+        (pin 
+          (num 20) 
+          (name Pin_20) 
+          (type passive)) 
+        (pin 
+          (num 21) 
+          (name Pin_21) 
+          (type passive)) 
+        (pin 
+          (num 22) 
+          (name Pin_22) 
+          (type passive)) 
+        (pin 
+          (num 23) 
+          (name Pin_23) 
+          (type passive)) 
+        (pin 
+          (num 24) 
+          (name Pin_24) 
+          (type passive)) 
+        (pin 
+          (num 25) 
+          (name Pin_25) 
+          (type passive)) 
+        (pin 
+          (num 26) 
+          (name Pin_26) 
+          (type passive)) 
+        (pin 
+          (num 27) 
+          (name Pin_27) 
+          (type passive)) 
+        (pin 
+          (num 28) 
+          (name Pin_28) 
+          (type passive)) 
+        (pin 
+          (num 29) 
+          (name Pin_29) 
+          (type passive)) 
+        (pin 
+          (num 30) 
+          (name Pin_30) 
+          (type passive)) 
+        (pin 
+          (num 31) 
+          (name Pin_31) 
+          (type passive)) 
+        (pin 
+          (num 32) 
+          (name Pin_32) 
+          (type passive)) 
+        (pin 
+          (num 33) 
+          (name Pin_33) 
+          (type passive)) 
+        (pin 
+          (num 34) 
+          (name Pin_34) 
+          (type passive)) 
+        (pin 
+          (num 35) 
+          (name Pin_35) 
+          (type passive)) 
+        (pin 
+          (num 36) 
+          (name Pin_36) 
+          (type passive)) 
+        (pin 
+          (num 37) 
+          (name Pin_37) 
+          (type passive)) 
+        (pin 
+          (num 38) 
+          (name Pin_38) 
+          (type passive)) 
+        (pin 
+          (num 39) 
+          (name Pin_39) 
+          (type passive)) 
+        (pin 
+          (num 40) 
+          (name Pin_40) 
+          (type passive)) 
+        (pin 
+          (num 41) 
+          (name Pin_41) 
+          (type passive)) 
+        (pin 
+          (num 42) 
+          (name Pin_42) 
+          (type passive)) 
+        (pin 
+          (num 43) 
+          (name Pin_43) 
+          (type passive)) 
+        (pin 
+          (num 44) 
+          (name Pin_44) 
+          (type passive)) 
+        (pin 
+          (num 45) 
+          (name Pin_45) 
+          (type passive)) 
+        (pin 
+          (num 46) 
+          (name Pin_46) 
+          (type passive)) 
+        (pin 
+          (num 47) 
+          (name Pin_47) 
+          (type passive)) 
+        (pin 
+          (num 48) 
+          (name Pin_48) 
+          (type passive)) 
+        (pin 
+          (num 49) 
+          (name Pin_49) 
+          (type passive)) 
+        (pin 
+          (num 50) 
+          (name Pin_50) 
+          (type passive))))) 
+  (libraries 
+    (library 
+      (logical Connector_Generic) 
+      (uri "C:\\Program Files\\KiCad\\share\\kicad\\library/Connector_Generic.lib"))) 
+  (nets 
+    (net 
+      (code 1) 
+      (name "Net-(J2-Pad40)") 
+      (node 
+        (ref J2) 
+        (pin 40))) 
+    (net 
+      (code 2) 
+      (name "Net-(J2-Pad4)") 
+      (node 
+        (ref J2) 
+        (pin 4))) 
+    (net 
+      (code 3) 
+      (name "Net-(J2-Pad39)") 
+      (node 
+        (ref J2) 
+        (pin 39))) 
+    (net 
+      (code 4) 
+      (name "Net-(J2-Pad38)") 
+      (node 
+        (ref J2) 
+        (pin 38))) 
+    (net 
+      (code 5) 
+      (name /~WR) 
+      (node 
+        (ref J1) 
+        (pin b9)) 
+      (node 
+        (ref J2) 
+        (pin 37))) 
+    (net 
+      (code 6) 
+      (name "Net-(J2-Pad36)") 
+      (node 
+        (ref J2) 
+        (pin 36))) 
+    (net 
+      (code 7) 
+      (name /~RD) 
+      (node 
+        (ref J1) 
+        (pin b10)) 
+      (node 
+        (ref J2) 
+        (pin 35))) 
+    (net 
+      (code 8) 
+      (name "Net-(J2-Pad34)") 
+      (node 
+        (ref J2) 
+        (pin 34))) 
+    (net 
+      (code 9) 
+      (name /~IOREQ) 
+      (node 
+        (ref J1) 
+        (pin b11)) 
+      (node 
+        (ref J2) 
+        (pin 41))) 
+    (net 
+      (code 10) 
+      (name "Net-(J2-Pad32)") 
+      (node 
+        (ref J2) 
+        (pin 32))) 
+    (net 
+      (code 11) 
+      (name "Net-(J2-Pad30)") 
+      (node 
+        (ref J2) 
+        (pin 30))) 
+    (net 
+      (code 12) 
+      (name "Net-(J2-Pad28)") 
+      (node 
+        (ref J2) 
+        (pin 28))) 
+    (net 
+      (code 13) 
+      (name "Net-(J2-Pad26)") 
+      (node 
+        (ref J2) 
+        (pin 26))) 
+    (net 
+      (code 14) 
+      (name /A6) 
+      (node 
+        (ref J1) 
+        (pin a15)) 
+      (node 
+        (ref J2) 
+        (pin 31))) 
+    (net 
+      (code 15) 
+      (name /A7) 
+      (node 
+        (ref J1) 
+        (pin a14)) 
+      (node 
+        (ref J2) 
+        (pin 33))) 
+    (net 
+      (code 16) 
+      (name /D3) 
+      (node 
+        (ref J1) 
+        (pin b2)) 
+      (node 
+        (ref J2) 
+        (pin 9))) 
+    (net 
+      (code 17) 
+      (name "Net-(J2-Pad8)") 
+      (node 
+        (ref J2) 
+        (pin 8))) 
+    (net 
+      (code 18) 
+      (name "Net-(J2-Pad6)") 
+      (node 
+        (ref J2) 
+        (pin 6))) 
+    (net 
+      (code 19) 
+      (name "Net-(J2-Pad50)") 
+      (node 
+        (ref J2) 
+        (pin 50))) 
+    (net 
+      (code 20) 
+      (name "Net-(J2-Pad49)") 
+      (node 
+        (ref J2) 
+        (pin 49))) 
+    (net 
+      (code 21) 
+      (name "Net-(J2-Pad47)") 
+      (node 
+        (ref J2) 
+        (pin 47))) 
+    (net 
+      (code 22) 
+      (name "Net-(J2-Pad46)") 
+      (node 
+        (ref J2) 
+        (pin 46))) 
+    (net 
+      (code 23) 
+      (name "Net-(J2-Pad45)") 
+      (node 
+        (ref J2) 
+        (pin 45))) 
+    (net 
+      (code 24) 
+      (name "Net-(J2-Pad44)") 
+      (node 
+        (ref J2) 
+        (pin 44))) 
+    (net 
+      (code 25) 
+      (name "Net-(J2-Pad43)") 
+      (node 
+        (ref J2) 
+        (pin 43))) 
+    (net 
+      (code 26) 
+      (name "Net-(J2-Pad42)") 
+      (node 
+        (ref J2) 
+        (pin 42))) 
+    (net 
+      (code 27) 
+      (name "Net-(J2-Pad1)") 
+      (node 
+        (ref J2) 
+        (pin 1))) 
+    (net 
+      (code 28) 
+      (name "Net-(J2-Pad24)") 
+      (node 
+        (ref J2) 
+        (pin 24))) 
+    (net 
+      (code 29) 
+      (name "Net-(J2-Pad22)") 
+      (node 
+        (ref J2) 
+        (pin 22))) 
+    (net 
+      (code 30) 
+      (name "Net-(J2-Pad20)") 
+      (node 
+        (ref J2) 
+        (pin 20))) 
+    (net 
+      (code 31) 
+      (name "Net-(J2-Pad2)") 
+      (node 
+        (ref J2) 
+        (pin 2))) 
+    (net 
+      (code 32) 
+      (name "Net-(J2-Pad18)") 
+      (node 
+        (ref J2) 
+        (pin 18))) 
+    (net 
+      (code 33) 
+      (name /A5) 
+      (node 
+        (ref J2) 
+        (pin 29)) 
+      (node 
+        (ref J1) 
+        (pin a16))) 
+    (net 
+      (code 34) 
+      (name "Net-(J2-Pad16)") 
+      (node 
+        (ref J2) 
+        (pin 16))) 
+    (net 
+      (code 35) 
+      (name "Net-(J2-Pad14)") 
+      (node 
+        (ref J2) 
+        (pin 14))) 
+    (net 
+      (code 36) 
+      (name "Net-(J2-Pad12)") 
+      (node 
+        (ref J2) 
+        (pin 12))) 
+    (net 
+      (code 37) 
+      (name "Net-(J2-Pad10)") 
+      (node 
+        (ref J2) 
+        (pin 10))) 
+    (net 
+      (code 38) 
+      (name /D5) 
+      (node 
+        (ref J2) 
+        (pin 13)) 
+      (node 
+        (ref J1) 
+        (pin b4))) 
+    (net 
+      (code 39) 
+      (name /D6) 
+      (node 
+        (ref J1) 
+        (pin b5)) 
+      (node 
+        (ref J2) 
+        (pin 15))) 
+    (net 
+      (code 40) 
+      (name /D7) 
+      (node 
+        (ref J2) 
+        (pin 17)) 
+      (node 
+        (ref J1) 
+        (pin b6))) 
+    (net 
+      (code 41) 
+      (name /D4) 
+      (node 
+        (ref J1) 
+        (pin b3)) 
+      (node 
+        (ref J2) 
+        (pin 11))) 
+    (net 
+      (code 42) 
+      (name /A0) 
+      (node 
+        (ref J2) 
+        (pin 19)) 
+      (node 
+        (ref J1) 
+        (pin a21))) 
+    (net 
+      (code 43) 
+      (name /A1) 
+      (node 
+        (ref J1) 
+        (pin a20)) 
+      (node 
+        (ref J2) 
+        (pin 21))) 
+    (net 
+      (code 44) 
+      (name /A2) 
+      (node 
+        (ref J2) 
+        (pin 23)) 
+      (node 
+        (ref J1) 
+        (pin a19))) 
+    (net 
+      (code 45) 
+      (name /A3) 
+      (node 
+        (ref J2) 
+        (pin 25)) 
+      (node 
+        (ref J1) 
+        (pin a18))) 
+    (net 
+      (code 46) 
+      (name /A4) 
+      (node 
+        (ref J1) 
+        (pin a17)) 
+      (node 
+        (ref J2) 
+        (pin 27))) 
+    (net 
+      (code 47) 
+      (name GND) 
+      (node 
+        (ref J1) 
+        (pin b13)) 
+      (node 
+        (ref J1) 
+        (pin a5)) 
+      (node 
+        (ref J1) 
+        (pin a22)) 
+      (node 
+        (ref J2) 
+        (pin 48)) 
+      (node 
+        (ref J1) 
+        (pin b22))) 
+    (net 
+      (code 48) 
+      (name /D0) 
+      (node 
+        (ref J2) 
+        (pin 3)) 
+      (node 
+        (ref J1) 
+        (pin a4))) 
+    (net 
+      (code 49) 
+      (name /D1) 
+      (node 
+        (ref J1) 
+        (pin a3)) 
+      (node 
+        (ref J2) 
+        (pin 5))) 
+    (net 
+      (code 50) 
+      (name /D2) 
+      (node 
+        (ref J1) 
+        (pin a2)) 
+      (node 
+        (ref J2) 
+        (pin 7))) 
+    (net 
+      (code 51) 
+      (name /~M1) 
+      (node 
+        (ref J1) 
+        (pin b8))) 
+    (net 
+      (code 52) 
+      (name /phi) 
+      (node 
+        (ref J1) 
+        (pin b7))) 
+    (net 
+      (code 53) 
+      (name /~MNI) 
+      (node 
+        (ref J1) 
+        (pin b21))) 
+    (net 
+      (code 54) 
+      (name /A15) 
+      (node 
+        (ref J1) 
+        (pin a6))) 
+    (net 
+      (code 55) 
+      (name /A8) 
+      (node 
+        (ref J1) 
+        (pin a13))) 
+    (net 
+      (code 56) 
+      (name /A9) 
+      (node 
+        (ref J1) 
+        (pin a12))) 
+    (net 
+      (code 57) 
+      (name /A10) 
+      (node 
+        (ref J1) 
+        (pin a11))) 
+    (net 
+      (code 58) 
+      (name /A11) 
+      (node 
+        (ref J1) 
+        (pin a10))) 
+    (net 
+      (code 59) 
+      (name /~EXWAIT) 
+      (node 
+        (ref J1) 
+        (pin b20))) 
+    (net 
+      (code 60) 
+      (name /~EXINT) 
+      (node 
+        (ref J1) 
+        (pin b19))) 
+    (net 
+      (code 61) 
+      (name /~EXRESET) 
+      (node 
+        (ref J1) 
+        (pin b18))) 
+    (net 
+      (code 62) 
+      (name /RESET) 
+      (node 
+        (ref J1) 
+        (pin b17))) 
+    (net 
+      (code 63) 
+      (name /IE0) 
+      (node 
+        (ref J1) 
+        (pin b16))) 
+    (net 
+      (code 64) 
+      (name /IE1) 
+      (node 
+        (ref J1) 
+        (pin b15))) 
+    (net 
+      (code 65) 
+      (name /~HALT) 
+      (node 
+        (ref J1) 
+        (pin b14))) 
+    (net 
+      (code 66) 
+      (name /~MREQ) 
+      (node 
+        (ref J1) 
+        (pin b12))) 
+    (net 
+      (code 67) 
+      (name +5V) 
+      (node 
+        (ref J1) 
+        (pin a1)) 
+      (node 
+        (ref J1) 
+        (pin b1))) 
+    (net 
+      (code 68) 
+      (name /A12) 
+      (node 
+        (ref J1) 
+        (pin a9))) 
+    (net 
+      (code 69) 
+      (name /A13) 
+      (node 
+        (ref J1) 
+        (pin a8))) 
+    (net 
+      (code 70) 
+      (name /A14) 
+      (node 
+        (ref J1) 
+        (pin a7)))))

@@ -1,0 +1,5 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "Memory_RAM2")(type "Legacy")(uri "${KIPRJMOD}/Memory_RAM2.lib")(options "")(descr ""))
+  (lib (name "Arduino")(type "Legacy")(uri "${KIPRJMOD}/Arduino.lib")(options "")(descr ""))
+)

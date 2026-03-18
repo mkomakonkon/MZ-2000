@@ -1,0 +1,8 @@
+﻿Designator,Footprint,Quantity,Value,LCSC Part #
+"_3, _2, ",,3,,
+F1,Fuse_Bourns_MF-RHT050,1,RHT050,
+J1,BUS_MZ2000,1,Conn_02x22_Row_Letter_First,
+"J10, J11, J12, J13, J14, J15, J16, J9",PinHeader_1x01_P2.54mm_Vertical,8,Conn_01x01_Pin,
+"J2, J3",PinHeader_2x22_P2.54mm_Vertical,2,Conn_02x22_Row_Letter_First,
+J4,BUS_50Pin,1,Conn_02x25_Odd_Even,
+"J5, J6, J7, J8",Cardedge-conn_2x22_P2.54mm,4,Conn_02x22_Row_Letter_First,
