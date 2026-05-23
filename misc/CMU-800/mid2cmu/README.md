@@ -1,4 +1,4 @@
-# MIDIデータをMZ-2000+CMU-800のデータに変換する
+# MIDIデータをMZ-2000+CMU-800のデータに変換する(β版)
 
 [![](https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/mid2cmu/figure/CMU.png)](https://x.com/mkomapfu/status/2057637990839804357?s=20)
 # MZ-2000 変換スクリプト用 Python セットアップ手順
@@ -24,6 +24,7 @@ brew install python
 ## 2. MIDIファイルを用意する。
 このツールはMIDI CH1～8をCMU-800のCH1～8に変換します。<br>
 和音には対応していませんので、各CHのデータは単音にして下さい。<br>
+リズムも未対応です。<br>
 
 1. 対応様式は次の通り
    - Format 1
