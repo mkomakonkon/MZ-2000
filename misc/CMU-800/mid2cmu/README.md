@@ -1,0 +1,50 @@
+# MIDIデータをMZ-2000+CMU-800のデータに変換する
+
+# MZ-2000 変換スクリプト用 Python セットアップ手順
+
+この手順に従えば、MIDIデータを MZ-2000 + CMU-800用の  
+output.mzt に変換する Python スクリプトを実行できます。
+
+---
+## 1. Python をインストールする
+### Windows
+1. 公式サイトから Python をダウンロード  
+   https://www.python.org/downloads/
+2. インストーラを起動
+3. **「Add Python to PATH」 にチェックを入れる（重要）**
+4. 「Install Now」を選択
+
+### macOS
+Homebrew がある場合：
+```
+brew install python
+```
+---
+## 2. MIDIファイルを用意する。
+1. 対応様式は次の通り
+<img src="https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/mid2cmu/figure/MIDI_format.png" width="300"><br>
+   - Format 1
+   - 分解能 960
+   - トラックにマージして出力
+---
+
+## 3. スクリプトと画像を配置する
+
+1. 任意のフォルダを作成（例：`mid2cmu`）
+2. 以下のファイルを置く：
+   - Python スクリプト（`mid2cmu.py`）
+   - 入力画像（`input.mid`）
+
+---
+
+## 4. スクリプトを実行する
+
+コマンド プロンプト（または PowerShell）でフォルダに移動：
+```
+cd フォルダのパス
+```
+実行：
+```
+python mid2cmu.py input.mid output.mzt
+```
+---
