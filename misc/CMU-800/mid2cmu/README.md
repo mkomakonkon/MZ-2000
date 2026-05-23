@@ -21,11 +21,14 @@ brew install python
 ```
 ---
 ## 2. MIDIファイルを用意する。
+このツールはMIDI CH1～8をCMU-800のCH1～8に変換します。<br>
+和音には対応していませんので、各CHのデータは単音にして下さい。<br>
+
 1. 対応様式は次の通り
    - Format 1
    - 分解能 960
    - トラックにマージして出力
-   - 以下は私が愛用しているMusic Studio Standardシリーズの出力画面です。
+以下は私が愛用しているMusic Studio Standardシリーズの出力画面です。
 <br><img src="https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/mid2cmu/figure/MIDI_format.png" width="500"><br>
 ---
 
@@ -34,7 +37,7 @@ brew install python
 1. 任意のフォルダを作成（例：`mid2cmu`）
 2. 以下のファイルを置く：
    - Python スクリプト（`mid2cmu.py`）
-   - 入力画像（`input.mid`）
+   - 2.で作成した入力データ（`input.mid`）
 
 ---
 
