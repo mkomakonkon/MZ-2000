@@ -33,7 +33,7 @@ brew install python
 <br><img src="https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/mid2cmu/figure/MIDI_format.png" width="500"><br>
 ---
 
-## 3. スクリプトと画像を配置する
+## 3. スクリプトとMIDIファイルを配置する
 
 1. 任意のフォルダを作成（例：`mid2cmu`）
 2. 以下のファイルを置く：
