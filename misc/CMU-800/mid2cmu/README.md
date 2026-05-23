@@ -22,10 +22,10 @@ brew install python
 ---
 ## 2. MIDIファイルを用意する。
 1. 対応様式は次の通り
-<img src="https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/mid2cmu/figure/MIDI_format.png" width="300"><br>
    - Format 1
    - 分解能 960
    - トラックにマージして出力
+<img src="https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/mid2cmu/figure/MIDI_format.png" width="500"><br>
 ---
 
 ## 3. スクリプトと画像を配置する
