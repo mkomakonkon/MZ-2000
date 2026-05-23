@@ -25,7 +25,7 @@ brew install python
    - Format 1
    - 分解能 960
    - トラックにマージして出力
-<img src="https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/mid2cmu/figure/MIDI_format.png" width="500"><br>
+<br><img src="https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/mid2cmu/figure/MIDI_format.png" width="500"><br>
 ---
 
 ## 3. スクリプトと画像を配置する
