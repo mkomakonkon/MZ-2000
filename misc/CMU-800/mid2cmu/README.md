@@ -1,6 +1,6 @@
 # MIDIデータをMZ-2000+CMU-800のデータに変換する
 
-[![](https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/mid2cmu/figure/CMU.png width="500")](https://x.com/mkomapfu/status/2057637990839804357?s=20)
+[![](https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/mid2cmu/figure/CMU.png)](https://x.com/mkomapfu/status/2057637990839804357?s=20)
 # MZ-2000 変換スクリプト用 Python セットアップ手順
 
 この手順に従えば、MIDIデータを MZ-2000 + CMU-800用の  
