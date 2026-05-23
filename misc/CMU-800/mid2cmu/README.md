@@ -30,7 +30,7 @@ brew install python
    - Format 1
    - 分解能 960
    - トラックにマージして出力
-以下は私が愛用しているMusic Studio Standardシリーズの出力画面です。
+<br>以下は私が愛用しているMusic Studio Standardシリーズの出力画面です。
 <br><img src="https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/mid2cmu/figure/MIDI_format.png" width="500"><br>
 ---
 
