@@ -1,4 +1,4 @@
-# エクセルドット絵をMZ 2000のビットマップデータに変換するツール  
+# エクセルドット絵をMZ-2000のビットマップデータに変換するツール  
 
 [![](https://img.youtube.com/vi/tinnp5hZxXI/0.jpg)](https://www.youtube.com/watch?v=tinnp5hZxXI)
 
