@@ -8,7 +8,7 @@
 開発→マクロ→MONO_GRAM_EXPORT　でmono1～mono3までのモノクロドット絵を変換  
 開発→マクロ→MONO_GRAM_EXPORT_INVERT　でmono1～mono3までのモノクロドット絵を反転して変換します。  
 
-生成されたファイルはGRAMDISP.mztで表示できます。  
+生成されたファイル(GRAM1.mzt、GRAM2.mzt、GRAM3.mzt)はGRAMDISP.mztで表示できます。  
 GRAMDISP.mztはMZ-1Z001のBASICで動作します。  
 
 さぁ君もLet's Excelドット絵♪  
