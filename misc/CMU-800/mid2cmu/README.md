@@ -1,5 +1,5 @@
 # MIDIデータをMZ-2000+CMU-800のデータに変換する(β版)
-# まだ単純なデータしか変換できません…（休符周りの処理や音符が小説をまたぐ処理がうまくいかない…）
+# まだ単純なデータしか変換できません…（休符周りの処理や音符が小節をまたぐ処理がうまくいかない…）
 [![](https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/mid2cmu/figure/CMU.png)](https://x.com/mkomapfu/status/2057637990839804357?s=20)
 # MZ-2000 変換スクリプト用 Python セットアップ手順
 
