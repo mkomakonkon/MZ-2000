@@ -3,12 +3,20 @@ import datetime
 from collections import defaultdict
 
 # ============================================================
-# MID -> CMU-800 MZT Converter (休符生成・小節分割対応版)
+# MID -> CMU-800 MZT Converter
 # ============================================================
 
 MZT_LOAD_ADDRESS = 0x337D
+
 MEASURE_EVENT = bytes([0xFD, 0x0C, 0x06])
 END_EVENT = bytes([0xFE, 0x0C, 0x06])
+
+# MIDI:
+TICKS_PER_BEAT = 480
+TICKS_PER_MEASURE = 1920   # 4/4, 480 * 4
+
+# CMU:
+CMU_PER_BEAT = 24          # ★ここを 12→24 にしたことで 1小節≒96 になる
 
 
 # ============================================================
@@ -69,6 +77,10 @@ class MidiParser:
         num_tracks = read_uint16_be(data, 10)
         division = read_uint16_be(data, 12)
         self.ppqn = division
+
+        print("FORMAT :", midi_format)
+        print("TRACKS :", num_tracks)
+        print("PPQN   :", division)
 
         pos = 8 + header_size
 
@@ -154,7 +166,7 @@ class CmuEvent:
         self.cv = cv
         self.st = st
         self.gate = gate
-        self.start_tick = start_tick
+        self.start_tick = start_tick   # 小節判定用に tick を保持
 
 
 # ============================================================
@@ -162,35 +174,18 @@ class CmuEvent:
 # ============================================================
 
 class CmuConverter:
-    def __init__(self, notes, ppqn):
+    def __init__(self, notes):
         self.notes = notes
-        self.ppqn = ppqn
-        self.TICKS_PER_BEAT = ppqn
-        self.TICKS_PER_MEASURE = ppqn * 4
         self.cmu_channels = defaultdict(list)
+        for ch in range(0, 10):
+            self.cmu_channels[ch] = []
 
     def ticks_to_cmu(self, ticks):
-        v = round(ticks * 24 / self.TICKS_PER_BEAT)
-        # ここを修正
-        # return max(1, min(v, 255))
-        return max(1, v)
+        v = round(ticks * CMU_PER_BEAT / TICKS_PER_BEAT)
+        return max(1, min(v, 255))
 
     def note_to_cv(self, note):
-        return note - 24
-
-    def cmu_ticks_from_st(self, st):
-        return round(st * self.TICKS_PER_BEAT / 24)
-
-    def append_rest(self, cmu_ch, rest_ticks, start_tick):
-        remaining = rest_ticks
-        current_tick = start_tick
-        while remaining > 0:
-            chunk_ticks = min(remaining, self.TICKS_PER_MEASURE)
-            st = self.ticks_to_cmu(chunk_ticks)
-            ev = CmuEvent(0, st, 0, current_tick)
-            self.cmu_channels[cmu_ch].append(ev)
-            remaining -= chunk_ticks
-            current_tick += chunk_ticks
+        return note - 24   # C1=24 → CV=0
 
     def convert(self):
         for ch in range(1, 9):
@@ -202,89 +197,76 @@ class CmuConverter:
         if not notes:
             return
 
-        last_time = 0
+        last_time = 0  # 曲頭 tick=0 からの経過
 
         for i, note in enumerate(notes):
             if note.end_tick is None:
                 continue
 
             current_start = note.start_tick
-            note_off = note.end_tick
 
-            # 1) 前回から今回 NOTE ON までの「完全な無音区間」は休符にする
+            # 曲頭〜最初の NOTE ON、または前回 NOTE の next_start〜今回 NOTE ON の休符
             if current_start > last_time:
-                rest_ticks = current_start - last_time
-                self.append_rest(cmu_ch, rest_ticks, last_time)
+                rest_ticks = (current_start - last_time)/2
+                rest_st = self.ticks_to_cmu(rest_ticks)
+                rest_ev = CmuEvent(0, rest_st, 0, last_time)
+                self.cmu_channels[cmu_ch].append(rest_ev)
 
-            # 2) 次の NOTE ON の位置（なければこのノートの NOTE OFF まで）
+            # 次の NOTE ON（なければこのノートの NOTE OFF）
             if i < len(notes) - 1:
                 next_start = notes[i + 1].start_tick
             else:
-                next_start = note_off
+                next_start = note.end_tick
 
-            # 3) ST は NOTE ON〜「次の NOTE ON」まで
-            st_ticks = next_start - current_start
-            #    GT は NOTE ON〜NOTE OFF まで（尻は無音として同じ STEP 内に含まれる）
-            gate_ticks = note_off - current_start
+            # ST：この NOTE ON から「次の NOTE ON」まで
+            st_ticks = (next_start - current_start)/2
+
+            # GT：この NOTE ON から NOTE OFF まで（実ゲート長）
+            gate_ticks = (note.end_tick - current_start)/2
 
             st = self.ticks_to_cmu(st_ticks)
             gate = self.ticks_to_cmu(gate_ticks)
 
+            # GT は ST を超えないように調整（ST-1 まで）
             if gate >= st:
                 gate = st - 1 if st > 1 else 1
 
             cv = self.note_to_cv(note.note)
 
-            # ★ ここから分割ロジック ★
-            if st <= 96:
-                # 96 以下ならそのまま 1 STEP
-                ev = CmuEvent(cv, st, gate, current_start)
-                self.cmu_channels[cmu_ch].append(ev)
-            else:
-                # まず「音が鳴っている部分」を 96 ST 以内に切り出す
-                remaining_st = st
-                remaining_gate = gate
-                start_tick = current_start
-
-                # 1) 最初の STEP：音符（GT>0）
-                first_st = min(96, remaining_st)
-                first_gate = min(remaining_gate, first_st - 1) if first_st > 1 else 1
-                ev = CmuEvent(cv, first_st, first_gate, start_tick)
-                self.cmu_channels[cmu_ch].append(ev)
-
-                remaining_st -= first_st
-                remaining_gate -= first_st
-                start_tick += self.cmu_ticks_from_st(first_st)
-
-                # 2) 残りは休符として 96 単位で分割（GT=0）
-                while remaining_st > 0:
-                    chunk = min(96, remaining_st)
-                    rest_ev = CmuEvent(0, chunk, 0, start_tick)
-                    self.cmu_channels[cmu_ch].append(rest_ev)
-                    remaining_st -= chunk
-                    start_tick += self.cmu_ticks_from_st(chunk)
+            ev = CmuEvent(cv, st, gate, current_start)
+            self.cmu_channels[cmu_ch].append(ev)
 
             last_time = next_start
 
     def build_binary(self):
+        TICKS_PER_MEASURE_HALF = TICKS_PER_MEASURE / 2
         out = bytearray()
+
         for ch in range(0, 10):
             events = self.cmu_channels[ch]
             events.sort(key=lambda x: x.start_tick)
+
             for i, ev in enumerate(events):
+                # 出力順：CV, ST, GT
                 out += bytes([
                     ev.cv & 0xFF,
                     ev.st & 0xFF,
                     ev.gate & 0xFF
                 ])
+
+                # 次イベントとの間で「MIDI の小節境界」を跨いだら FD0C06 を挿入
                 if i < len(events) - 1:
                     next_ev = events[i + 1]
-                    current_measure = ev.start_tick // self.TICKS_PER_MEASURE
-                    next_measure = next_ev.start_tick // self.TICKS_PER_MEASURE
+
+                    current_measure = (ev.start_tick   / 2) // TICKS_PER_MEASURE_HALF
+                    next_measure    = (next_ev.start_tick / 2) // TICKS_PER_MEASURE_HALF
+
                     while current_measure < next_measure:
                         out += MEASURE_EVENT
                         current_measure += 1
+
             out += END_EVENT
+
         return out
 
 
@@ -292,68 +274,85 @@ class CmuConverter:
 # MZT HEADER
 # ============================================================
 
-def build_mzt_header(data_size, user_filename=None):
+def build_mzt_header(data_size):
+
     header = bytearray(128)
 
-    # +00: ファイルモード (CMU-800 は C8h 固定)
+    # +0: ファイルモード（属性）
+    #   CMU-800はC8
     header[0x00] = 0xC8
 
-    # +01〜+12: ファイル名（最大16文字）＋ 0Dh → 合計 17 バイト
-    for i in range(0x01, 0x13):
-        header[i] = 0x20  # 空白で初期化
+    # +1〜+10: ファイルネーム（16文字以内）+ 0Dh
+    #   まずスペースで埋める
+    for i in range(0x01, 0x0F):
+        header[i] = 0x20  # ' '
 
-    # ファイル名決定
-    if user_filename is None or user_filename.strip() == "":
-        # 自動命名
-        today = datetime.datetime.now()
-        filename = "MID2CMU" + today.strftime("%y%m%d")
-    else:
-        filename = user_filename.strip()
+    today = datetime.datetime.now()
+    filename = "MID2CMU" + today.strftime("%y%m%d")
+    filename_bytes = filename.encode("ascii")
 
-    filename_bytes = filename.encode("ascii", errors="ignore")
-
-    # ファイル名（最大16文字）
+    # 最大 16 文字まで
     for i in range(min(len(filename_bytes), 16)):
         header[0x01 + i] = filename_bytes[i]
 
-    # 終端 0Dh
+    # 末尾に 0Dh を付ける（ファイル名終端）
     header[0x01 + min(len(filename_bytes), 16)] = 0x0D
 
-    # +12〜+13: ファイルサイズ（LSB → MSB）
-    header[0x12] = data_size & 0xFF
-    header[0x13] = (data_size >> 8) & 0xFF
+    # ここから先はキャプチャの並びに合わせる：
+    #   ファイルサイズ
+    #   ロードアドレス
+    #   実行アドレス
+    #
+    # キャプチャでは、ファイルネーム領域の直後から
+    # これらが順に並んでいる構造になっていましたので、
+    # それに倣います。
 
-    # +14〜+15: ロードアドレス 0x337D
-    header[0x14] = MZT_LOAD_ADDRESS & 0xFF
-    header[0x15] = (MZT_LOAD_ADDRESS >> 8) & 0xFF
+    # 便宜上、オフセットを決め打ちします：
+    #   +11〜+12: ファイルサイズ
+    #   +13〜+14: ロードアドレス
+    #   +15〜+16: 実行アドレス
 
-    # +16〜+17: 実行アドレス 00B1h
-    header[0x16] = 0xB1
-    header[0x17] = 0x00
+    # ファイルサイズ（データブロックのサイズ）
+    header[0x11] = data_size & 0xFF
+    header[0x12] = (data_size >> 8) & 0xFF
+
+    # ロードアドレス（0x337D 固定）
+    header[0x13] = MZT_LOAD_ADDRESS & 0xFF
+    header[0x14] = (MZT_LOAD_ADDRESS >> 8) & 0xFF
+
+    # 実行アドレス（同じく 0x337D）
+    header[0x15] = MZT_LOAD_ADDRESS & 0xFF
+    header[0x16] = (MZT_LOAD_ADDRESS >> 8) & 0xFF
 
     return header
-
 
 # ============================================================
 # MAIN
 # ============================================================
 
 def convert_midi_to_mzt(midi_filename, output_filename):
-    # 任意ファイル名入力
-    user_filename = input("MZTファイル名を入力してください（Enterで自動命名）: ")
-
     parser = MidiParser(midi_filename)
     parser.parse()
 
-    converter = CmuConverter(parser.notes, parser.ppqn)
+    print()
+    print("NOTES :", len(parser.notes))
+
+    converter = CmuConverter(parser.notes)
     converter.convert()
 
     binary = converter.build_binary()
-    header = build_mzt_header(len(binary), user_filename)
+
+    print("DATA SIZE :", len(binary))
+
+    header = build_mzt_header(len(binary))
 
     with open(output_filename, "wb") as f:
         f.write(header)
         f.write(binary)
+
+    print()
+    print("DONE")
+    print(output_filename)
 
 
 # ============================================================
@@ -364,8 +363,10 @@ if __name__ == "__main__":
     import sys
 
     if len(sys.argv) < 3:
+        print()
         print("Usage:")
         print("python mid2cmu.py input.mid output.mzt")
+        print()
         sys.exit(0)
 
     convert_midi_to_mzt(sys.argv[1], sys.argv[2])
