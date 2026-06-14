@@ -34,7 +34,7 @@ brew install python
 
 1. 対応様式は次の通り
    - Format 1
-   - 分解能 960
+   - 分解能は任意（960と48は動作確認済）
    - トラックにマージして出力
 <br>以下は私が愛用しているMusic Studio Standardシリーズの出力画面です。
 <br><img src="https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/mid2cmu/figure/MIDI_format.png" width="500"><br>
@@ -55,8 +55,8 @@ brew install python
 ```
 cd フォルダのパス
 ```
-実行：
+実行例：
 ```
-python mid2cmu.py input.mid output.mzt
+python mid2cmu_v0.5.py input.mid output.mzt
 ```
 ---
