@@ -5,7 +5,7 @@ V0.4:小節またぎを正確に実行、変換誤差が出ないよう事前に
 V0.3:スタートアドレスを12A0にして、CMUプレーヤーでのLOAD改善、どの分解能でも変換可能（分解能960と48のみ動作確認済）<br>
 V0.2:V0.1で分かっている不具合修正。mztのヘッダミス修正（CMU-800 playerはV0.2以降LOAD可）<br>
 V0.1:単純なデータ変換のみ<br>
-[![](https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/mid2cmu/figure/CMU.png)](https://x.com/mkomapfu/status/2057637990839804357?s=20)
+[![](https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/mid2cmu/figure/CMU.png)](https://x.com/mkomapfu/status/2066198569208713549?s=20)
 # MZ-2000 変換スクリプト用 Python セットアップ手順
 
 この手順に従えば、MIDIデータを MZ-2000 + CMU-800用の  
