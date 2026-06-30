@@ -1,5 +1,5 @@
 # MIDIデータをMZ-2000のC3MSデータに変換する
-C3MS:Carry lab. 3voices Music System for MZ
+C3MS:Carry lab. 3voices Music System for MZ<br><br>
 改版履歴<br>
 V0.2:とりあえず演奏データが作れるようになったのでβ版の公開<br>
 <br>
