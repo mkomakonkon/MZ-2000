@@ -58,3 +58,18 @@ cd フォルダのパス
 python mid2c3ms_v0.2.py Lady-Madonna.mid Lady-Madonna.mzt
 ```
 ---
+
+## 5. MZ-2000で演奏する
+
+演奏用のソフトはWICSで作っています。<br>
+このソフトも未完成なのでβ版相当です。<br>
+デモ動画では分かりにくいですがLOAD順は以下の通りです。<br>
+   - IPLでTS-2000を読み込む
+   - WICSをLOADする
+   - CMU EDITOR V0.2.mztをLOADする
+   - MONでモニタに移りCMU EDITOR-OBJ-BFF0-C13F.mztをLOADする
+   - MONでモニタに移りLady-Madonna.mzt（mid2c3msで作成した演奏データ）をLOADする
+   - RUNを実行
+   - Cでコンパイル開始（BPMは40～250の間で好きな値を入力）
+   - コンパイルが終わると"HIT ANY KEY"と出るので、何か押す
+   - Pで演奏開始（停止機能はありません(^^;）
