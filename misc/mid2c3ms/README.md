@@ -42,7 +42,7 @@ brew install python
 
 1. 任意のフォルダを作成（例：`mid2c3ms`）
 2. 以下のファイルを置く：
-   - Python スクリプト（`mid2cmu.py`）
+   - Python スクリプト（`mid2c3ms_v0.2.py`）
    - 2.で作成した入力データ（例`Lady-Madonna.mid`）
 
 ---
@@ -55,6 +55,6 @@ cd フォルダのパス
 ```
 実行例：
 ```
-python http://mid2c3ms_v0.2.py Lady-Madonna.mid Lady-Madonna.mzt
+python mid2c3ms_v0.2.py Lady-Madonna.mid Lady-Madonna.mzt
 ```
 ---
