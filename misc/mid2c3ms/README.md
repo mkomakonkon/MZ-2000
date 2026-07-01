@@ -65,7 +65,7 @@ python mid2c3ms_v0.2.py Lady-Madonna.mid Lady-Madonna.mzt
 このソフトも未完成なのでβ版相当です。<br>
 デモ動画では分かりにくいですがLOAD順は以下の通りです。<br>
    - IPLでTS-2000を読み込む
-   - WICSをLOADする
+   - WICSをLOADする(HOT START $1503/COLD START $1500)
    - CMU EDITOR V0.2.mztをLOADする
    - MONでモニタに移りCMU EDITOR-OBJ-BFF0-C13F.mztをLOADする
    - MONでモニタに移りLady-Madonna.mzt（mid2c3msで作成した演奏データ）をLOADする
