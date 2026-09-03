@@ -11,7 +11,23 @@ CLOCK INにクロックを入れるとそれに対応したテンポで演奏す
 を演奏しています。  
 ＝＝＝＝＝ DEMO動画 ＝＝＝＝＝<br>
 [![CMU_CLOCK_MODULE](https://img.youtube.com/vi/pMFT1GAt9vs/0.jpg)](https://www.youtube.com/watch?v=pMFT1GAt9vs)  
-接続図はスケッチのコメントに記載しています。<BR>
+【ピン接続図】<BR>
+　　　　　＋－－－－－－－－－－－－－－－－－＋<BR>
+　　　　　｜　Ａｒｄｕｉｎｏ　Ｎａｎｏ　　　　｜<BR>
+　　　　　｜　　　　　　　　　　　　　　　　　｜<BR>
+Ｄ２　－－｜　ＵＰボタン（ＧＮＤへ）　　　　　｜<BR>
+Ｄ３　－－｜　ＤＯＷＮボタン（ＧＮＤへ）　　　｜<BR>
+Ｄ４　－－｜　ＬＥＦＴボタン（ＧＮＤへ）　　　｜<BR>
+Ｄ５　－－｜　ＲＩＧＨＴボタン（ＧＮＤへ）　　｜<BR>
+Ｄ６　－－｜　ＳＥＴボタン（ＧＮＤへ）　　　　｜<BR>
+Ｄ９　－－｜　ＣＬＯＣＫ出力　　　　　　　　　｜<BR>
+　　　　　｜　ｊａｃｋの先端（ｍｏｎｏ）に出力｜<BR>
+　　　　　｜　　　　　　　　　　　　　　　　　｜<BR>
+Ａ４　－－｜　ＯＬＥＤ　ＳＤＡ　　　　　　　　｜<BR>
+Ａ５　－－｜　ＯＬＥＤ　ＳＣＬ　　　　　　　　｜<BR>
+５Ｖ　－－｜　ＯＬＥＤ　ＶＣＣ　　　　　　　　｜<BR>
+ＧＮＤ－－｜　ＯＬＥＤ　ＧＮＤ　　　　　　　　｜<BR>
+　　　　　＋－－－－－－－－－－－－－－－－－＋<BR>
 <img src="https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/CMU_CLOCK_MODULE/photo/photo1.jpg" width="800"><br>
 <img src="https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/CMU_CLOCK_MODULE/photo/top-side.jpg" width="800"><br>
 <img src="https://github.com/mkomakonkon/MZ-2000/blob/master/misc/CMU-800/CMU_CLOCK_MODULE/photo/bottom-side.jpg" width="800"><br>
