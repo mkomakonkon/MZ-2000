@@ -1,6 +1,7 @@
 Rev.0.2<br>
 MZ-2000_VOCALUINO4CMU.zipはKiCADデータです。<br>
 sketchはArduino Nano用の書込みデータです。<br>
+VO-SEISYUN-CPX.mzt：CMU-800用の曲データです。（CMU-800本体が必要です）<br>
 試作機のバグ対応を埋め込んだとりあえずのバージョンで実績はありません。<br>
 次のバージョンでドラム連携機能を追加したい。<br>
 リアルタイムテンポ調整機能を思いついたのでそれも入れたいかも…<br>
