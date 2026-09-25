@@ -2,6 +2,7 @@
 MZとCMUがやり取りしている信号のうち、CVに関するデータをArduinoが受け取って、その音階でATP3011R4-PUを発音させています。<br>
 歌詞はスケッチ内に書き込んでいるので、曲が変わる度にスケッチを書き換える必要があります（＾＾；<br>
 また、MZとCMUが通信している信号をもらう仕様上、この基板単体では動作しません。★CMU-800本体が必要です★<br>
+[![VOCALUINO4CMU](https://img.youtube.com/vi/i1UvYEcTje4/0.jpg)](https://www.youtube.com/watch?v=i1UvYEcTje4)  
 
 Rev.0.2<br>
 MZ-2000_VOCALUINO4CMU.zipはKiCADデータです。<br>
