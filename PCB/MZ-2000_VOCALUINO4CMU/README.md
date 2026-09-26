@@ -1,6 +1,6 @@
 この基板にはCMU-800と同じアドレスデコードと8255が載っていて、<br>
 MZとCMUがやり取りしている信号のうち、CVに関するデータをArduinoが受け取って、その音階でATP3011R4-PUを発音させています。<br>
-<img src="https://github.com/mkomakonkon/MZ-2000/blob/master/PCB/MZ-2000_VOCALUINO4CMU/Images/PCB-photo1.png" width="800"><br>
+<img src="https://github.com/mkomakonkon/MZ-2000/blob/master/PCB/MZ-2000_VOCALUINO4CMU/Images/PCB-photo1.png" width="600"><br>
 歌詞はスケッチ内に書き込んでいるので、曲が変わる度にスケッチを書き換える必要があります（＾＾；<br>
 また、MZとCMUが通信している信号をもらう仕様上、この基板単体では動作しません。★CMU-800本体が必要です★<br>
 ＝＝＝＝＝ DEMO動画 ＝＝＝＝＝<br>
