@@ -3,6 +3,7 @@ MZとCMUがやり取りしている信号のうち、CVに関するデータをA
 <img src="https://github.com/mkomakonkon/MZ-2000/blob/master/PCB/MZ-2000_VOCALUINO4CMU/Images/PCB-photo1.png" width="600"><br>
 歌詞はスケッチ内に書き込んでいるので、曲が変わる度にスケッチを書き換える必要があります（＾＾；<br>
 また、MZとCMUが通信している信号をもらう仕様上、この基板単体では動作しません。★CMU-800本体が必要です★<br>
+<br>
 ＝＝＝＝＝ DEMO動画 ＝＝＝＝＝<br>
 [![VOCALUINO4CMU](https://img.youtube.com/vi/i1UvYEcTje4/0.jpg)](https://www.youtube.com/watch?v=i1UvYEcTje4)  
 
