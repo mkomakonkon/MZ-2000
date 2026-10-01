@@ -64,6 +64,9 @@ cd フォルダのパス
 ```
 実行例：
 ```
-python mid2cmu_v1.0.py input.mid output.mzt
+Usage:
+  python mid2cmu.py input.mid output.mzt（1セット構成でよい場合）
+  python mid2cmu.py input.mid output1.mzt output2.mzt（2セット構成を出力する場合）
+TEMPO可変機能を使う場合はデフォルトBPMを入力してください。(使わない場合はEnter): 
 ```
 ---
