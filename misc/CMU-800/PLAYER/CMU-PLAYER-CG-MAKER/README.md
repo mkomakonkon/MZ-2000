@@ -27,6 +27,6 @@ brew install python
 cd フォルダのパス
 ```
 Usage:
-  python cpmake_v1.py
+  python cpmake_v1.py<br>
   を実行後、画像ファイルを指定してください。  
 ```
