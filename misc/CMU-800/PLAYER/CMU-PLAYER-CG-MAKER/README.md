@@ -26,7 +26,7 @@ brew install python
 コマンド プロンプト（または PowerShell）でフォルダに移動：
 ```
 cd フォルダのパス
-python cpmake_v1.py<br>
+python cpmake_v1.py
 ```  
   を実行後、画像ファイルを指定してください。  
 
