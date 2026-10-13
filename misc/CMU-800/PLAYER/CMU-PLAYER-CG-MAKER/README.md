@@ -34,4 +34,10 @@ Usage:
 cpmake_v1.py  
 input-template.bin  
 bmpデータ  
+
+```
+## 4. 生成されるファイル”CMU-800PLAYER-V1.0CG.mzt”について
+
+MZ-2000_SDを使用している場合：起動してすぐにこのファイルを読み込んでください。
+MZ-2000_SDを使用しない場合：モニターからLコマンドでLOADしてください。
 ```
