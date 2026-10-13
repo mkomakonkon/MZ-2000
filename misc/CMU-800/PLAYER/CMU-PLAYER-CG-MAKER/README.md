@@ -30,7 +30,3 @@ Usage:
   python cpmake_v1.py
   を実行後、画像ファイルを指定してください。  
 ```
-
-<img width="834" height="371" alt="image" src="https://github.com/user-attachments/assets/054c8206-31d1-4d67-a28f-ff2b26f06df2" />
-
----
