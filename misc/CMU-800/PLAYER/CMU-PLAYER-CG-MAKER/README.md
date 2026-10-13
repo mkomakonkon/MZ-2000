@@ -1,8 +1,6 @@
 # CMU-PLAYER-CG-MAKER
 CMU-800 PLAYER Ver.1.0CGの作成ツールです。<br>
-<img width="1435" height="1077" alt="image" src="https://github.com/user-attachments/assets/b09d356e-123c-432d-a375-e35a01792c53" />
-
-
+<img width="1602" height="1092" alt="image" src="https://github.com/user-attachments/assets/6a2fbf4c-83a6-4faf-8c05-c72fe05006a4" />
 ---
 ## 1. Python をインストールする
 ### Windows
