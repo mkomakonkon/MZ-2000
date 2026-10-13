@@ -23,9 +23,9 @@ MZ-2000の拡張基板として作っているけど、今のところCMU-800の
 ・拡張I/Oポートに入れるとArduinoのマニュアルリセットができなくなるので、コマンドでのリセットは欲しい。<br>
 　当初ドラムデータのみ使用ビット(bit7)が使えないか検討したけど、ドラム信号解除に使っていたので検討中止。<br>
 ・外付けドラム連携機能<br>
-~~・リアルタイムテンポ調整機能を思いついたのでそれも入れたいかも…<br>
-→<br>
+~~・リアルタイムテンポ調整機能を思いついたのでそれも入れたいかも…~~  
+→  
 [mid2cmu](https://github.com/mkomakonkon/MZ-2000/tree/master/misc/CMU-800/mid2cmu)
-側で対応済<br>
-<img width="4032" height="929" alt="image" src="https://github.com/user-attachments/assets/6c4253df-2faf-4927-b95c-ab3452ed990a" />
+側で対応済  
+
 
