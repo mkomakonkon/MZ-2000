@@ -26,12 +26,9 @@ brew install python
 ```
 cd フォルダのパス
 ```
-実行例：
-```
 Usage:
-  python mid2cmu.py input.mid output.mzt（1セット構成でよい場合）
-  python mid2cmu.py input.mid output1.mzt output2.mzt（2セット構成を出力する場合）
-TEMPO可変機能を使う場合はデフォルトBPMを入力してください。(使わない場合はEnter): 
+  python cpmake_v1.py
+  を実行後、画像ファイルを指定してください。  
 ```
 <img width="834" height="371" alt="image" src="https://github.com/user-attachments/assets/054c8206-31d1-4d67-a28f-ff2b26f06df2" />
 
