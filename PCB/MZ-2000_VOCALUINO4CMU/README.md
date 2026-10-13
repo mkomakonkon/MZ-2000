@@ -27,4 +27,5 @@ MZ-2000の拡張基板として作っているけど、今のところCMU-800の
 →<br>
 [mid2cmu](https://github.com/mkomakonkon/MZ-2000/tree/master/misc/CMU-800/mid2cmu)
 側で対応済<br>
+<img width="4032" height="929" alt="image" src="https://github.com/user-attachments/assets/6c4253df-2faf-4927-b95c-ab3452ed990a" />
 
