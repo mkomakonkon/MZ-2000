@@ -32,7 +32,7 @@ python cpmake_v1.py
 
 なお、下記ファイルはすべて同じフォルダにおいて実行してください。  
 cpmake_v1.py  
-input-template.bin  
+input-template.bin(bmpデータ格納前のプログラムが入っています)  
 bmpデータ  
 
 ---
