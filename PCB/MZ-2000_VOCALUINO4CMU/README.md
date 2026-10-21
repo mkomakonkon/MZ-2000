@@ -28,5 +28,7 @@ MZ-2000の拡張基板として作っているけど、今のところCMU-800の
 <br>→
 [mid2cmu](https://github.com/mkomakonkon/MZ-2000/tree/master/misc/CMU-800/mid2cmu) 側で対応済
 
-
+MZ-2000以外の機種でも使えるようにCMU-800のピンアサインのアダプタ基盤を作りました。<br>
+VOCALUINO4CMUの2x22のピンヘッダー用端子に接続することで、CMU-800のI/F基板と50pinのフラットケーブルで接続できるようになります。<br>
+VOCALUINO4CMU-ADP.zip<br>
 <img src="https://github.com/mkomakonkon/MZ-2000/blob/master/PCB/MZ-2000_VOCALUINO4CMU/Images/ADP-F.png" width="300"><img src="https://github.com/mkomakonkon/MZ-2000/blob/master/PCB/MZ-2000_VOCALUINO4CMU/Images/ADP-B.png" width="300"><br><br>
