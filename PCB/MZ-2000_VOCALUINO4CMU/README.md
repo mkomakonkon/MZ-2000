@@ -27,3 +27,6 @@ MZ-2000の拡張基板として作っているけど、今のところCMU-800の
 ~~・リアルタイムテンポ調整機能を思いついたのでそれも入れたいかも…~~
 <br>→
 [mid2cmu](https://github.com/mkomakonkon/MZ-2000/tree/master/misc/CMU-800/mid2cmu) 側で対応済
+
+
+<img src="https://github.com/mkomakonkon/MZ-2000/blob/master/PCB/MZ-2000_VOCALUINO4CMU/Images/ADP-F.png" width="600"><img src="https://github.com/mkomakonkon/MZ-2000/blob/master/PCB/MZ-2000_VOCALUINO4CMU/Images/ADP-B.png" width="600"><br><br>
