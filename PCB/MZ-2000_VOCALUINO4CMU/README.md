@@ -61,7 +61,7 @@ CMU-800と同じインタフェースのため、CPUアプリを使えば動作�
 <img src="https://github.com/mkomakonkon/MZ-2000/blob/master/PCB/MZ-2000_VOCALUINO4CMU/Images/50pin%E3%83%95%E3%83%A9%E3%83%83%E3%83%88%E3%82%B1%E3%83%BC%E3%83%96%E3%83%AB.jpg" width="300"><br>
 カードエッジ用のコネクタはアリエクなどで入手可能です。<br>
 https://ja.aliexpress.com/item/33056457025.html?spm=a2g0o.order_list.order_list_main.116.79cf585aADnaRj&gatewayAdapt=glo2jpn<br>
-ケーブルは1ピン同士が導通するようにストレート接続してください。
+ケーブルは1ピン同士が導通するようにストレート接続してください。<br>
 これにより、MZ-2000 以外の環境でも本ボードを「CMU-800 互換の音声合成・MIDI機器」として使用できます。
 
 ---
