@@ -71,7 +71,7 @@ https://ja.aliexpress.com/item/33056457025.html?spm=a2g0o.order_list.order_list_
 
 | Mode A: CMU-800 連動モード | 説明 |
 |---|---|
-| ![mode A](Images/外部クロック接続.png) | 実機 Roland CMU-800 と接続し、CMU-800 側の動作・クロックに完全同期して歌唱や MIDI 送出を行うモードです。<br>* **JP1**: N/A（未使用）<br>* **J8**: **オープン** |
+| ![mode A](Images/CMU-800と同期.png) | 実機 Roland CMU-800 と接続し、CMU-800 側の動作・クロックに完全同期して歌唱や MIDI 送出を行うモードです。<br>* **JP1**: N/A（未使用）<br>* **J8**: **オープン** |
 
 | Mode B: 内部クロック生成モード（CMU-800 エミュレーション） | 説明 |
 |---|---|
