@@ -30,6 +30,7 @@ CMU-800 動作時にやり取りされるバス信号を傍受し、以下の動
 
 ## 2. 入出力インタフェースと設定端子
 
+<img src="https://github.com/mkomakonkon/MZ-2000/blob/master/PCB/MZ-2000_VOCALUINO4CMU/Images/IF%E5%9B%B3.png" width="600"><br>
 | 番号 | 名称 | 説明 | 
 | ----- | ----- | ----- | 
 | **①** | **カードエッジコネクタ (J1)** | MZ-2000 の拡張 I/O ポート 4 に直接実装・接続します。 | 
