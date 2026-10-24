@@ -47,6 +47,20 @@ CMU-800 動作時にやり取りされるバス信号を傍受し、以下の動
 | **⑩** | **OUT1 (音声出力)** | ATP3011R4-PU から合成された音声信号が出力されるオーディオジャックです。 | 
 
 ---
+## 3. 腫瘍部品一覧<BR>
+|品名|購入先|備考|参考URL|
+|---|---|---|---|
+|Arduino NANO|Amazonとか|||
+|AudioJack|Amazonとか|OLED 0.91インチディスプレイ I2C<br>ArduinoのA4/A5/5V/GNDに接続|https://akizukidenshi.com/goodsaffix/ST-005-G.pdf|
+|DCジャック(任意)|秋月|USB給電だと間違って書き込んでしまいそうなので…<br>実はこの開発中にもやらかしてます（＾＾；；<br>ArduinoのVINに9Vを接続|https://akizukidenshi.com/catalog/g/g109408/|
+|ステレオジャック|秋月|ジャックの先端(L/MONO)を使用すること<br>CLOCK INはモノラルなのでJACK中央のRはGNDにつながります<br>ArduinoのD9に接続|https://akizukidenshi.com/catalog/g/g102460/|
+|押しボタンスイッチ|アリエク|秋月にはLED無しが売ってないので…<br>ArduinoのD2/D3/D4/D5/D6に接続|[参考URL](https://ja.aliexpress.com/item/1005002884956069.html?spm=a2g0o.order_list.order_list_main.15.e9fb585aThOZR9&gatewayAdapt=glo2jpn)|
+|ゴム足|Amazonとか|私のは滑ってるので、シリコンタイプのものが滑らなくて良さそうです||
+
+
+
+
+
 ## 3. 他機種（MZ-2000 以外）での利用：CMU-800 変換基板
 VOCALUINO4CMU-ADP.zip<br>
 
