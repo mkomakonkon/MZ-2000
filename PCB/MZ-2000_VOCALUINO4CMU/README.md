@@ -55,7 +55,10 @@ CMU-800のインタフェースになっているため、CPUアプリを使え�
 ### 接続・使用方法
 1. 本ボード上の **J2**（2×22 ピンヘッダ）に変換サブ基板 `VOCALUINO4CMU-ADP` をはんだ付け・実装します。
 2. 各機種用 CMU-800 インタフェースボードと `VOCALUINO4CMU-ADP` の間を **50pin フラットケーブル** で接続します。
-
+VOCALUINO4CMU-ADP.zip<br>
+<img src="https://github.com/mkomakonkon/MZ-2000/blob/master/PCB/MZ-2000_VOCALUINO4CMU/Images/ADP-F.png" width="300"><img src="https://github.com/mkomakonkon/MZ-2000/blob/master/PCB/MZ-2000_VOCALUINO4CMU/Images/ADP-B.png" width="300"><br>
+カードエッジ用のコネクタはアリエクなどで入手可能です。<br>
+https://ja.aliexpress.com/item/33056457025.html?spm=a2g0o.order_list.order_list_main.116.79cf585aADnaRj&gatewayAdapt=glo2jpn<br>
 これにより、MZ-2000 以外の環境でも本ボードを「CMU-800 互換の音声合成・MIDI機器」として使用できます。
 
 ---
@@ -203,10 +206,3 @@ MZ-2000の拡張基板として作っているけど、今のところCMU-800の
 ~~・リアルタイムテンポ調整機能を思いついたのでそれも入れたいかも…~~
 <br>→
 [mid2cmu](https://github.com/mkomakonkon/MZ-2000/tree/master/misc/CMU-800/mid2cmu) 側で対応済<br><br>
-
-## MZ-2000以外の機種でも使えるようにCMU-800のピンアサインの変換基板を作りました。<br>
-VOCALUINO4CMUの2x22のピンヘッダー用端子に接続することで、CMU-800のI/F基板と50pinのフラットケーブルで接続できるようになります。<br>
-VOCALUINO4CMU-ADP.zip<br>
-<img src="https://github.com/mkomakonkon/MZ-2000/blob/master/PCB/MZ-2000_VOCALUINO4CMU/Images/ADP-F.png" width="300"><img src="https://github.com/mkomakonkon/MZ-2000/blob/master/PCB/MZ-2000_VOCALUINO4CMU/Images/ADP-B.png" width="300"><br>
-カードエッジ用のコネクタはアリエクなどで入手可能です。<br>
-https://ja.aliexpress.com/item/33056457025.html?spm=a2g0o.order_list.order_list_main.116.79cf585aADnaRj&gatewayAdapt=glo2jpn<br>
