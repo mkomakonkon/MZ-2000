@@ -50,11 +50,11 @@ CMU-800 動作時にやり取りされるバス信号を傍受し、以下の動
 ## 3. 他機種（MZ-2000 以外）での利用：CMU-800 変換基板
 VOCALUINO4CMU-ADP.zip<br>
 
-本ボードは MZ-2000 の拡張 I/O ポート（J1）に直接挿して使用する構造になっていますが、**「CMU-800 ピンアサイン変換基板」**（`VOCALUINO4CMU-ADP`）を接続することで、**MZ-2000 以外の CMU-800 対応機種**（PC-8801 シリーズ、FM-7 シリーズ等）に接続可能になります。<br>
+MZ-2000_VOCALUINO4CMUは MZ-2000 の拡張 I/O ポート（J1）に直接挿して使用する構造になっていますが、**「CMU-800 ピンアサイン変換基板」**（`VOCALUINO4CMU-ADP`）を接続することで、**MZ-2000 以外の CMU-800 対応機種**（PC-8801 シリーズ、FM-7 シリーズ等）に接続可能になります。<br>
 CMU-800のインタフェースになっているため、CPUアプリを使えば動作すると思われます。<br>
 
 ### 接続・使用方法
-1. 本ボード上の **J2**（2×22 ピンヘッダ）に変換サブ基板 `VOCALUINO4CMU-ADP` をはんだ付け・実装します。
+1. MZ-2000_VOCALUINO4CMU上の **J2**（2×22 ピンヘッダ）に変換サブ基板 `VOCALUINO4CMU-ADP` をはんだ付け・実装します。
 2. 各機種用 CMU-800 インタフェースボードと `VOCALUINO4CMU-ADP` の間を **50pin フラットケーブル** で接続します。
 
 <img src="https://github.com/mkomakonkon/MZ-2000/blob/master/PCB/MZ-2000_VOCALUINO4CMU/Images/ADP-F.png" width="300"><img src="https://github.com/mkomakonkon/MZ-2000/blob/master/PCB/MZ-2000_VOCALUINO4CMU/Images/ADP-B.png" width="300"><br>
