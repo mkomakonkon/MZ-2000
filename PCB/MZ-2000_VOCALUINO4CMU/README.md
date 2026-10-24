@@ -165,35 +165,5 @@ Arduino Nano（A2）側のソケットに挿入した ATP3011R4-PU を使用し�
    * I2C アドレスの重複を避けるため、基板上に複数の ATP3011R4-PU を実装する場合は、LSI ごとにアドレス設定（`0x2E`, `0x2F` 等）が正しく行われていることを確認してください。
   
    
-<br><br><br><br>
-# MZ-2000_VOCALUINO4CMU(Rev.0.1)<br>
-
-この基板にはCMU-800と同じアドレスデコードと8255が載っていて、<br>
-MZとCMUがやり取りしている信号のうち、CVに関するデータをArduinoが受け取って、その音階でATP3011R4-PUを発音させています。<br>
-<img src="https://github.com/mkomakonkon/MZ-2000/blob/master/PCB/MZ-2000_VOCALUINO4CMU/Images/PCB-photo1.png" width="600"><br>
-歌詞はスケッチ内に書き込んでいるので、曲が変わる度にスケッチを書き換える必要があります（＾＾；<br>
-また、MZとCMUが通信している信号をもらう仕様上、この基板単体では動作しません。★CMU-800本体が必要です★<br>
-<br>
 ＝＝＝＝＝ DEMO動画 ＝＝＝＝＝<br>
 [![VOCALUINO4CMU](https://img.youtube.com/vi/i1UvYEcTje4/0.jpg)](https://www.youtube.com/watch?v=i1UvYEcTje4)  
-
-Rev.0.2<br>
-MZ-2000_VOCALUINO4CMU.zipはKiCADデータです。<br>
-（試作機のバグ対応を埋め込んだとりあえずのバージョンで実績はありません。）<br>
-sketchはArduino Nano用の書込みデータです。<br>
-VO-SEISYUN-CPX.mzt：CMU-800用の曲データです。<br>
-<br>
-MZ-2000の拡張基板として作っているけど、今のところCMU-800の信号しか使っていないので、他のマイコンでも動作すると思います。<br>
-
-<br>
-詳細はこれから書きます。<br>
-要望や質問があればyoutubeのコメントに書いてもらえれば対応できるものは対応します。<br>
-<br>
-今後の予定<br>
-・拡張I/Oポートに入れるとArduinoのマニュアルリセットができなくなるので、コマンドでのリセットは欲しい。<br>
-　当初ドラムデータのみ使用ビット(bit7)が使えないか検討したけど、ドラム信号解除に使っていたので検討中止。<br>
-・外付けドラム連携機能<br>
-
-~~・リアルタイムテンポ調整機能を思いついたのでそれも入れたいかも…~~
-<br>→
-[mid2cmu](https://github.com/mkomakonkon/MZ-2000/tree/master/misc/CMU-800/mid2cmu) 側で対応済<br><br>
