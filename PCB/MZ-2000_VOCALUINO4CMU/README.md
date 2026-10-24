@@ -69,6 +69,13 @@ https://ja.aliexpress.com/item/33056457025.html?spm=a2g0o.order_list.order_list_
 
 使用する環境や目的に応じて、ジャンパピン（JP1, J8）を以下のように設定してください。
 
+| ### Mode A: CMU-800 連動モード | 説明 |
+|---|---|
+| ![回路図](images/circuit.png) | 実機 Roland CMU-800 と接続し、CMU-800 側の動作・クロックに完全同期して歌唱や MIDI 送出を行うモードです。<br>
+* **JP1**: N/A（未使用）
+* **J8**: **オープン** |
+| ![基板図](images/pcb.png) | **基板構成**<br>2層基板で設計しています。 |
+
 ### Mode A: CMU-800 連動モード
 
 実機 Roland CMU-800 と接続し、CMU-800 側の動作・クロックに完全同期して歌唱や MIDI 送出を行うモードです。
