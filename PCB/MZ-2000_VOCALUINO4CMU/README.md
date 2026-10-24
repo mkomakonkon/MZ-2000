@@ -54,7 +54,12 @@ CMU-800 動作時にやり取りされるバス信号を傍受し、以下の動
 |AudioJack<br>ST-005-G|秋月|CLK-IN1,VOUT1<br>アリエク、PJ321でも可|[参考URL](https://akizukidenshi.com/goodsaffix/ST-005-G.pdf)|
 |ダイオード|秋月など|D1,1S1588や1N4148などの<br>汎用小信号高速スイッチング・ダイオード|[参考URL](https://akizukidenshi.com/goodsaffix/1n4148.pdf)|
 |8255|樫木総業など|IC6(μPD8255AC-2)|[参考URL](https://www.kashinoki.shop/?pid=143423188)|
-
+|74LS139|樫木総業など|IC9|[参考URL](https://www.kashinoki.shop/?pid=122646178)|
+|74LS138|樫木総業など|IC10|[参考URL](https://www.kashinoki.shop/?pid=122646176)|
+|ピンヘッダ|秋月など|J8,JP1<br>VOCALUINO4CMU-ADPを使う場合にも使用可|[参考URL](https://akizukidenshi.com/catalog/g/g100167/)|
+|DINコネクタ|秋月など|J6、MIDIコネクタ|[参考URL](https://akizukidenshi.com/catalog/g/g109565/)|
+|ATP3011R4-PU|アクエスト|U1,U2,U3,U4歌わせる場合に必要<br>この型番（R4）しか歌えません|[参考URL](https://store.a-quest.com/items/7414356)|
+|トランジスタ|秋月など|Q1、2SC1815L-GR<br>GRはアナログシンセにも使える<BR>CMU-800に使われている2SC945でもOK|[参考URL](https://akizukidenshi.com/catalog/g/g106477/)|
 
 
 
