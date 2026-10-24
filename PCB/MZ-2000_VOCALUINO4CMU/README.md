@@ -1,5 +1,5 @@
 # MZ-2000_VOCALUINO4CMU(Rev.0.2)
-
+[![VOCALUINO4CMU](https://img.youtube.com/vi/i1UvYEcTje4/0.jpg)](https://www.youtube.com/watch?v=i1UvYEcTje4)  
 MZ-2000 および CMU-800 システムに向けた音声合成（歌唱）機能および MIDI インタフェース拡張ボードです。CMU-800 のバス信号を傍受・エミュレートすることで、リアルタイムでの音声合成発音や MIDI 送出、ならびにテンポクロック生成による擬似 CMU-800 動作を実現します。
 
 ---
@@ -64,7 +64,7 @@ CMU-800 動作時にやり取りされるバス信号を傍受し、以下の動
 
 
 
-## 3. 他機種（MZ-2000 以外）での利用：CMU-800 変換基板
+## 4. 他機種（MZ-2000 以外）での利用：CMU-800 変換基板
 VOCALUINO4CMU-ADP.zip<br>
 
 MZ-2000_VOCALUINO4CMUは MZ-2000 の拡張 I/O ポート（J1）に直接挿して使用する構造になっていますが、**「CMU-800 ピンアサイン変換基板」**（`VOCALUINO4CMU-ADP`）を接続することで、**MZ-2000 以外の CMU-800 対応機種**（PC-8801 シリーズ、FM-7 シリーズ等）に接続可能になります。<br>
@@ -82,7 +82,7 @@ https://ja.aliexpress.com/item/33056457025.html?spm=a2g0o.order_list.order_list_
 これにより、MZ-2000 以外の環境でも本ボードを「CMU-800 互換の音声合成・MIDI機器」として使用できると思います。
 
 ---
-## 4. 動作モードとジャンパ設定
+## 5. 動作モードとジャンパ設定
 
 使用する環境や目的に応じて、ジャンパピン（JP1, J8）を以下のように設定してください。
 
@@ -100,7 +100,7 @@ https://ja.aliexpress.com/item/33056457025.html?spm=a2g0o.order_list.order_list_
 | ![mode A](Images/外部クロック接続.png) | CMU-800 実機を使用せず、外部クロックモジュール（CLK-IN1）からの信号に同期して単体動作させるモードです。<br>* **JP1**: **外部クロック使用側をショート**<br>* **J8**: **ショート** |
 
 ---
-## 5. Arduino Nano スケッチ（プログラム）説明
+## 6. Arduino Nano スケッチ（プログラム）説明
 
 ### 【A1 用スケッチ】
 
@@ -153,7 +153,7 @@ Arduino Nano（A2）側のソケットに挿入した ATP3011R4-PU を使用し�
 * A1/A2 で同時に歌唱スケッチを使用する場合は、それぞれのコード内の定数 `V_CH`（担当チャンネル）を変更（例: A1 を CH1、A2 を CH2）することで、マルチパート（デュエット等）の音声合成歌唱が実現できます。
 
 ---
-## 6. システム拡張性と運用ノート
+## 7. システム拡張性と運用ノート
 
 1. **A1 / A2 の役割分担パターン**
 
@@ -180,7 +180,3 @@ Arduino Nano（A2）側のソケットに挿入した ATP3011R4-PU を使用し�
    * D9 ピンは `CLOCK_UNIT2.ino` ではクロック出力、`02_VOCALUINO4U_seisyun.ino` ではリセット入力（`PIN_VOICE_RST`）、`MIDI_MULTI_LOVE_REASON_WHY.ino` ではドラム入力ピンとして使用されます。書き込むスケッチと基板のジャンパ設定（JP1/J8）が合致しているか確認してください。
 
    * I2C アドレスの重複を避けるため、基板上に複数の ATP3011R4-PU を実装する場合は、LSI ごとにアドレス設定（`0x2E`, `0x2F` 等）が正しく行われていることを確認してください。
-  
-   
-＝＝＝＝＝ DEMO動画 ＝＝＝＝＝<br>
-[![VOCALUINO4CMU](https://img.youtube.com/vi/i1UvYEcTje4/0.jpg)](https://www.youtube.com/watch?v=i1UvYEcTje4)  
