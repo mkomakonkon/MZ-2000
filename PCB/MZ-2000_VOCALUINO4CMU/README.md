@@ -52,8 +52,8 @@ CMU-800 動作時にやり取りされるバス信号を傍受し、以下の動
 |---|---|---|---|
 |Arduino NANO|Amazonとか|A1,A2||
 |AudioJack<br>ST-005-G|秋月|CLK-IN1,VOUT1<br>アリエク、PJ321でも可|[参考URL](https://akizukidenshi.com/goodsaffix/ST-005-G.pdf)|
-|ダイオード|秋月など|1S1588や1N4148などの<br>汎用小信号高速スイッチング・ダイオード|[参考URL](https://akizukidenshi.com/goodsaffix/1n4148.pdf)|
-|ゴム足|Amazonとか|私のは滑ってるので、シリコンタイプのものが滑らなくて良さそうです||
+|ダイオード|秋月など|D1,1S1588や1N4148などの<br>汎用小信号高速スイッチング・ダイオード|[参考URL](https://akizukidenshi.com/goodsaffix/1n4148.pdf)|
+|8255|樫木総業など|IC6(μPD8255AC-2)|[参考URL](https://www.kashinoki.shop/?pid=143423188)|
 
 
 
