@@ -1,4 +1,4 @@
-# MZ-2000_VOCALUINO4CMU(Rev.0.2)
+# 【工事中】MZ-2000_VOCALUINO4CMU(Rev.0.2)
 [![VOCALUINO4CMU](https://img.youtube.com/vi/i1UvYEcTje4/0.jpg)](https://www.youtube.com/watch?v=i1UvYEcTje4)  
 MZ-2000 および CMU-800 システムに向けた音声合成（ボーカル）機能および MIDI インタフェース拡張ボードです。CMU-800 のバス信号を傍受・エミュレートすることで、リアルタイムでの音声合成発音や MIDI 送出、ならびにテンポクロック生成による擬似 CMU-800 動作を実現します。
 
