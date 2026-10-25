@@ -64,7 +64,7 @@ CMU-800 動作時にやり取りされるバス信号を傍受し、以下の動
 |ピンヘッダ|秋月など|J8,JP1<br>VOCALUINO4CMU-ADPを使う場合にも使用可|[参考URL](https://akizukidenshi.com/catalog/g/g100167/)|
 |ショートピン|秋月など|J8,JP1の設定用|[参考URL](https://akizukidenshi.com/catalog/g/g102622/)|
 |DINコネクタ|秋月など|J6、MIDIコネクタ|[参考URL](https://akizukidenshi.com/catalog/g/g109565/)|
-|トランジスタ|秋月など|Q1、2SC1815L-GR<br>外部クロック使用時のみ必要<br>GRはアナログシンセにも使える<BR>CMU-800に使われている2SC945でもOK|[参考URL](https://akizukidenshi.com/catalog/g/g106477/)|
+|トランジスタ|秋月など|Q1、2SC1815L-GR<br>★外部クロック未使用の場合不要<br>GRはアナログシンセにも使える<BR>CMU-800に使われている2SC945でもOK|[参考URL](https://akizukidenshi.com/catalog/g/g106477/)|
 
 ---
 ## 4. 他機種（MZ-2000 以外）での利用：CMU-800 変換基板
