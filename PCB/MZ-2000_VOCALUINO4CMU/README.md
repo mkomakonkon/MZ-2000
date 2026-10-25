@@ -66,7 +66,7 @@ CMU-800 動作時にやり取りされるバス信号を傍受し、以下の動
 |DINコネクタ|秋月など|J6、MIDIコネクタ|[参考URL](https://akizukidenshi.com/catalog/g/g109565/)|
 |トランジスタ|秋月など|Q1、2SC1815L-GR<br>GRはアナログシンセにも使える<BR>CMU-800に使われている2SC945でもOK|[参考URL](https://akizukidenshi.com/catalog/g/g106477/)|
 
-
+---
 ## 4. 他機種（MZ-2000 以外）での利用：CMU-800 変換基板
 VOCALUINO4CMU-ADP.zip<br>
 
