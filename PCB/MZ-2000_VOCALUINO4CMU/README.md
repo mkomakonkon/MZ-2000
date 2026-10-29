@@ -124,7 +124,7 @@ https://ja.aliexpress.com/item/33056457025.html?spm=a2g0o.order_list.order_list_
 
 ### 【A1 用スケッチ】
 
-#### 1. `Vocaluino4CMU_setisyun_CPX.ino`(旧版のため、ドラムアサインが古い)
+#### 1. `Vocaluino4CMU_setisyun_CPX.ino`
 >* **概要**:
 >  MZ-2000（または変換基板経由の CMU-800 バス）の動作時にやり取りされる信号（アドレス `CHA`〜`CHC`、ゲート `/G`, `GATE`、音階データ `VD[5:0]`）を基板上の 74LS259 エミュレート処理を介して傍受し、音声合成 LSI（ATP3011R4-PU）に歌わせるためのスケッチです。
 >
