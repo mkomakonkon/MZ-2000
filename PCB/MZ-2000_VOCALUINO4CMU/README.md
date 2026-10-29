@@ -124,7 +124,7 @@ https://ja.aliexpress.com/item/33056457025.html?spm=a2g0o.order_list.order_list_
 
 ### 【A1 用スケッチ】
 
-#### 1. `02_VOCALUINO4U_seisyun.ino`
+#### 1. `Vocaluino4CMU_setisyun_CPX.ino`(旧版のため、ドラムアサインが古い)
 >* **概要**:
 >  MZ-2000（または変換基板経由の CMU-800 バス）の動作時にやり取りされる信号（アドレス `CHA`〜`CHC`、ゲート `/G`, `GATE`、音階データ `VD[5:0]`）を基板上の 74LS259 エミュレート処理を介して傍受し、音声合成 LSI（ATP3011R4-PU）に歌わせるためのスケッチです。
 >
@@ -153,7 +153,7 @@ https://ja.aliexpress.com/item/33056457025.html?spm=a2g0o.order_list.order_list_
 
 ### 【A2 用スケッチ】
 
-#### 1. `MIDI_MULTI_LOVE_REASON_WHY.ino`
+#### 1. `MIDI_MULTI_FIX.ino`
 
 >* **概要**:
 >  Arduino Nano（A2）を MIDI インタフェースとして動作させ、CMU-800 のバス信号を標準 MIDI メッセージ（ノート ON/OFF、プログラムチェンジ、コントロールチェンジ等）にリアルタイム変換して送出するスケッチです。
@@ -166,37 +166,43 @@ https://ja.aliexpress.com/item/33056457025.html?spm=a2g0o.order_list.order_list_
 >
 >  * 各チャンネルの GM 楽器番号（Program Change）や初期ボリューム（Control Change #7）をコード内で柔軟にアサイン可能です。
 >
-#### 2. （補足）A2 への `02_VOCALUINO4U_seisyun.ino` 流用について
+#### 2. （補足）A2 への `Vocaluino4CMU_setisyun_CPX.ino` 流用について
 
-Arduino Nano（A2）側のソケットに挿入した ATP3011R4-PU を使用して歌唱させる場合、`02_VOCALUINO4U_seisyun.ino` をそのまま流用・書き込みすることが可能です。
+Arduino Nano（A2）側のソケットに挿入した ATP3011R4-PU を使用して歌唱させる場合、`Vocaluino4CMU_setisyun_CPX.ino` をそのまま流用・書き込みすることが可能です。
 
-* A1/A2 で同時に歌唱スケッチを使用する場合は、それぞれのコード内の定数 `V_CH`（担当チャンネル）を変更（例: A1 を CH1、A2 を CH2）することで、マルチパート（デュエット等）の音声合成歌唱が実現できます。
+* A1/A2 で同時にボーカルスケッチを使用する場合は、それぞれのコード内の定数 `V_CH`（担当チャンネル）を変更（例: A1 を CH1、A2 を CH2）することで、マルチパート（デュエット等）の音声合成歌唱が実現できます。
 
 ---
 ## 8. システム拡張性と運用ノート
 
 1. **A1 / A2 の役割分担パターン**
 
-   * **標準構成（歌唱 ＋ MIDI）**:
+   * **標準構成（ボーカル ＋ MIDI）**:
 
-     * A1: `02_VOCALUINO4U_seisyun.ino`（音声合成歌唱）
+     * A1: `Vocaluino4CMU_setisyun_CPX.ino`（音声合成歌唱）
 
-     * A2: `MIDI_MULTI_LOVE_REASON_WHY.ino`（外部 MIDI 音源演奏）
+     * A2: `MIDI_MULTI_FIX.ino`（外部 MIDI 音源演奏）
 
-   * **スタンドアロン演奏構成（内部クロック ＋ 歌唱）**:
+   * **スタンドアロン演奏構成（内部クロック ＋ MIDIインタフェース）**:
 
      * A1: `CLOCK_UNIT2.ino`（BPM クロック供給）
 
-     * A2: `02_VOCALUINO4U_seisyun.ino`（音声合成歌唱）
+     * A2: `MIDI_MULTI_FIX.ino`（MIDIインタフェース）
+
+   * **スタンドアロン演奏構成（内部クロック ＋ ボーカル）**:
+
+     * A1: `CLOCK_UNIT2.ino`（BPM クロック供給）
+
+     * A2: `Vocaluino4CMU_setisyun_CPX.ino`（音声合成ボーカル）
 
    * **ツインボーカル構成**:
 
-     * A1: `02_VOCALUINO4U_seisyun.ino`（パート 1）
+     * A1: `Vocaluino4CMU_setisyun_CPX.ino`（パート 1）
 
-     * A2: `02_VOCALUINO4U_seisyun.ino`（パート 2）
+     * A2: `Vocaluino4CMU_setisyun_CPX.ino`（パート 2）
 
 2. **配線および設定上の注意点**
 
-   * D9 ピンは `CLOCK_UNIT2.ino` ではクロック出力、`02_VOCALUINO4U_seisyun.ino` ではリセット入力（`PIN_VOICE_RST`）、`MIDI_MULTI_LOVE_REASON_WHY.ino` ではドラム入力ピンとして使用されます。書き込むスケッチと基板のジャンパ設定（JP1/J8）が合致しているか確認してください。
+   * D9 ピンは `CLOCK_UNIT2.ino` ではクロック出力、`Vocaluino4CMU_setisyun_CPX.ino` ではリセット入力（`PIN_VOICE_RST`）、`MIDI_MULTI_FIX.ino` ではドラム入力ピンとして使用されます。書き込むスケッチと基板のジャンパ設定（JP1/J8）が合致しているか確認してください。
 
    * I2C アドレスの重複を避けるため、基板上に複数の ATP3011R4-PU を実装する場合は、LSI ごとにアドレス設定（`0x2E`, `0x2F` 等）が正しく行われていることを確認してください。
