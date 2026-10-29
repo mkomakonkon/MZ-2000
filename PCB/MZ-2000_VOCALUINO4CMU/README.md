@@ -11,6 +11,9 @@ CADデータ：<br>
 　　MZ-2000_VOCALUINO4CMU_V2.zip（メイン基板）<br>
 　　VOCALUINO4CMU-ADP.zip（CMUインタフェース用変換基板）<br>
 スケッチ：sketch/<br>
+　【最小構成】
+    A1:CLOCK_UNIT2（内部クロック生成用）<br>
+    A2:MIDI_MULTI_FIX（MIDIインタフェース）<br>
 部品の補足情報：PARTS_LIST.xlsx<br>
 ---
 ## 2. 概要と基本機能
