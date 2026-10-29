@@ -6,8 +6,8 @@ CMU-800 のバス信号を傍受・エミュレートすることで、リアル
 VOCALUINO4CMU-ADPを接続することでCMU-800に接続可能な全てのマイコンで動作すると思います。
 
 ---
-## 1. ファイルについて
-### CADデータ：<br>
+## 1. ファイルについて  
+CADデータ：<br>
 　　MZ-2000_VOCALUINO4CMU_V2.zip（メイン基板）<br>
 　　VOCALUINO4CMU-ADP.zip（CMUインタフェース用変換基板）<br>
 スケッチ：sketch/<br>
