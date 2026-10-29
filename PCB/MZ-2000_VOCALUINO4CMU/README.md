@@ -7,9 +7,11 @@ VOCALUINO4CMU-ADPを接続することでCMU-800に接続可能な全てのマ�
 
 ---
 ## 1. ファイルについて
-CADデータ：MZ-2000_VOCALUINO4CMU_V2.zip
-スケッチ：sketch/
-
+CADデータ：<br>
+　　MZ-2000_VOCALUINO4CMU_V2.zip<br>
+　　VOCALUINO4CMU-ADP.zip<br>
+スケッチ：sketch/<br>
+部品の補足情報：PARTS_LIST.xlsx<br>
 ---
 ## 2. 概要と基本機能
 
