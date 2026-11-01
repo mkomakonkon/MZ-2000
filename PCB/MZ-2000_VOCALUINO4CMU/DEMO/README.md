@@ -1,0 +1,16 @@
+# VOCALUINO4CMU用デモプログラム  
+
+## ハードウェア  
+
+使用部品.pdfの赤で囲った部品を実装すれば動作します。  
+Arduino NanoのスケッチはA1,A2のロケーション通りに書き込んでください。  
+AOCALUINO4CMUのMIDI端子(OUT)をMIDI音源のMIDI-INに接続してください。
+VOUT1はスピーカーに接続してください。  
+このデモは歌わないので、ATP3011シリーズなら何でも動作します。　　
+歌うのはATP3011R4-PUのみです。このデモではATP3011F4-PUを実装しています。    
+
+## ソフトウェア  
+MZ-2000でMZ-1Z001(BASIC)をLOAD  
+LOADコマンドで"TIME LIMIT3.mzt"をLOAD  
+MONでモニタに移ってLコマンドで”TIME LIMIT3 OBJ.mzt”をLOAD  
+RUNでゲームが始まります。  
