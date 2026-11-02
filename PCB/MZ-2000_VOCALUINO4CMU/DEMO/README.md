@@ -1,4 +1,5 @@
 # VOCALUINO4CMU用デモプログラム  
+[![DEMO](https://img.youtube.com/vi/Gk1N_0d0dyk/0.jpg)](https://www.youtube.com/watch?v=Gk1N_0d0dyk)  
 
 ## ハードウェア  
 
