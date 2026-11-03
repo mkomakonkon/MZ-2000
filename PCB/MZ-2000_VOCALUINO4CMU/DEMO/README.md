@@ -16,3 +16,8 @@ MZ-2000でMZ-1Z001(BASIC)をLOAD
 LOADコマンドで"TIME LIMIT3.mzt"をLOAD  
 MONでモニタに移ってLコマンドで”TIME LIMIT3 OBJ.mzt”をLOAD  
 RUNでゲームが始まります。  
+
+## その他
+mz2200.sta0  
+EmuZ-2200用のStateファイルです。  
+エミュレータのあるフォルダに置いてControl→LoadState→０を選んでロード  
