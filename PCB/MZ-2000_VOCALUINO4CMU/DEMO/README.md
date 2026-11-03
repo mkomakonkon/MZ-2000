@@ -21,3 +21,4 @@ RUNでゲームが始まります。
 mz2200.sta0  
 EmuZ-2200用のStateファイルです。  
 エミュレータのあるフォルダに置いてControl→LoadState→０を選んでロード  
+このEmuZ-2200のbeta8gで動作実績あり<https://github.com/kuran-kuran/CommonSourceCodeProject/releases>
