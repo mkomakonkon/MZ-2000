@@ -1,6 +1,6 @@
 # MZ-2000+CMU-800をEXINTを使って演奏させる
 
-Arduinoのテンポクロックを **EXINT割り込み**に入れると、BASICのループの重さに関係なく、一定のテンポで演奏できます。
+Arduinoのテンポクロックを **EXINT割り込み**に入れると、BASICのループの重さに関係なく、一定のテンポで演奏できます。  
 [![VOCALUINO4CMU](https://img.youtube.com/vi/rcAZaA0XRN4/0.jpg)](https://www.youtube.com/watch?v=rcAZaA0XRN4)  
 ---
 
